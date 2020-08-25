@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,8 +19,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.Callable;
-import org.apache.commons.lang3.NotImplementedException;
 
 import org.neuroph.core.input.InputFunction;
 import org.neuroph.core.input.WeightedSum;
@@ -28,6 +26,7 @@ import org.neuroph.core.transfer.Step;
 import org.neuroph.core.transfer.TransferFunction;
 
 /**
+ * 神经元，神经网络的基础组成部分.
  * <pre>
  * Basic general neuron model according to McCulloch-Pitts neuron model.
  * Different neuron models can be created by using different input and transfer functions for instances of this class,
@@ -56,17 +55,19 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
 
     /**
      * Parent layer for this neuron
+     * 当前神经元的前置层.
      */
     protected Layer parentLayer;
 
     /**
      * Collection of neuron's input connections (connections to this neuron)
+     * 输入连接.
      */
     protected List<Connection> inputConnections;
 
     /**
-     * Collection of neuron's output connections (connections from this to other
-     * neurons)
+     * Collection of neuron's output connections (connections from this to other neurons)
+     * 输出连接.
      */
     protected List<Connection> outConnections;
 
@@ -88,11 +89,13 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
 
     /**
      * Input function for this neuron
+     * 前一层全部神经元与权值乘积结果的聚合函数，可能是累和也可能是其他函数.
      */
     protected InputFunction inputFunction;
 
     /**
-     * Transfer function for this neuron
+     * Transfer function for this neuron.
+     * 激活函数.
      */
     protected TransferFunction transferFunction;
 
@@ -117,7 +120,7 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
      * Creates an instance of Neuron with the specified input and transfer
      * functions.
      *
-     * @param inputFunction input function for this neuron
+     * @param inputFunction    input function for this neuron
      * @param transferFunction transfer function for this neuron
      */
     public Neuron(InputFunction inputFunction, TransferFunction transferFunction) {
@@ -189,11 +192,9 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
     }
 
     /**
-
      * Check the connection to neuron
      *
      * @param neuron neuron connection to be checked
-     *
      * @return true if there is output connection, false otherwise
      */
     public boolean hasOutputConnectionTo(Neuron toNeuron) {
@@ -209,7 +210,6 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
      * Check the connection from neuron
      *
      * @param neuron neuron connection to be checked
-     *
      * @return true if there is input connection, false otherwise
      */
     public boolean hasInputConnectionFrom(Neuron neuron) {
@@ -262,7 +262,7 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
      * Adds input connection with the given weight, from given neuron
      *
      * @param fromNeuron neuron to connect from
-     * @param weightVal connection weight value
+     * @param weightVal  connection weight value
      */
     public void addInputConnection(Neuron fromNeuron, double weightVal) {
         Connection connection = new Connection(fromNeuron, this, weightVal);

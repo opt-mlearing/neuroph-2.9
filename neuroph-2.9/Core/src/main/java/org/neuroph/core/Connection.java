@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,10 +20,12 @@ import java.util.Objects;
 
 /**
  * Weighted connection to another neuron.
- * 
+ * 神经元直接的连接权重.
+ * Connection连接两个神经元，from_Neuron到to_Neuron. 并且带有权值属性.
+ *
+ * @author Zoran Sevarac <sevarac@gmail.com>
  * @see Weight
  * @see Neuron
- * @author Zoran Sevarac <sevarac@gmail.com>
  */
 public class Connection implements Serializable {
 
@@ -44,7 +46,7 @@ public class Connection implements Serializable {
      * This connection is input connection for to neuron.
      */
     protected Neuron toNeuron;
-    
+
     /**
      * Weight for this connection
      */
@@ -54,7 +56,7 @@ public class Connection implements Serializable {
      * Creates a new connection between specified neurons with random weight
      *
      * @param fromNeuron neuron to connect from
-     * @param  toNeuron neuron to connect to
+     * @param toNeuron   neuron to connect to
      */
     public Connection(Neuron fromNeuron, Neuron toNeuron) {
 
@@ -77,28 +79,26 @@ public class Connection implements Serializable {
      * Creates a new connection to specified neuron with specified weight object
      *
      * @param fromNeuron neuron to connect from
-     * @param toNeuron neuron to connect to
-     * @param weight
-     *            weight for this connection
+     * @param toNeuron   neuron to connect to
+     * @param weight     weight for this connection
      */
     public Connection(Neuron fromNeuron, Neuron toNeuron, Weight weight) {
         this(fromNeuron, toNeuron);
-        
+
         if (weight == null) {
             throw new IllegalArgumentException("Connection Weight cant be null!");
         } else {
             this.weight = weight;
-        }        
-        
+        }
+
     }
 
     /**
      * Creates a new connection to specified neuron with specified weight value
      *
      * @param fromNeuron neuron to connect from
-     * @param  toNeuron neuron to connect to
-     * @param weightVal
-     *            weight value for this connection
+     * @param toNeuron   neuron to connect to
+     * @param weightVal  weight value for this connection
      */
     public Connection(Neuron fromNeuron, Neuron toNeuron, double weightVal) {
         this(fromNeuron, toNeuron, new Weight(weightVal));
@@ -109,12 +109,13 @@ public class Connection implements Serializable {
      *
      * @return weight for this connection
      */
-    public final  Weight getWeight() {
+    public final Weight getWeight() {
         return this.weight;
     }
 
     /**
      * Set the weight of the connection.
+     *
      * @param weight The new weight of the connection.
      */
     public final void setWeight(Weight weight) {
@@ -122,18 +123,18 @@ public class Connection implements Serializable {
             throw new IllegalArgumentException("Connection Weight cant be null!");
         } else {
             this.weight = weight;
-        }        
+        }
     }
 
     /**
      * Returns input received through this connection - the activation that
      * comes from the output of the cell on the other end of connection
-     *     
+     * <p>
      * Todo: make this final and solve delayed neuron connection in a different way
-     * 
+     *
      * @return input received through this connection
      */
-    public double getInput() { 
+    public double getInput() {
         return fromNeuron.getOutput();
     }
 
@@ -148,6 +149,7 @@ public class Connection implements Serializable {
 
     /**
      * Gets from neuron for this connection
+     *
      * @return from neuron for this connection
      */
     public final Neuron getFromNeuron() {
@@ -156,6 +158,7 @@ public class Connection implements Serializable {
 
     /**
      * Gets to neuron for this connection
+     *
      * @return neuron to set as to neuron
      */
     public final Neuron getToNeuron() {
@@ -164,11 +167,11 @@ public class Connection implements Serializable {
 
     @Override
     public Object clone() throws CloneNotSupportedException {
-        Connection cloned = (Connection)super.clone(); 
-        cloned.setWeight((Weight)weight.clone());
-        cloned.toNeuron = (Neuron)toNeuron.clone();
-        cloned.fromNeuron = (Neuron)fromNeuron.clone();
-        
+        Connection cloned = (Connection) super.clone();
+        cloned.setWeight((Weight) weight.clone());
+        cloned.toNeuron = (Neuron) toNeuron.clone();
+        cloned.fromNeuron = (Neuron) fromNeuron.clone();
+
         return cloned;
     }
 
@@ -204,14 +207,11 @@ public class Connection implements Serializable {
         }
         return true;
     }
-    
+
     @Override
     public String toString() {
         return "Connection{" + "fromNeuron=" + fromNeuron + ", toNeuron=" + toNeuron + ", weight=" + weight + '}';
     }
-    
-    
-    
 
 
 }

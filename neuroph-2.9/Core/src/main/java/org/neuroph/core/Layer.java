@@ -1,12 +1,12 @@
 /**
  * Copyright 2014 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -33,8 +33,8 @@ import org.neuroph.util.NeuronProperties;
  * </pre>
  *
  * @param <N> Type of neurons in layer
- * @see Neuron
  * @author Zoran Sevarac <sevarac@gmail.com>
+ * @see Neuron
  */
 public class Layer implements Iterable<Neuron>, Serializable {
 // TODO: make this Layer<N extends Neuron>
@@ -47,10 +47,12 @@ public class Layer implements Iterable<Neuron>, Serializable {
 
     /**
      * Parent neural network - to which this layer belongs
+     * 建立层与神经元网络的绑定关系.
      */
     private NeuralNetwork parentNetwork;
 
     /**
+     * 当前层的神经元集合.
      * Collection of neurons in this layer
      */
     protected List<Neuron> neurons;
@@ -69,22 +71,23 @@ public class Layer implements Iterable<Neuron>, Serializable {
 
     /**
      * Creates an instance of empty Layer for specified number of neurons
+     *
      * @param neuronsCount number of neurons in this layer
      */
     public Layer(int neuronsCount) {
-       neurons = new ArrayList<>(neuronsCount);
+        neurons = new ArrayList<>(neuronsCount);
     }
 
     /**
      * Creates an instance of Layer with the specified number of neurons with
      * specified neuron properties
      *
-     * @param neuronsCount number of neurons in layer
+     * @param neuronsCount     number of neurons in layer
      * @param neuronProperties properties of neurons in layer
      */
     public Layer(int neuronsCount, NeuronProperties neuronProperties) {
         this(neuronsCount);
-
+        // 为当前层设置神经元
         for (int i = 0; i < neuronsCount; i++) {
             Neuron neuron = NeuronFactory.createNeuron(neuronProperties);
             this.addNeuron(neuron);
@@ -140,12 +143,12 @@ public class Layer implements Iterable<Neuron>, Serializable {
 
     /**
      * Adds specified neuron to this layer,at specified index position
-     *
+     * <p>
      * Throws IllegalArgumentException if neuron is null, or index is
      * illegal value (index<0 or index>neuronsCount)
      *
      * @param neuron neuron to add
-     * @param index index position at which neuron should be added
+     * @param index  index position at which neuron should be added
      */
     public final void addNeuron(int index, Neuron neuron) {
         // prevent adding null neurons
@@ -167,7 +170,7 @@ public class Layer implements Iterable<Neuron>, Serializable {
     /**
      * Sets (replace) the neuron at specified position in layer
      *
-     * @param index index position to set/replace
+     * @param index  index position to set/replace
      * @param neuron new Neuron object to set
      */
     public final void setNeuron(int index, Neuron neuron) {
@@ -249,7 +252,7 @@ public class Layer implements Iterable<Neuron>, Serializable {
         return neurons.size();
     }
 
- //static final ForkJoinPool mainPool = ForkJoinPool.commonPool();
+    //static final ForkJoinPool mainPool = ForkJoinPool.commonPool();
 
     /**
      * Performs calculaton for all neurons in this layer
@@ -259,9 +262,9 @@ public class Layer implements Iterable<Neuron>, Serializable {
         for (Neuron neuron : neurons) {
             neuron.calculate();
         }
-     //   neurons.forEach(Neuron::calculate);
+        //   neurons.forEach(Neuron::calculate);
 
-     //   neurons.parallelStream().forEach( n -> n.calculate());
+        //   neurons.parallelStream().forEach( n -> n.calculate());
 //        mainPool.invokeAll(Arrays.asList(neurons.asArray()));
     }
 

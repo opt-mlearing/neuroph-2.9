@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,40 +19,43 @@ package org.neuroph.core.transfer;
 import java.io.Serializable;
 
 /**
+ * 神经元的激活函数.
+ * <p></p>
  * Abstract base class for all neuron tranfer functions.
- * 
+ *
  * @author Zoran Sevarac <sevarac@gmail.com>
  * @see org.neuroph.core.Neuron
  */
 abstract public class TransferFunction implements Serializable {
-	
-	/**
-	 * The class fingerprint that is set to indicate serialization
-	 * compatibility with a previous version of the class.
-	 */		
-	private static final long serialVersionUID = 1L;
-        
-        /**
-         * Output result
-         */
-        protected transient double output; // cached output value to avoid double calculation for derivative
 
-	/**
-	 * Returns the ouput of this function.
-	 * 
-	 * @param totalInput
-	 *            total input 
-	 */
-	abstract public double getOutput(double totalInput);
+    /**
+     * The class fingerprint that is set to indicate serialization
+     * compatibility with a previous version of the class.
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Returns the first derivative of this function.
-	 * Note: should this method should be abstract?
-	 * @param totalInput
-	 *            total  input
-	 */
-	public double getDerivative(double totalInput) {
-		return 1d;
-	}
+    /**
+     * Output result
+     */
+    protected transient double output; // cached output value to avoid double calculation for derivative
+
+    /**
+     * Returns the ouput of this function.
+     *
+     * @param totalInput
+     *            total input
+     */
+    abstract public double getOutput(double totalInput);
+
+    /**
+	 * 对激活函数求导.
+     * Returns the first derivative of this function.
+     * Note: should this method should be abstract?
+     * @param totalInput
+     *            total  input
+     */
+    public double getDerivative(double totalInput) {
+        return 1d;
+    }
 
 }

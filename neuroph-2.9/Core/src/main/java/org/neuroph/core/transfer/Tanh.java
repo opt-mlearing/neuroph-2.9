@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -41,7 +41,7 @@ public class Tanh extends TransferFunction implements Serializable {
      * The slope parameter of the Tanh function
      */
     private double slope = 1d;
-    
+
     /**
      * The amplitude parameter
      */
@@ -52,7 +52,7 @@ public class Tanh extends TransferFunction implements Serializable {
      */
     private double derivativeOutput;
 
-    
+
     /**
      * Creates an instance of Tanh neuron transfer function with default
      * slope=amplitude=1
@@ -96,7 +96,9 @@ public class Tanh extends TransferFunction implements Serializable {
     @Override
     final public double getOutput(double input) {
         // conditional logic helps to avoid NaN
-        if (Math.abs(input) * slope > 100) { return Math.signum(input) * 1.0d; }
+        if (Math.abs(input) * slope > 100) {
+            return Math.signum(input) * 1.0d;
+        }
 
         //a*tanh(s*x) = a*[(e^(2*s*x) - 1) / (e^(2*s*x) - 1)]
         double E_x = Math.exp(2.0d * slope * input);
@@ -117,7 +119,9 @@ public class Tanh extends TransferFunction implements Serializable {
     @Override
     final public double getDerivative(double input) {
         // conditional logic helps to avoid NaN
-        if (Math.abs(input) * slope > 100) { return 0.0d; }
+        if (Math.abs(input) * slope > 100) {
+            return 0.0d;
+        }
 
         //output here is a*tanh^2(s*x)
         double E_x = Math.exp(2 * slope * input);   // we coul duse buffered output here, but in that case we ignor input parameter and it shoul dbe removed to avoid confusion
@@ -161,5 +165,5 @@ public class Tanh extends TransferFunction implements Serializable {
     public void setAmplitude(double amplitude) {
         this.amplitude = amplitude;
     }
-                
+
 }

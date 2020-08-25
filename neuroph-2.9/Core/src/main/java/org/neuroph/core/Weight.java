@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,14 +16,15 @@
 package org.neuroph.core;
 
 import java.util.Objects;
+
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * Neuron connection weight.
  *
  * @param <T> weight training data
- * @see Connection
  * @author Zoran Sevarac <sevarac@gmail.com>
+ * @see Connection
  */
 public class Weight<T> implements java.io.Serializable, Cloneable {
 
@@ -55,7 +56,7 @@ public class Weight<T> implements java.io.Serializable, Cloneable {
      */
     public Weight() {
         this.value = Math.random() - 0.5d;
-        this.weightChange = 0;        
+        this.weightChange = 0;
     }
 
     /**
@@ -136,8 +137,9 @@ public class Weight<T> implements java.io.Serializable, Cloneable {
     /**
      * Returns cloned instance of this weight
      * Important: trainingData will be lost in cloned instance
+     *
      * @return cloned instance of this weight
-     * @throws CloneNotSupportedException 
+     * @throws CloneNotSupportedException
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
@@ -177,8 +179,6 @@ public class Weight<T> implements java.io.Serializable, Cloneable {
         }
         return true;
     }
-    
-    
-    
+
 
 }
