@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,47 +33,46 @@ import org.neuroph.core.learning.stop.MaxErrorStop;
  * Base class for all supervised learning algorithms.
  * It extends IterativeLearning, and provides general supervised learning principles.
  * Based on Template Method Pattern with abstract method calculateWeightChanges
- *
+ * <p>
  * TODO:  random pattern order
- * 
+ *
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
-abstract public class SupervisedLearning extends IterativeLearning implements
-        Serializable {
+abstract public class SupervisedLearning extends IterativeLearning implements Serializable {
 
     /**
      * The class fingerprint that is set to indicate serialization
      * compatibility with a previous version of the class
      */
     private static final long serialVersionUID = 3L;
-    
+
     /**
      * Total network error in previous epoch
      */
     protected transient double previousEpochError;
-    
+
     /**
      * Max allowed network error (condition to stop learning)
      */
     protected double maxError = 0.01d;
-    
+
     /**
      * Stopping condition: training stops if total network error change is smaller than minErrorChange
      * for minErrorChangeIterationsLimit number of iterations
      */
     private double minErrorChange = Double.POSITIVE_INFINITY;
-    
+
     /**
      * Stopping condition: training stops if total network error change is smaller than minErrorChange
      * for minErrorChangeStopIterations number of iterations
      */
     private int minErrorChangeIterationsLimit = Integer.MAX_VALUE;
-    
+
     /**
      * Count iterations where error change is smaller then minErrorChange.
      */
     private transient int minErrorChangeIterationsCount;
-    
+
     /**
      * Setting to determine if learning (weights update) is in batch mode.
      * False by default.
@@ -81,14 +80,14 @@ abstract public class SupervisedLearning extends IterativeLearning implements
     private boolean batchMode = false;
 
     private ErrorFunction errorFunction;
-    
+
     /**
      * Creates new supervised learning rule
      */
     public SupervisedLearning() {
         super();
-        errorFunction = new MeanSquaredError();          
-        stopConditions.add(new MaxErrorStop(this));        
+        errorFunction = new MeanSquaredError();
+        stopConditions.add(new MaxErrorStop(this));
     }
 
     /**
@@ -98,8 +97,8 @@ abstract public class SupervisedLearning extends IterativeLearning implements
      * @param outputError output error vector for some network input (aka. patternError, network error)
      *                    usually the difference between desired and actual output
      */
-    abstract protected void calculateWeightChanges(double[] outputError);    
-    
+    abstract protected void calculateWeightChanges(double[] outputError);
+
     /**
      * Trains network for the specified training set and maxError
      *
@@ -165,7 +164,7 @@ abstract public class SupervisedLearning extends IterativeLearning implements
      * @param trainingSet training set for training network
      */
     @Override
-    public void doLearningEpoch(DataSet trainingSet) {        
+    public void doLearningEpoch(DataSet trainingSet) {
         Iterator<DataSetRow> iterator = trainingSet.iterator();
         while (iterator.hasNext() && !isStopped()) { // iterate all elements from training set - maybe remove isStopped from here
             DataSetRow dataSetRow = iterator.next();
@@ -184,7 +183,7 @@ abstract public class SupervisedLearning extends IterativeLearning implements
         double[] output = neuralNetwork.getOutput();
         double[] patternError = errorFunction.addPatternError(output, trainingElement.getDesiredOutput());
         calculateWeightChanges(patternError);
-        
+
         if (!batchMode) applyWeightChanges(); // batch mode updates are done i doBatchWeightsUpdate        
     }
 
@@ -210,7 +209,7 @@ abstract public class SupervisedLearning extends IterativeLearning implements
             }
         }
     }
-    
+
     /**
      * Returns true if learning is performed in batch mode, false otherwise
      *
@@ -328,7 +327,7 @@ abstract public class SupervisedLearning extends IterativeLearning implements
                     } else {
                         weight.value += (weight.weightChange / getTrainingSet().size());
                     }
-                    
+
                     weight.weightChange = 0; // reset deltaWeight
                 }
             }
