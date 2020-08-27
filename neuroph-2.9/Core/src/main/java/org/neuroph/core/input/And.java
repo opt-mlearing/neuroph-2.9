@@ -35,7 +35,7 @@ public class And extends InputFunction implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * @param inputVector Input values >= 0.5d are considered true, otherwise false.
+     * @param inputConnections Input values >= 0.5d are considered true, otherwise false.
      */
     public double getOutput(List<Connection> inputConnections) {
 

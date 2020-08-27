@@ -22,6 +22,8 @@ import java.util.List;
 import org.neuroph.core.Connection;
 
 /**
+ * 神经元输入的多个向量的聚合方式.
+ *
  * <pre>
  * Neuron's input function. It has two subcomponents:
  *
