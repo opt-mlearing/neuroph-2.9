@@ -12,14 +12,14 @@ public class Utils {
         }
         return accumulator / array.length;
     }
-    
+
     public static int maxIdx(double[] array) {
-        int maxIdx=0;
-        for (int i=1;  i< array.length; i++) {
+        int maxIdx = 0;
+        for (int i = 1; i < array.length; i++) {
             if (array[i] > array[maxIdx])
-                   maxIdx = i;
+                maxIdx = i;
         }
         return maxIdx;
-    }    
-    
+    }
+
 }

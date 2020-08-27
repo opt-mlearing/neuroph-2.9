@@ -1,23 +1,26 @@
 package org.neuroph.eval;
 
 import java.util.ArrayList;
+
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.util.data.sample.Sampling;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+
 import org.apache.commons.lang3.SerializationUtils;
 import org.neuroph.core.learning.error.MeanSquaredError;
 import org.neuroph.util.data.sample.SubSampling;
 
 /**
- * This class implements multithreaded cross validation procedure. 
+ * This class implements multithreaded cross validation procedure.
  * Splits data set into k subsets (folds), trains the network with data from k-1 and tests with one subset
  * Repeats the procedure k times each time using different subset for testing.
  *
@@ -73,7 +76,7 @@ public class CrossValidation {
      *
      * @param neuralNetwork
      * @param dataSet
-     * @param foldCount number of folds to use
+     * @param foldCount     number of folds to use
      */
     public CrossValidation(NeuralNetwork neuralNetwork, DataSet dataSet, int foldCount) { // number of folds/subsets
         initialize(neuralNetwork, dataSet, foldCount);

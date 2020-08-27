@@ -11,31 +11,32 @@ import org.neuroph.util.plugins.PluginBase;
 
 /**
  * Classifier plugin for neurla networks
+ *
  * @author zoran
  */
 public class Classifier extends PluginBase {
-    
+
     double threshold = 0.5;
-    
+
     public String classify(double[] pattern) {
         NeuralNetwork<?> nnet = getParentNetwork();
         nnet.setInput(pattern);
         nnet.calculate();
-        
+
         Neuron maxNeuron = null;
         double maxOutput = Double.MIN_VALUE;
-        
+
         for (Neuron neuron : nnet.getOutputNeurons()) {
             if (neuron.getOutput() > maxOutput) {
                 maxOutput = neuron.getOutput();
                 maxNeuron = neuron;
             }
         }
-        
+
         if (maxOutput > threshold)
-                return maxNeuron.getLabel();
+            return maxNeuron.getLabel();
         else
             return null;
     }
-    
+
 }

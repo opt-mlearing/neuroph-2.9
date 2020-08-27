@@ -4,9 +4,9 @@ package org.neuroph.eval.classification;
  * Ovu klasu definitivno izabciti
  * KOristi se samo getMaxOutput koja uz to i potpuno nebulozna jer vraca  ClassificationResult
  * vidi samo zasta nam treba u McNemar
- * 
+ * <p>
  * a pri tom uvek se poziva getActual
- * 
+ * <p>
  * Wrapper class used for ordering classification results
  */
 public class ClassificationResult {
@@ -33,7 +33,7 @@ public class ClassificationResult {
     public String getLabel() {
         return label;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null)
@@ -54,7 +54,6 @@ public class ClassificationResult {
     }
 
 
-    
 //    /**
 //     *
 //     * @param results classification results computed by NeuralNetwork @see NeuralNetwork.getOutput

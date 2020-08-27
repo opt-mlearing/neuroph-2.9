@@ -23,15 +23,15 @@ public class McNemarTest {
         for (DataSetRow dataRow : dataSet.getRows()) {
             forwardPass(network1, dataRow);
             forwardPass(network2, dataRow);
-           
+
             double[] networkOutput1 = network1.getOutput();
             double[] networkOutput2 = network2.getOutput();
-            
+
             int maxNeuronIdx1 = Utils.maxIdx(networkOutput1);
-            int maxNeuronIdx2 = Utils.maxIdx(networkOutput2);         
-            
+            int maxNeuronIdx2 = Utils.maxIdx(networkOutput2);
+
             ClassificationResult output1 = new ClassificationResult(maxNeuronIdx1, networkOutput1[maxNeuronIdx1]);
-            ClassificationResult output2 = new ClassificationResult(maxNeuronIdx2, networkOutput2[maxNeuronIdx2]);     
+            ClassificationResult output2 = new ClassificationResult(maxNeuronIdx2, networkOutput2[maxNeuronIdx2]);
 
 //            ClassificationResult output1 = ClassificationResult.fromMaxOutput(network1.getOutput());
 //            ClassificationResult output2 = ClassificationResult.fromMaxOutput(network2.getOutput());
