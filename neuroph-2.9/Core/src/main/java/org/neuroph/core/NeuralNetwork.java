@@ -1,12 +1,12 @@
 /**
  * Copyright 2014 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -33,6 +33,7 @@ import java.io.*;
 import java.util.*;
 
 /**
+ * 神经网络的"网络"对象.
  * <pre>
  * Base class for artificial neural networks. It provides generic structure and functionality
  * for the neural networks. Neural network contains a collection of neuron layers and learning rule.
@@ -52,7 +53,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
      * with a previous version of the class.
      */
     private static final long serialVersionUID = 7L;
-    
+
     /**
      * Network type id (see neuroph.util.NeuralNetworkType).
      */
@@ -66,8 +67,8 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     /**
      * Learning rule for this network
      */
-    private L learningRule;     
-    
+    private L learningRule;
+
     /**
      * Neural network output buffer
      */
@@ -84,12 +85,12 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
      * These neurons are used to read network's output.
      */
     private List<Neuron> outputNeurons;
-    
+
     /**
      * Plugins collection
      */
     private Map<Class, PluginBase> plugins;
-    
+
     /**
      * Network label
      */
@@ -99,11 +100,11 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
      * List of neural network listeners
      */
     private transient List<NeuralNetworkEventListener> listeners = new ArrayList();
-    
+
     /**
      * Neural network logger
-     */    
-    private final Logger LOGGER = LoggerFactory.getLogger(NeuralNetwork.class);        
+     */
+    private final Logger LOGGER = LoggerFactory.getLogger(NeuralNetwork.class);
 
     /**
      * Creates an instance of empty neural network.
@@ -120,7 +121,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
      *
      * @param layer layer to add
      */
-    public void addLayer(Layer layer) {              
+    public void addLayer(Layer layer) {
 
         // In case of null throw exception to prevent adding null layers
         if (layer == null) {
@@ -128,8 +129,8 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
         }
 
         // set parent network for added layer
-        layer.setParentNetwork(this);        
-        
+        layer.setParentNetwork(this);
+
         // add layer to layers collection
         layers.add(layer);
 
@@ -152,12 +153,12 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
 
         // if layer position is negative also throw exception
         if (index < 0) {
-            throw new IllegalArgumentException("Layer index cannot be negative: "+index);
+            throw new IllegalArgumentException("Layer index cannot be negative: " + index);
         }
 
         // set parent network for added layer
-        layer.setParentNetwork(this);        
-        
+        layer.setParentNetwork(this);
+
         // add layer to layers collection at specified position        
         layers.add(index, layer);
 
@@ -187,7 +188,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
      * @param index int value represents index postion of layer which should be
      *              removed
      */
-    public void removeLayerAt(int index)  {
+    public void removeLayerAt(int index) {
         Layer layer = layers.get(index);
         layers.remove(index);
 
@@ -203,7 +204,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     public List<Layer> getLayers() {
         return Collections.unmodifiableList(this.layers);
     }
-    
+
     /**
      * Returns layer at specified index
      *
@@ -292,18 +293,13 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
 //    public void setCalculator(Calculator calculator) {
 //        this.calculator = calculator;
 //    }
-    
-    
-    
+
+
     /**
      * Performs calculation on whole network
      */
     public void calculate() {
-//        for (Layer layer : this.layers) {
-//            layer.calculate();
-//        }
         layers.forEach(Layer::calculate);
-        
         fireNetworkEvent(new NeuralNetworkEvent(this, NeuralNetworkEvent.Type.CALCULATED));
     }
 
@@ -325,7 +321,6 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
         if (trainingSet == null) {
             throw new IllegalArgumentException("Training set is null!");
         }
-
         learningRule.learn(trainingSet);
     }
 
@@ -521,7 +516,6 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
                 }
             }
         }
-
         return weights.toArray(new Double[weights.size()]);
     }
 
@@ -554,7 +548,6 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
      * @param weightVal  connection weight value
      */
     public void createConnection(Neuron fromNeuron, Neuron toNeuron, double weightVal) {
-        //  Connection connection = new Connection(fromNeuron, toNeuron, weightVal);
         toNeuron.addInputConnection(fromNeuron, weightVal);
     }
 
@@ -563,7 +556,6 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
         if (label != null) {
             return label;
         }
-
         return super.toString();
     }
 
@@ -600,7 +592,6 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
      */
     public static NeuralNetwork load(String filePath) {
         ObjectInputStream oistream = null;
-
         try {
             File file = new File(filePath);
             if (!file.exists()) {
@@ -713,7 +704,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
      * @param pluginClass class of the plugin to get
      * @return instance of specified plugin class
      */
-    public <T extends PluginBase> T getPlugin(Class<T>  pluginClass) {
+    public <T extends PluginBase> T getPlugin(Class<T> pluginClass) {
         return pluginClass.cast(plugins.get(pluginClass));
     }
 

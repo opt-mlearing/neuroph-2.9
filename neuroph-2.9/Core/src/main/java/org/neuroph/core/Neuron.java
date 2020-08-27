@@ -26,6 +26,7 @@ import org.neuroph.core.transfer.Step;
 import org.neuroph.core.transfer.TransferFunction;
 
 /**
+ * 神经网络的"神经元"对象.
  * 神经元，神经网络的基础组成部分.
  * <pre>
  * Basic general neuron model according to McCulloch-Pitts neuron model.
@@ -194,7 +195,7 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
     /**
      * Check the connection to neuron
      *
-     * @param neuron neuron connection to be checked
+     * @param toNeuron neuron connection to be checked
      * @return true if there is output connection, false otherwise
      */
     public boolean hasOutputConnectionTo(Neuron toNeuron) {

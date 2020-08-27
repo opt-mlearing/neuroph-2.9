@@ -20,6 +20,7 @@ import java.util.Objects;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
+ * 神经网络的"连接权"对象.
  * Neuron connection weight.
  *
  * @param <T> weight training data

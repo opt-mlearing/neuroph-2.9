@@ -27,12 +27,14 @@ import org.neuroph.util.NeuronFactory;
 import org.neuroph.util.NeuronProperties;
 
 /**
+ * 神经网络的"层"对象.
+ *
  * <pre>
  * Layer of neurons in a neural network. The Layer is basic neuron container (a collection of neurons),
  * and it provides methods for manipulating neurons (add, remove, get, set, calculate, ...).
  * </pre>
  *
- * @param <N> Type of neurons in layer
+ * @param <Neuron> Type of neurons in layer
  * @author Zoran Sevarac <sevarac@gmail.com>
  * @see Neuron
  */

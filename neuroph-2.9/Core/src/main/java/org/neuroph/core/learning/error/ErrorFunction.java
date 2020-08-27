@@ -41,7 +41,7 @@ public interface ErrorFunction {
     public double[] addPatternError(double[] predictedOutput, double[] targetOutput);
 
     /**
-     * Sets total error and pattern count  to zero.
+     * Sets total error and pattern count to zero.
      */
     public void reset();
 

@@ -19,6 +19,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
+ * 神经网络的"连接"对象.
  * Weighted connection to another neuron.
  * 神经元直接的连接权重.
  * Connection连接两个神经元，from_Neuron到to_Neuron. 并且带有权值属性.
