@@ -30,6 +30,8 @@ import org.neuroph.core.learning.error.MeanSquaredError;
 import org.neuroph.core.learning.stop.MaxErrorStop;
 
 /**
+ * 监督学习.
+ * <p>
  * Base class for all supervised learning algorithms.
  * It extends IterativeLearning, and provides general supervised learning principles.
  * Based on Template Method Pattern with abstract method calculateWeightChanges
@@ -126,7 +128,8 @@ abstract public class SupervisedLearning extends IterativeLearning implements Se
 
     @Override
     protected void onStart() {
-        super.onStart(); // reset iteration counter
+        // reset iteration counter
+        super.onStart();
         minErrorChangeIterationsCount = 0;
         previousEpochError = 0d;
     }

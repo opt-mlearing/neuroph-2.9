@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -18,6 +18,7 @@ package org.neuroph.core.learning;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.events.LearningEvent;
 import org.neuroph.core.learning.stop.MaxIterationsStop;
@@ -29,8 +30,7 @@ import org.neuroph.core.learning.stop.StopCondition;
  *
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
-abstract public class IterativeLearning extends LearningRule implements
-        Serializable {
+abstract public class IterativeLearning extends LearningRule implements Serializable {
 
     /**
      * The class fingerprint that is set to indicate serialization compatibility
@@ -52,25 +52,27 @@ abstract public class IterativeLearning extends LearningRule implements
      * backward compatibility with serialized networks?
      */
     private int maxIterations = Integer.MAX_VALUE;
-    
+
     /**
      * Flag for indicating if the training iteration number is limited
      */
     private boolean iterationsLimited = false;
-   
-    
+
+    // 算法终止管理器 --> 认为这部分内容应该抽象到abstractAlgorithm或者LearningRule类中.
     protected List<StopCondition> stopConditions;
     /**
+     * 算法暂停标志.
      * Flag for indicating if learning thread is paused
      */
     private transient volatile boolean pausedLearning = false;
-    
+
 
     /**
      * Creates new instance of IterativeLearning learning algorithm
      */
     public IterativeLearning() {
         super();
+        // 初始化算法终止管理器--> 初始化的时候是空的.
         this.stopConditions = new ArrayList<>();
     }
 
@@ -159,7 +161,7 @@ abstract public class IterativeLearning extends LearningRule implements
     @Override
     protected void onStart() {
         super.onStart();
-        
+
         if (this.iterationsLimited) {
             this.stopConditions.add(new MaxIterationsStop(this));
         }
@@ -175,6 +177,7 @@ abstract public class IterativeLearning extends LearningRule implements
 
     @Override
     public final void learn(DataSet trainingSet) {
+        // todo 建议还是抽一个模板方法出来，并放置在父类方法中.
         setTrainingSet(trainingSet); // set this field here su subclasses can access it 
         onStart();
 
@@ -196,6 +199,10 @@ abstract public class IterativeLearning extends LearningRule implements
             fireLearningEvent(new LearningEvent(this, LearningEvent.Type.EPOCH_ENDED));
 
             // Thread safe pause when learning is paused
+            /**
+             * todo 算法提供的暂停计算的模式，暂时不考虑暂停后资源的消耗.this.pausedLearning将这个属性设计成一个暂停对象，
+             * 该暂停对象监听远程或者其他进程推送信息，一旦监听到暂停请求，则触发暂停事件.在多系统中可通过消息队列严格保证事物的最终一致性.
+             */
             if (this.pausedLearning) {
                 synchronized (this) {
                     while (this.pausedLearning) {
@@ -214,8 +221,8 @@ abstract public class IterativeLearning extends LearningRule implements
 
     /**
      * Returns true if any of the stop conditions has been reached.
-     * 
-     * @return 
+     *
+     * @return
      */
     protected final boolean hasReachedStopCondition() {
         for (StopCondition stop : stopConditions) {
@@ -230,9 +237,8 @@ abstract public class IterativeLearning extends LearningRule implements
     /**
      * Trains network for the specified training set and number of iterations
      *
-     * @param trainingSet training set to learn
+     * @param trainingSet   training set to learn
      * @param maxIterations maximum numberof iterations to learn
-     *
      */
     public void learn(DataSet trainingSet, int maxIterations) {
         this.setMaxIterations(maxIterations);
@@ -251,7 +257,7 @@ abstract public class IterativeLearning extends LearningRule implements
         doLearningEpoch(trainingSet);
         afterEpoch();
         // notify listeners        
-        fireLearningEvent(new LearningEvent(this, LearningEvent.Type.LEARNING_STOPPED)); 
+        fireLearningEvent(new LearningEvent(this, LearningEvent.Type.LEARNING_STOPPED));
     }
 
     /**

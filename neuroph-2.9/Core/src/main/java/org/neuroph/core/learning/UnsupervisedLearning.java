@@ -22,8 +22,8 @@ import org.neuroph.core.data.DataSetRow;
 import java.io.Serializable;
 import java.util.Iterator;
 
-
 /**
+ * 非监督学习.
  * Base class for all unsupervised learning algorithms.
  *
  * @author Zoran Sevarac <sevarac@gmail.com>
@@ -63,7 +63,7 @@ abstract public class UnsupervisedLearning extends IterativeLearning implements 
     /**
      * Trains network with the pattern from the specified training element
      *
-     * @param DataSetItem unsupervised training element which contains network input
+     * @param trainingElement unsupervised training element which contains network input
      */
     protected void learnPattern(DataSetRow trainingElement) {
         double[] input = trainingElement.getInput();

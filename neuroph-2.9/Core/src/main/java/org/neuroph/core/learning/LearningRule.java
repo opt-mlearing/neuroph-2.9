@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.events.LearningEvent;
@@ -40,30 +41,30 @@ abstract public class LearningRule implements Serializable {
      * with a previous version of the class
      */
     private static final long serialVersionUID = 1L;
-    
+
     /**
      * Neural network to train
      */
     protected NeuralNetwork<?> neuralNetwork;
-    
+
     /**
      * Training data set
      */
     protected transient DataSet trainingSet;
-    
+
     /**
      * Flag to stop learning
      */
     private transient volatile boolean stopLearning = false;
-    
+
     /**
      * List of learning rule listeners
      */
     protected transient List<LearningEventListener> listeners = new ArrayList();
 
-    
-    private final Logger LOGGER = LoggerFactory.getLogger(LearningRule.class);    
-    
+
+    private final Logger LOGGER = LoggerFactory.getLogger(LearningRule.class);
+
     /**
      * Creates new instance of learning rule
      */
@@ -112,14 +113,12 @@ abstract public class LearningRule implements Serializable {
      */
     protected void onStart() {
         this.stopLearning = false;
-//        LOGGER.info("Learning Started");
     }
-    
+
     /**
      * Invoked after the learning has stopped
      */
     protected void onStop() {
-//        LOGGER.info("Learning Stoped");
     }
 
     /**
@@ -144,7 +143,7 @@ abstract public class LearningRule implements Serializable {
     public synchronized void addListener(LearningEventListener listener) {
         if (listener == null)
             throw new IllegalArgumentException("listener is null!");
-        
+
         if (!listeners.contains(listener)) {
             listeners.add(listener);
         }
@@ -153,23 +152,23 @@ abstract public class LearningRule implements Serializable {
     // This methods allows classes to unregister for LearningEvents
     public synchronized void removeListener(LearningEventListener listener) {
         if (listener == null)
-            throw new IllegalArgumentException("listener is null!");        
-        
+            throw new IllegalArgumentException("listener is null!");
+
         listeners.remove(listener);
     }
-    
+
     // This private class is used to fire LearningEvents
     protected synchronized void fireLearningEvent(LearningEvent evt) {
         for (LearningEventListener listener : listeners) {
-          listener.handleLearningEvent(evt);
+            listener.handleLearningEvent(evt);
         }
     }
-    
+
     private void readObject(java.io.ObjectInputStream in)
-        throws IOException, ClassNotFoundException {
+            throws IOException, ClassNotFoundException {
         in.defaultReadObject();
-        listeners = new ArrayList();    
-    }       
+        listeners = new ArrayList();
+    }
 
     /**
      * Override this method to implement specific learning procedures
