@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -54,20 +54,20 @@ public class MomentumBackpropagation extends BackPropagation {
         List<Layer> layers = neuralNetwork.getLayers();
         for (int layerIdx = layers.size() - 2; layerIdx > 0; layerIdx--) {
             List<Neuron> layerNeurons = layers.get(layerIdx).getNeurons();
-            if(layerNeurons.size() >= 100) {
-				layerNeurons.parallelStream().forEach(neuron -> {
-	                // calculate the neuron's error (delta)
-	                double delta = calculateHiddenNeuronError(neuron);
-	                neuron.setDelta(delta);
-	                calculateWeightChanges(neuron);
-	            });
+            if (layerNeurons.size() >= 100) {
+                layerNeurons.parallelStream().forEach(neuron -> {
+                    // calculate the neuron's error (delta)
+                    double delta = calculateHiddenNeuronError(neuron);
+                    neuron.setDelta(delta);
+                    calculateWeightChanges(neuron);
+                });
             } else {
-            	for(Neuron neuron : layerNeurons) {
-            		// calculate the neuron's error (delta)
-            		double delta = calculateHiddenNeuronError(neuron);
-            		neuron.setDelta(delta);
-            		calculateWeightChanges(neuron);
-            	}
+                for (Neuron neuron : layerNeurons) {
+                    // calculate the neuron's error (delta)
+                    double delta = calculateHiddenNeuronError(neuron);
+                    neuron.setDelta(delta);
+                    calculateWeightChanges(neuron);
+                }
             }
         } // for
     }

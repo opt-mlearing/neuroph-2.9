@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -23,56 +23,56 @@ import org.neuroph.core.data.DataSet;
  * Backpropagation learning rule with dynamic learning rate and momentum
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
-public class DynamicBackPropagation extends MomentumBackpropagation{
+public class DynamicBackPropagation extends MomentumBackpropagation {
     private static final long serialVersionUID = 1L;
     private double maxLearningRate = 0.9d;
     private double minLearningRate = 0.1d;
     private double learningRateChange = 0.99926d;
     private boolean useDynamicLearningRate = true;
-   
+
     private double maxMomentum = 0.9d;
     private double minMomentum = 0.1d;
     private double momentumChange = 0.99926d;
     private boolean useDynamicMomentum = true;
 
-   // private double previousNetworkError;
+    // private double previousNetworkError;
 
 
-        public DynamicBackPropagation() {
-            super();
-        }
+    public DynamicBackPropagation() {
+        super();
+    }
 
 
-        // Adjusting learning rate dynamically
-        /* If network error of current epoch is higher than the network error of the previous
-         * epoch the learning rate is adjusted by minus 1 per cent of current learning rate.
-         * Otherwise the learning rate is adjusted by plus 1 per cent of current learning
-         * rate. So, learning rate increases faster than decreasing does. But if learning rate
-         * reaches 0.9 it switches back to 0.5 to avoid endless training. The lowest learning
-         * rate is 0.5 also to avoid endless training.
-         */
-        protected void adjustLearningRate() {
+    // Adjusting learning rate dynamically
+    /* If network error of current epoch is higher than the network error of the previous
+     * epoch the learning rate is adjusted by minus 1 per cent of current learning rate.
+     * Otherwise the learning rate is adjusted by plus 1 per cent of current learning
+     * rate. So, learning rate increases faster than decreasing does. But if learning rate
+     * reaches 0.9 it switches back to 0.5 to avoid endless training. The lowest learning
+     * rate is 0.5 also to avoid endless training.
+     */
+    protected void adjustLearningRate() {
 
-            // 1. First approach - probably the best
-            // bigger error -> smaller learning rate; minimize the error growth
-            // smaller error -> bigger learning rate; converege faster
-            // the amount of earning rate change is proportional to error change - by using errorChange
+        // 1. First approach - probably the best
+        // bigger error -> smaller learning rate; minimize the error growth
+        // smaller error -> bigger learning rate; converege faster
+        // the amount of earning rate change is proportional to error change - by using errorChange
 
-            double errorChange = this.previousEpochError - getErrorFunction().getTotalError();
-            this.learningRate = this.learningRate + (errorChange*learningRateChange);
+        double errorChange = this.previousEpochError - getErrorFunction().getTotalError();
+        this.learningRate = this.learningRate + (errorChange * learningRateChange);
 
-            if (this.learningRate > this.maxLearningRate)
-               this.learningRate = this.maxLearningRate;
+        if (this.learningRate > this.maxLearningRate)
+            this.learningRate = this.maxLearningRate;
 
-            if (this.learningRate < this.minLearningRate)
-               this.learningRate = this.minLearningRate;
+        if (this.learningRate < this.minLearningRate)
+            this.learningRate = this.minLearningRate;
 
 
 //            System.out.println("Learning rate: "+this.learningRate);
 
-            // 2. Second approach
-            // doing this lineary for each epoch considering network error behaviour
-            // probbaly the worst one
+        // 2. Second approach
+        // doing this lineary for each epoch considering network error behaviour
+        // probbaly the worst one
 /*
             if (this.totalNetworkError >= this.totalNetworkErrorInPreviousEpoch) {
                 this.learningRate = this.learningRate * this.learningRateChange;
@@ -100,9 +100,9 @@ public class DynamicBackPropagation extends MomentumBackpropagation{
 //            if (this.learningRate < this.minLearningRate)
 //               this.learningRate = this.minLearningRate;
 
-  //          System.out.println("Iteration: "+currentIteration + " Learning rate: "+ this.learningRate);
+        //          System.out.println("Iteration: "+currentIteration + " Learning rate: "+ this.learningRate);
 
-            // one more approach suggested at https://sourceforge.net/tracker/?func=detail&atid=1107579&aid=3130561&group_id=238532
+        // one more approach suggested at https://sourceforge.net/tracker/?func=detail&atid=1107579&aid=3130561&group_id=238532
 //            if (this.totalNetworkError >= this.previousEpochError) {
 //            // If going wrong way, drop to minimum learning and work our way back up.
 //            // This way we accelerate as we improve.
@@ -115,20 +115,20 @@ public class DynamicBackPropagation extends MomentumBackpropagation{
 //
 //            }
 
-        }
+    }
 
-        protected void adjustMomentum() {
-            double errorChange = this.previousEpochError - getErrorFunction().getTotalError();
-            this.momentum = this.momentum + (errorChange*momentumChange);
+    protected void adjustMomentum() {
+        double errorChange = this.previousEpochError - getErrorFunction().getTotalError();
+        this.momentum = this.momentum + (errorChange * momentumChange);
 
-            if (this.momentum > this.maxMomentum)
-               this.momentum = this.maxMomentum;
+        if (this.momentum > this.maxMomentum)
+            this.momentum = this.maxMomentum;
 
-            if (this.momentum < this.minMomentum)
-               this.momentum = this.minMomentum;
+        if (this.momentum < this.minMomentum)
+            this.momentum = this.minMomentum;
 
-            // one more approach suggested at https://sourceforge.net/tracker/?func=detail&atid=1107579&aid=3130561&group_id=238532
-            // Probably want to drop momentum to minimum value.
+        // one more approach suggested at https://sourceforge.net/tracker/?func=detail&atid=1107579&aid=3130561&group_id=238532
+        // Probably want to drop momentum to minimum value.
 //            if (this.totalNetworkError >= this.previousEpochError) {
 //                momentum = momentum * momentumChange;
 //                if (momentum < minMomentum) momentum = minMomentum;
@@ -137,19 +137,19 @@ public class DynamicBackPropagation extends MomentumBackpropagation{
 //                if (momentum > maxMomentum) momentum = maxMomentum;
 //            }
 
+    }
+
+    @Override
+    public void doLearningEpoch(DataSet trainingSet) {
+        super.doLearningEpoch(trainingSet);
+
+        if (currentIteration > 0) {
+            if (useDynamicLearningRate) adjustLearningRate();
+            if (useDynamicMomentum) adjustMomentum();
         }
 
-        @Override
-	public void doLearningEpoch(DataSet trainingSet) {
-           super.doLearningEpoch(trainingSet);
 
-           if (currentIteration > 0) {
-                    if (useDynamicLearningRate) adjustLearningRate();
-                    if (useDynamicMomentum) adjustMomentum();
-           }
-
-
-        }
+    }
 
     public double getLearningRateChange() {
         return learningRateChange;
@@ -215,8 +215,5 @@ public class DynamicBackPropagation extends MomentumBackpropagation{
         this.useDynamicMomentum = useDynamicMomentum;
     }
 
-
-
-    
 
 }

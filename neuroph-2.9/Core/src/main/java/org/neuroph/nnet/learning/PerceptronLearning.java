@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -26,43 +26,42 @@ import org.neuroph.nnet.comp.neuron.ThresholdNeuron;
  */
 public class PerceptronLearning extends LMS {
 
-	/**
-	 * The class fingerprint that is set to indicate serialization
-	 * compatibility with a previous version of the class.
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     * The class fingerprint that is set to indicate serialization
+     * compatibility with a previous version of the class.
+     */
+    private static final long serialVersionUID = 1L;
 
 
-	/**
-	 * Creates new PerceptronLearning instance
-	 */
-        public PerceptronLearning() {
-            super();
-        }
+    /**
+     * Creates new PerceptronLearning instance
+     */
+    public PerceptronLearning() {
+        super();
+    }
 
 
-	/**
-	 * This method implements weights update procedure for the single neuron
-	 * In addition to weights change in LMS it applies change to neuron's threshold
-         *
-	 * @param neuron
-	 *            neuron to update weights
-	 */
-        @Override
-	public void calculateWeightChanges(Neuron neuron) {
-                // adjust the input connection weights with method from LMS superclass
-                super.calculateWeightChanges(neuron);
+    /**
+     * This method implements weights update procedure for the single neuron
+     * In addition to weights change in LMS it applies change to neuron's threshold
+     *
+     * @param neuron neuron to update weights
+     */
+    @Override
+    public void calculateWeightChanges(Neuron neuron) {
+        // adjust the input connection weights with method from LMS superclass
+        super.calculateWeightChanges(neuron);
 
-                // and adjust the neurons threshold - ovo bi trebalo podesavati isto na karju prolaza
-                ThresholdNeuron thresholdNeuron = (ThresholdNeuron)neuron;
-                // get neurons error
-                double neuronError = thresholdNeuron.getDelta();
-                // get the neurons threshold
-                double thresh = thresholdNeuron.getThresh();
-                // calculate new threshold value
-                thresh = thresh + this.learningRate * neuronError;
-                // apply the new threshold
-                thresholdNeuron.setThresh(thresh);
-	}
+        // and adjust the neurons threshold - ovo bi trebalo podesavati isto na karju prolaza
+        ThresholdNeuron thresholdNeuron = (ThresholdNeuron) neuron;
+        // get neurons error
+        double neuronError = thresholdNeuron.getDelta();
+        // get the neurons threshold
+        double thresh = thresholdNeuron.getThresh();
+        // calculate new threshold value
+        thresh = thresh + this.learningRate * neuronError;
+        // apply the new threshold
+        thresholdNeuron.setThresh(thresh);
+    }
 
 }

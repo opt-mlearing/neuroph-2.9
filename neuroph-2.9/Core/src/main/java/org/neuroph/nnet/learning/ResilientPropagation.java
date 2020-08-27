@@ -1,6 +1,7 @@
 package org.neuroph.nnet.learning;
 
 import java.util.List;
+
 import org.neuroph.core.Connection;
 import org.neuroph.core.Layer;
 import org.neuroph.core.Neuron;
@@ -8,8 +9,9 @@ import org.neuroph.core.Weight;
 
 /**
  * Resilient Propagation learning rule used for Multi Layer Perceptron neural networks.
- * Its one of the most efficent learning rules for this type of networks, and it does not require 
+ * Its one of the most efficent learning rules for this type of networks, and it does not require
  * setting of learning rule parameter.
+ *
  * @author Borislav Markov
  * @author Zoran Sevarac
  */
@@ -50,11 +52,11 @@ public class ResilientPropagation extends BackPropagation {
             }
         }
     }
-    
+
     /**
      * Calculate and sum gradients for each neuron's weight, the actual weight update is done in batch mode.
-     * 
-     * @see ResilientPropagation#resillientWeightUpdate(org.neuroph.core.Weight) 
+     *
+     * @see ResilientPropagation#resillientWeightUpdate(org.neuroph.core.Weight)
      */
     @Override
     public void calculateWeightChanges(Neuron neuron) {
@@ -80,7 +82,7 @@ public class ResilientPropagation extends BackPropagation {
     protected void doBatchWeightsUpdate() {
         // iterate layers from output to input
         List<Layer> layers = neuralNetwork.getLayers();
-        for (int i = neuralNetwork.getLayersCount() - 1; i > 0; i--) {            
+        for (int i = neuralNetwork.getLayersCount() - 1; i > 0; i--) {
             // iterate neurons at each layer
             for (Neuron neuron : layers.get(i).getNeurons()) {
                 // iterate connections/weights for each neuron
@@ -96,7 +98,8 @@ public class ResilientPropagation extends BackPropagation {
     /**
      * Weight update by done by ResilientPropagation  learning rule
      * Executed at the end of epoch (in batch mode)
-     * @param weight 
+     *
+     * @param weight
      */
     protected void resillientWeightUpdate(Weight weight) {
         // get resilient training data for the current weight
@@ -114,7 +117,8 @@ public class ResilientPropagation extends BackPropagation {
             delta = Math.min(
                     weightData.previousDelta * increaseFactor,
                     maxDelta);
-            //  weightChange = -sign(weightData.gradient) * delta; // if error is increasing (gradient is positive) then subtract delta, if error is decreasing (gradient negative) then add delta
+            // weightChange = -sign(weightData.gradient) * delta;
+            // if error is increasing (gradient is positive) then subtract delta, if error is decreasing (gradient negative) then add delta
             // note that our gradient has different sign eg. -dE_dw so we omit the minus here
             weightChange = sign(weightData.gradient) * delta;
             weightData.previousDelta = delta;
@@ -188,10 +192,8 @@ public class ResilientPropagation extends BackPropagation {
     public void setBatchMode(boolean batchMode) {
         if (batchMode == false) throw new IllegalStateException("Resilient propagation runs only in batch mode!");
     }
-    
-    
-    
-    
+
+
     public class ResilientWeightTrainingtData {
         public double gradient; // dE / dw(t)
         public double previousGradient; // dE / dw(t-1)

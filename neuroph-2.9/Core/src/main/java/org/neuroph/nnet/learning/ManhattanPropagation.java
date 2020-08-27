@@ -5,15 +5,14 @@ import org.neuroph.core.Neuron;
 import org.neuroph.core.Weight;
 
 /**
- *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
 public class ManhattanPropagation extends BackPropagation {
     // dont use gradient value, only sign and fixed step
 
 
-     @Override
-     public void calculateWeightChanges(Neuron neuron) {
+    @Override
+    public void calculateWeightChanges(Neuron neuron) {
         // get the error(delta) for specified neuron,
         double delta = neuron.getDelta();
 

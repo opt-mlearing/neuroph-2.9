@@ -75,7 +75,7 @@ public class SimulatedAnnealingLearning extends SupervisedLearning {
      */
     public SimulatedAnnealingLearning(final NeuralNetwork network,
                                       final double startTemp, final double stopTemp, final int cycles) {
-        setNeuralNetwork( network );
+        setNeuralNetwork(network);
         this.temperature = startTemp;
         this.startTemperature = startTemp;
         this.stopTemperature = stopTemp;
@@ -108,18 +108,18 @@ public class SimulatedAnnealingLearning extends SupervisedLearning {
      * of the class. Each call to this class will randomize the data according
      * to the current temperature. The higher the temperature the more
      * randomness.
-     * @param randomChance 
+     *
+     * @param randomChance
      */
-    public void randomize(double randomChance ) {
+    public void randomize(double randomChance) {
 
         for (int i = 0; i < this.weights.length; i++)
-          if (Math.random() < randomChance)
-          {
-            double add = 0.5 - (Math.random());
-            add /= this.startTemperature;
-            add *= this.temperature;
-            this.weights[i] = this.weights[i] + add;
-          }
+            if (Math.random() < randomChance) {
+                double add = 0.5 - (Math.random());
+                add /= this.startTemperature;
+                add *= this.temperature;
+                this.weights[i] = this.weights[i] + add;
+            }
 
         NeuralNetworkCODEC.array2network(this.weights, getNetwork());
     }
@@ -159,13 +159,11 @@ public class SimulatedAnnealingLearning extends SupervisedLearning {
      * Perform one simulated annealing epoch.
      */
     @Override
-    public void doLearningEpoch(DataSet trainingSet)
-    {
-      doLearningEpoch( trainingSet, 0.5 );
+    public void doLearningEpoch(DataSet trainingSet) {
+        doLearningEpoch(trainingSet, 0.5);
     }
 
-    public void doLearningEpoch(DataSet trainingSet, double randomChance)
-    {
+    public void doLearningEpoch(DataSet trainingSet, double randomChance) {
         System.arraycopy(this.weights, 0, this.bestWeights, 0,
                 this.weights.length);
 
@@ -175,7 +173,7 @@ public class SimulatedAnnealingLearning extends SupervisedLearning {
 
         for (int i = 0; i < this.cycles; i++) {
 
-            randomize( randomChance );
+            randomize(randomChance);
             double currentError = determineError(trainingSet);
 
             if (currentError < bestError) {
