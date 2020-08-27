@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,6 +35,7 @@ public class VectorSizeMismatchException extends NeurophException {
 
     /**
      * Constructs an VectorSizeMismatchException with the specified detail message.
+     *
      * @param message the detail message.
      */
     public VectorSizeMismatchException(String message) {
@@ -43,8 +44,9 @@ public class VectorSizeMismatchException extends NeurophException {
 
     /**
      * Constructs a VectorSizeMismatchException with the specified detail message and specified cause.
+     *
      * @param message the detail message.
-     * @param cause the cause for exception
+     * @param cause   the cause for exception
      */
     public VectorSizeMismatchException(String message, Throwable cause) {
         super(message, cause);
@@ -52,6 +54,7 @@ public class VectorSizeMismatchException extends NeurophException {
 
     /**
      * Constructs a new runtime exception with the specified cause
+     *
      * @param cause the cause for exception
      */
     public VectorSizeMismatchException(Throwable cause) {
