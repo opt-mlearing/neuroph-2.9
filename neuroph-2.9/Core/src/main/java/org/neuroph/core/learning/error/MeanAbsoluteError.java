@@ -17,6 +17,8 @@ package org.neuroph.core.learning.error;
 
 import java.io.Serializable;
 
+import com.sun.tools.javac.util.Assert;
+
 /**
  * 绝对距离误差.
  *
@@ -24,6 +26,10 @@ import java.io.Serializable;
  */
 public final class MeanAbsoluteError implements ErrorFunction, Serializable {
 
+    /**
+     * transient 短暂，临时的意思，对于transient修饰的成员变量，在实例化的序列化处理过程中会被忽略.
+     * 因此，transient变量不会贯穿对象的序列化和反序列化，生命周期仅存在于调用者的内存中而不会写到磁盘持久化.
+     */
     private transient double totalError;
 
     /**
@@ -37,6 +43,8 @@ public final class MeanAbsoluteError implements ErrorFunction, Serializable {
 
     @Override
     public double[] addPatternError(double[] predictedOutput, double[] targetOutput) {
+        // suggest add assert.
+        assert predictedOutput.length == targetOutput.length;
         double[] patternError = new double[targetOutput.length];
 
         for (int i = 0; i < predictedOutput.length; i++) {

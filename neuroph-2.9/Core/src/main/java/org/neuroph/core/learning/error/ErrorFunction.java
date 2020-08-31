@@ -18,7 +18,7 @@ package org.neuroph.core.learning.error;
 
 /**
  * Interface for calculating total network error during the learning.
- * Custom error types  can be implemented.
+ * Custom error types can be implemented.
  *
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
@@ -32,7 +32,8 @@ public interface ErrorFunction {
     public double getTotalError();
 
     /**
-     * Calculates and adds pattern error for the given predicted and target output vector and adds it to total error.
+     * <p> 在给样本便签输出和训练输出的前提下，计算整个模型总的错误率. </p>
+     * Calculates and adds pattern[样品] error for the given predicted and target output vector and adds it to total error.
      *
      * @param predictedOutput actual network output
      * @param targetOutput    target/desired output
@@ -41,6 +42,7 @@ public interface ErrorFunction {
     public double[] addPatternError(double[] predictedOutput, double[] targetOutput);
 
     /**
+     * 错误率和训练样本个数清零.
      * Sets total error and pattern count to zero.
      */
     public void reset();

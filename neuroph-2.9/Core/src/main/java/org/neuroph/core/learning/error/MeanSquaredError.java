@@ -19,6 +19,8 @@ package org.neuroph.core.learning.error;
 import java.io.Serializable;
 
 /**
+ * 平方误差.
+ * <p>
  * Commonly used mean squared error
  *
  * @author Zoran Sevarac <sevarac@gmail.com>
@@ -30,7 +32,7 @@ public final class MeanSquaredError implements ErrorFunction, Serializable {
     private transient double totalError;
 
     /**
-     * Number of patterns - n 
+     * Number of patterns - n
      */
     private transient float patternCount;
 
@@ -41,6 +43,7 @@ public final class MeanSquaredError implements ErrorFunction, Serializable {
 
     @Override
     public double[] addPatternError(double[] predictedOutput, double[] targetOutput) {
+        assert predictedOutput.length == targetOutput.length;
         double[] patternError = new double[targetOutput.length];
 
         for (int i = 0; i < predictedOutput.length; i++) {
