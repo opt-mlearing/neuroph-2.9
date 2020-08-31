@@ -26,7 +26,7 @@ import org.neuroph.core.learning.SupervisedLearning;
 /**
  * LMS learning rule for neural networks. This learning rule is used to train
  * Adaline neural network, and this class is base for all LMS based learning
- * rules like PerceptronLearning, DeltaRule, SigmoidDeltaRule, Backpropagation
+ * rules like PerceptionLearning, DeltaRule, SigmoidDeltaRule, BackPropagation
  * etc.
  *
  * @author Zoran Sevarac <sevarac@gmail.com>
@@ -61,8 +61,10 @@ public class LMS extends SupervisedLearning implements Serializable {
         // for each neuron in output layer
         List<Neuron> outputNeurons = neuralNetwork.getOutputNeurons();
         for (Neuron neuron : outputNeurons) {
-            neuron.setDelta(outputError[i]); // set the neuron error, as difference between desired and actual output 
-            calculateWeightChanges(neuron);     // and update neuron weights -- this should be renamed to calculate weight changes
+            // set the neuron error, as difference between desired and actual output
+            neuron.setDelta(outputError[i]);
+            // and update neuron weights -- this should be renamed to calculate weight changes
+            calculateWeightChanges(neuron);
             i++;
         }
 

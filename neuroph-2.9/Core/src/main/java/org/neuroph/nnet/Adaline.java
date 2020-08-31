@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,65 +36,65 @@ import org.neuroph.util.TransferFunctionType;
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
 public class Adaline extends NeuralNetwork {
-	
-	/**
-	 * The class fingerprint that is set to indicate serialization
-	 * compatibility with a previous version of the class.
-	 */	
-	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Creates new Adaline network with specified number of neurons in input
-	 * layer
-	 * 
-	 * @param inputNeuronsCount
-	 *            number of neurons in input layer
-	 */
-	public Adaline(int inputNeuronsCount) {
-		this.createNetwork(inputNeuronsCount);
-	}
+    /**
+     * The class fingerprint that is set to indicate serialization
+     * compatibility with a previous version of the class.
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Creates adaline network architecture with specified number of input neurons
-	 * 
-	 * @param inputNeuronsCount
-         *              number of neurons in input layer
-	 */
-	private void createNetwork(int inputNeuronsCount) {
-		// set network type code
-		this.setNetworkType(NeuralNetworkType.ADALINE);
-                
-                // create input layer neuron settings for this network
-		NeuronProperties inNeuronProperties = new NeuronProperties();
-		inNeuronProperties.setProperty("transferFunction", TransferFunctionType.LINEAR);
+    /**
+     * Creates new Adaline network with specified number of neurons in input
+     * layer
+     *
+     * @param inputNeuronsCount
+     *            number of neurons in input layer
+     */
+    public Adaline(int inputNeuronsCount) {
+        this.createNetwork(inputNeuronsCount);
+    }
 
-		// createLayer input layer with specified number of neurons
-		//Layer inputLayer = LayerFactory.createLayer(inputNeuronsCount, inNeuronProperties);
-                Layer inputLayer = new InputLayer(inputNeuronsCount);
-                inputLayer.addNeuron(new BiasNeuron()); // add bias neuron (always 1, and it will act as bias input for output neuron)
-		this.addLayer(inputLayer);
-                
-               // create output layer neuron settings for this network
-		NeuronProperties outNeuronProperties = new NeuronProperties();
-		outNeuronProperties.setProperty("transferFunction", TransferFunctionType.LINEAR); // was RAMP
+    /**
+     * Creates adaline network architecture with specified number of input neurons
+     *
+     * @param inputNeuronsCount
+     *              number of neurons in input layer
+     */
+    private void createNetwork(int inputNeuronsCount) {
+        // set network type code
+        this.setNetworkType(NeuralNetworkType.ADALINE);
+
+        // create input layer neuron settings for this network
+        NeuronProperties inNeuronProperties = new NeuronProperties();
+        inNeuronProperties.setProperty("transferFunction", TransferFunctionType.LINEAR);
+
+        // createLayer input layer with specified number of neurons
+        //Layer inputLayer = LayerFactory.createLayer(inputNeuronsCount, inNeuronProperties);
+        Layer inputLayer = new InputLayer(inputNeuronsCount);
+        inputLayer.addNeuron(new BiasNeuron()); // add bias neuron (always 1, and it will act as bias input for output neuron)
+        this.addLayer(inputLayer);
+
+        // create output layer neuron settings for this network
+        NeuronProperties outNeuronProperties = new NeuronProperties();
+        outNeuronProperties.setProperty("transferFunction", TransferFunctionType.LINEAR); // was RAMP
 //		outNeuronProperties.setProperty("transferFunction.slope", new Double(1));
 //		outNeuronProperties.setProperty("transferFunction.yHigh", new Double(1));
 //		outNeuronProperties.setProperty("transferFunction.xHigh", new Double(1));
 //		outNeuronProperties.setProperty("transferFunction.yLow", new Double(-1));
 //		outNeuronProperties.setProperty("transferFunction.xLow", new Double(-1));
 
-		// createLayer output layer (only one neuron)
-		Layer outputLayer = LayerFactory.createLayer(1, outNeuronProperties);
-		this.addLayer(outputLayer);
+        // createLayer output layer (only one neuron)
+        Layer outputLayer = LayerFactory.createLayer(1, outNeuronProperties);
+        this.addLayer(outputLayer);
 
-		// createLayer full conectivity between input and output layer
-		ConnectionFactory.fullConnect(inputLayer, outputLayer);
+        // createLayer full conectivity between input and output layer
+        ConnectionFactory.fullConnect(inputLayer, outputLayer);
 
-		// set input and output cells for network
-		NeuralNetworkFactory.setDefaultIO(this);
+        // set input and output cells for network
+        NeuralNetworkFactory.setDefaultIO(this);
 
-		// set LMS learning rule for this network
-		this.setLearningRule(new LMS());
-	}
+        // set LMS learning rule for this network
+        this.setLearningRule(new LMS());
+    }
 
 }
