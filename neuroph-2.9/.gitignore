@@ -2,3 +2,7 @@
 .classpath
 .project
 *.class
+.idea
+*.log
+.cache
+.lib/
