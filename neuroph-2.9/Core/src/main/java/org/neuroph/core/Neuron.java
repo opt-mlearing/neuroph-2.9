@@ -143,7 +143,9 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
      * Calculates neuron's output
      */
     public void calculate() {
+        // input多维向量* 权值的聚合.
         this.totalInput = inputFunction.getOutput(inputConnections);
+        // 作用激活函数得到neural的output.
         this.output = transferFunction.getOutput(totalInput);
     }
 

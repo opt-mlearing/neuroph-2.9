@@ -157,6 +157,7 @@ abstract public class IterativeLearning extends LearningRule implements Serializ
     /**
      * This method is executed when learning starts, before the first epoch.
      * Used for initialisation.
+     * initialize the learning algorithm.
      */
     @Override
     protected void onStart() {
@@ -169,24 +170,32 @@ abstract public class IterativeLearning extends LearningRule implements Serializ
         this.currentIteration = 0;
     }
 
+    // 每一轮迭代学习的预处理过程.
     protected void beforeEpoch() {
     }
 
+    // 每一轮迭代学习的后置处理过程.
     protected void afterEpoch() {
     }
 
     @Override
     public final void learn(DataSet trainingSet) {
         // todo 建议还是抽一个模板方法出来，并放置在父类方法中.
-        setTrainingSet(trainingSet); // set this field here su subclasses can access it 
+        // 加载训练数据.
+        setTrainingSet(trainingSet); // set this field here su subclasses can access it
+        // initialize the learning rule & algorithm.
         onStart();
 
         while (!isStopped()) {
             beforeEpoch();
+            // doLearningEpoch()的过程中batchMode==false模式下会触发权值更新.
             doLearningEpoch(trainingSet);
             this.currentIteration++;
+            // afterEpoch()的过程中batchMode=true模式下会触发权值更新.
             afterEpoch();
 
+            // todo 迭代后置处理结束的内容是否可以归纳总结为一个新的方法.
+            // todo 后置处理是否可以链式调用约束，必须完成前一个阶段的处理才可以进入下一个阶段的处理.
             // now check if stop condition is satisfied
             if (hasReachedStopCondition()) {
                 stopLearning();
@@ -216,6 +225,7 @@ abstract public class IterativeLearning extends LearningRule implements Serializ
 
         }
         onStop();
+        // notify listeners that learning has ended.
         fireLearningEvent(new LearningEvent(this, LearningEvent.Type.LEARNING_STOPPED));
     }
 

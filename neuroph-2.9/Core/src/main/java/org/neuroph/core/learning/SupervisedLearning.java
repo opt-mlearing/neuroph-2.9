@@ -36,7 +36,7 @@ import org.neuroph.core.learning.stop.MaxErrorStop;
  * It extends IterativeLearning, and provides general supervised learning principles.
  * Based on Template Method Pattern with abstract method calculateWeightChanges
  * <p>
- * TODO:  random pattern order
+ * TODO: random pattern order
  *
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
@@ -93,8 +93,7 @@ abstract public class SupervisedLearning extends IterativeLearning implements Se
     }
 
     /**
-     * This method should implement the weights update procedure for the whole network
-     * for the given output error vector.
+     * This method should implement the weights update procedure for the whole network for the given output error vector.
      *
      * @param outputError output error vector for some network input (aka. patternError, network error)
      *                    usually the difference between desired and actual output
@@ -159,7 +158,7 @@ abstract public class SupervisedLearning extends IterativeLearning implements Se
     /**
      * This method implements basic logic for one learning epoch for the
      * supervised learning algorithms. Epoch is the one pass through the
-     * training set. This method  iterates through the training set
+     * training set. This method iterates through the training set
      * and trains network for each element. It also sets flag if conditions
      * to stop learning has been reached: network error below some allowed
      * value, or maximum iteration count
@@ -169,9 +168,13 @@ abstract public class SupervisedLearning extends IterativeLearning implements Se
     @Override
     public void doLearningEpoch(DataSet trainingSet) {
         Iterator<DataSetRow> iterator = trainingSet.iterator();
-        while (iterator.hasNext() && !isStopped()) { // iterate all elements from training set - maybe remove isStopped from here
+        // 遍历全部的训练集数据，进行模型训练.
+        // iterate all elements from training set - maybe remove isStopped from here
+        while (iterator.hasNext() && !isStopped()) {
             DataSetRow dataSetRow = iterator.next();
-            learnPattern(dataSetRow);             // learn current input/output pattern defined by SupervisedTrainingElement
+            // learn current input/output pattern defined by SupervisedTrainingElement
+            // 一个一个样本进行学习.
+            learnPattern(dataSetRow);
         }
     }
 
@@ -181,13 +184,29 @@ abstract public class SupervisedLearning extends IterativeLearning implements Se
      * @param trainingElement supervised training element which contains input and desired output
      */
     protected final void learnPattern(DataSetRow trainingElement) {
+        // 为神经网络设置输入.
         neuralNetwork.setInput(trainingElement.getInput());
+        // 网络神经输入信号向前传播，feedforward.
         neuralNetwork.calculate();
+        // 获取神经网络的计算输出.
         double[] output = neuralNetwork.getOutput();
+        // 累计每个样本的训练误差，其中errorFunction的实例对象会去记录totalError和patternCount两个关键指标.
         double[] patternError = errorFunction.addPatternError(output, trainingElement.getDesiredOutput());
+        // 实现神经元之间权值的更新，不同的神经网络其权值更新及其传播的方式存在差异，需要分别实现.
         calculateWeightChanges(patternError);
-
-        if (!batchMode) applyWeightChanges(); // batch mode updates are done i doBatchWeightsUpdate        
+        /**
+         * 在监督学习下:
+         * todo
+         * 注意，doBatchWeightsUpdate()和applyWeightChanges()处理的场景和方法触发的位置完全不同.
+         * 原作者在applyWeightChanges()、doBatchWeightsUpdate()的设计有一定的问题，导致读者哟有点乱.
+         * 改进设计如下：
+         * step1：设计一个WeightUpdate相关接口；
+         * step2：其具体实现者粗略划分两个实现类，通过事件监听，触发不同阶段的权值更新.
+         */
+        if (!batchMode) {
+            // batch mode updates are done i doBatchWeightsUpdate
+            applyWeightChanges();
+        }
     }
 
     /**
@@ -330,10 +349,11 @@ abstract public class SupervisedLearning extends IterativeLearning implements Se
                     } else {
                         weight.value += (weight.weightChange / getTrainingSet().size());
                     }
-
-                    weight.weightChange = 0; // reset deltaWeight
+                    // reset deltaWeight
+                    weight.weightChange = 0;
                 }
             }
         }
     }
+
 }

@@ -73,6 +73,7 @@ abstract public class LearningRule implements Serializable {
 
     /**
      * Sets training set for this learning rule
+     * 加载training data set.
      *
      * @param trainingSet training set for this learning rule
      */
