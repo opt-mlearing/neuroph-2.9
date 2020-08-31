@@ -20,11 +20,11 @@ import org.neuroph.core.Neuron;
 import org.neuroph.nnet.comp.neuron.ThresholdNeuron;
 
 /**
- * Perceptron learning rule for perceptron neural networks.
+ * Perception learning rule for perception neural networks, 感知机.
  *
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
-public class PerceptronLearning extends LMS {
+public class PerceptionLearning extends LMS {
 
     /**
      * The class fingerprint that is set to indicate serialization
@@ -36,7 +36,7 @@ public class PerceptronLearning extends LMS {
     /**
      * Creates new PerceptronLearning instance
      */
-    public PerceptronLearning() {
+    public PerceptionLearning() {
         super();
     }
 
