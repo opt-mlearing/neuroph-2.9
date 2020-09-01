@@ -73,6 +73,8 @@ public class LMS extends SupervisedLearning implements Serializable {
     }
 
     /**
+     * 计算每个神经元对应的delta_weight.
+     * <p>
      * This method calculates weights changes for the single neuron.
      * It iterates through all neuron's input connections, and calculates/set weight change for each weight
      * using formula
@@ -98,13 +100,17 @@ public class LMS extends SupervisedLearning implements Serializable {
             final double input = connection.getInput();
             // calculate the weight change
             final double weightChange = -learningRate * delta * input;
-
+            // 获取当前神经元的联连接的实例化权值对象.
             // get the connection weight
             final Weight weight = connection.getWeight();
             // if the learning is in online mode (not batch) apply the weight change immediately
             if (!this.isBatchMode()) {
+                // 如果不是批处理模式.
                 weight.weightChange = weightChange;
-            } else { // otherwise if its in batch mode, accumulate  weight changes and apply them after the current epoch (see SupervisedLearning.doLearningEpoch method)
+            } else {
+                // 如果是批处理模式, 有一个累计的过程.
+                // otherwise if its in batch mode,
+                // accumulate weight changes and apply them after the current epoch (see SupervisedLearning.doLearningEpoch method)
                 weight.weightChange += weightChange;
             }
         }
