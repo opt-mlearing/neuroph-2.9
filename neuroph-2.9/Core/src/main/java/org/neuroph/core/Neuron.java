@@ -73,24 +73,26 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
     protected List<Connection> outConnections;
 
     /**
-     * Total net input for this neuron. Represents total input for this neuron
-     * received from input function.
+     * Total net input for this neuron. Represents total input for this neuron received from input function.
+     * totalInput表示的经过神经元激活函数作用之前，全部 (输入连接权* 对应输入神经元的)的聚合.
      */
     protected transient double totalInput = 0;
 
     /**
      * Neuron output
+     * 当前神经元实例的totalInput属性经过激活函数作用之后的输出结果.
      */
     protected transient double output = 0;
 
     /**
      * Local error (delta) for this neuron *
+     * 在反向传播网络中此属性储存delta weight.
      */
     protected transient double delta = 0;
 
     /**
      * Input function for this neuron
-     * 前一层全部神经元与权值乘积结果的聚合函数，可能是累和也可能是其他函数.
+     * 前一层全部神经元与权值乘积结果的聚合函数(聚合函数可以是累和.. 等等形式)，可能是累和也可能是其他函数.
      */
     protected InputFunction inputFunction;
 
@@ -111,15 +113,16 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
      * neuron model.
      */
     public Neuron() {
+        // org.neuroph.core.Neuron.Neuron()的实例对象inputFunction属性默认采用累和函数.
         this.inputFunction = new WeightedSum();
+        // org.neuroph.core.Neuron.Neuron()的实例对象transferFunction属性默认采用01阶跃函数.
         this.transferFunction = new Step();
         this.inputConnections = new ArrayList<>();
         this.outConnections = new ArrayList<>();
     }
 
     /**
-     * Creates an instance of Neuron with the specified input and transfer
-     * functions.
+     * Creates an instance of Neuron with the specified input and transfer functions.
      *
      * @param inputFunction    input function for this neuron
      * @param transferFunction transfer function for this neuron
@@ -128,11 +131,9 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
         if (inputFunction == null) {
             throw new IllegalArgumentException("Input function cannot be null!");
         }
-
         if (transferFunction == null) {
             throw new IllegalArgumentException("Transfer function cannot be null!");
         }
-
         this.inputFunction = inputFunction;
         this.transferFunction = transferFunction;
         this.inputConnections = new ArrayList<>();
@@ -153,7 +154,9 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
      * Sets input and output activation levels to zero
      */
     public void reset() {
+        // 作用totalInput;
         this.setInput(0d);
+        // 作用output;
         this.setOutput(0d);
     }
 
@@ -185,8 +188,7 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
     }
 
     /**
-     * Returns true if there are input connections for this neuron, false
-     * otherwise
+     * Returns true if there are input connections for this neuron, false otherwise.
      *
      * @return true if there is input connection, false otherwise
      */
@@ -195,7 +197,7 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
     }
 
     /**
-     * Check the connection to neuron
+     * Check the connection to neuron, output connection with other following neural.
      *
      * @param toNeuron neuron connection to be checked
      * @return true if there is output connection, false otherwise
@@ -210,7 +212,7 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
     }
 
     /**
-     * Check the connection from neuron
+     * Check the connection from neuron, input connection with other formal neural.
      *
      * @param neuron neuron connection to be checked
      * @return true if there is input connection, false otherwise
@@ -225,29 +227,29 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
     }
 
     /**
-     * Adds the specified input connection
+     * Adds the specified input connection.
      *
      * @param connection input connection to add
      */
     public void addInputConnection(Connection connection) {
-        // check whether connection is  null
+        // check whether connection is null.
         if (connection == null) {
             throw new IllegalArgumentException("Attempt to add null connection to neuron!");
         }
-
         // make sure that connection instance is pointing to this neuron
         if (connection.getToNeuron() != this) {
             throw new IllegalArgumentException("Cannot add input connection - bad toNeuron specified!");
         }
-
-        // if it already has connection from same neuron do nothing
+        // if it already has connection from same neuron do nothing.
+        // forbid connect the same input neural once again.
         if (this.hasInputConnectionFrom(connection.getFromNeuron())) {
             return;
         }
-
+        // if the program can step at this, the success build the relation with the special input neural.
         this.inputConnections.add(connection);
-
+        // get the special input neural.
         Neuron fromNeuron = connection.getFromNeuron();
+        // add the special input neural to construct the currentLay's formal networkLay.
         fromNeuron.addOutputConnection(connection);
     }
 
