@@ -48,10 +48,10 @@ public class DelayedNeuron extends Neuron {
      * @param inputFunction    neuron input function
      * @param transferFunction neuron transfer function
      */
-    public DelayedNeuron(InputFunction inputFunction,
-                         TransferFunction transferFunction) {
+    public DelayedNeuron(InputFunction inputFunction, TransferFunction transferFunction) {
         super(inputFunction, transferFunction);
-        outputHistory = new ArrayList<Double>(5); // default delay buffer size is 5
+        // default delay buffer size is 5
+        outputHistory = new ArrayList<Double>(5);
         outputHistory.add(new Double(0));
     }
 
@@ -59,8 +59,9 @@ public class DelayedNeuron extends Neuron {
     public void calculate() {
         super.calculate();
         outputHistory.add(0, new Double(this.output));
-        if (outputHistory.size() > 5)
+        if (outputHistory.size() > 5) {
             outputHistory.remove(5);
+        }
     }
 
     /**
