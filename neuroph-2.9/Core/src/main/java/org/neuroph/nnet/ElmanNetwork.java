@@ -33,46 +33,48 @@ public class ElmanNetwork extends NeuralNetwork {
     public ElmanNetwork(int inputNeuronsCount, int hiddenNeuronsCount, int contextNeuronsCount, int outputNeuronsCount) {
         createNetwork(inputNeuronsCount, hiddenNeuronsCount, contextNeuronsCount, outputNeuronsCount);
     }
-    // three layers: input, hidden, output
-    // as mlp add context layer
+    // three layers: input, hidden, output as mlp add context layer
     // elman connect output of hidden layer to input of context layer
     // output of context to input of hidden layer 
 
 
+    /**
+     * @param inputNeuronsCount   inputLay's neuralNet neural size.
+     * @param hiddenNeuronsCount  hiddenLay's neuralNet neural size.
+     * @param contextNeuronsCount contextLay's neuralNet neural size.
+     * @param outputNeuronsCount  outputLay's neuralNet neural size.
+     */
     private void createNetwork(int inputNeuronsCount, int hiddenNeuronsCount, int contextNeuronsCount, int outputNeuronsCount) {
-
-        // create input layer && 输入层
+        // create input layer && 输入层 --> 设置输入层;
         InputLayer inputLayer = new InputLayer(inputNeuronsCount);
+        // 额外增加一个偏置.
         inputLayer.addNeuron(new BiasNeuron());
         addLayer(inputLayer);
-
         NeuronProperties neuronProperties = new NeuronProperties();
         // neuronProperties.setProperty("useBias", true) && 设置隐藏层的激活函数.
         neuronProperties.setProperty("transferFunction", TransferFunctionType.SIGMOID);
+        // 设置一个隐藏层.
         Layer hiddenLayer = new Layer(hiddenNeuronsCount, neuronProperties);
         hiddenLayer.addNeuron(new BiasNeuron());
         addLayer(hiddenLayer);
-
+        // 输入层与隐藏层中的神经元全连接.
         ConnectionFactory.fullConnect(inputLayer, hiddenLayer);
-
+        // 设置上下文层，上下文层无偏置神经元.
         Layer contextLayer = new Layer(contextNeuronsCount, neuronProperties);
         addLayer(contextLayer); // we might also need bias for context neurons?
-
+        // 输出层
         Layer outputLayer = new Layer(outputNeuronsCount, neuronProperties);
         addLayer(outputLayer);
-
+        // 隐藏层与输出层全连接
         ConnectionFactory.fullConnect(hiddenLayer, outputLayer);
-
+        // 上下文层和隐藏层一一对应.
         ConnectionFactory.forwardConnect(hiddenLayer, contextLayer); // forward or full connectivity?
+        // 上下文层和隐藏层之间建立全连接.
         ConnectionFactory.fullConnect(contextLayer, hiddenLayer);
-
-
         // set input and output cells for network
         NeuralNetworkFactory.setDefaultIO(this);
-
         // set learnng rule
         this.setLearningRule(new BackPropagation());
-
     }
 
 }
