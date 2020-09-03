@@ -1,12 +1,12 @@
 /**
  * Copyright 2013 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -15,7 +15,6 @@
  */
 package org.neuroph.nnet.comp.layer;
 
-import org.neuroph.core.transfer.RectifiedLinear;
 import org.neuroph.nnet.comp.Kernel;
 import org.neuroph.core.Neuron;
 import org.neuroph.core.Weight;
@@ -30,9 +29,8 @@ import org.neuroph.util.NeuronProperties;
 /**
  * Convolutional layer is a special type of layer, used in convolutional neural
  * networks. It contains a collection of feature maps, default neuron settings
- * for convolutional layers, and method for creating connections to feature
- * maps. The role of the convolutional layer is extaction of high level
- * features.
+ * for convolutional layers, and method for creating connections to feature maps.
+ * The role of the convolutional layer is extaction of high level features.
  *
  * @author Boris Fulurija
  * @author Zoran Sevarac
@@ -40,16 +38,20 @@ import org.neuroph.util.NeuronProperties;
  */
 public class ConvolutionalLayer extends FeatureMapsLayer {
 
-    private static final long serialVersionUID = -4619196904153707871L;  
+    private static final long serialVersionUID = -4619196904153707871L;
     /**
-     * Default neuron properties for convolutional layer
+     * Default neuron properties for convolutional layer,
+     * 定义卷积层网络的神经元的输入聚合函数和输出激活函数，以及基本神经元类型.
      */
     public static final NeuronProperties DEFAULT_NEURON_PROP = new NeuronProperties();
 
-    
+
+    /**
+     * todo 这段代码写的，和上面 DEFAULT_NEURON_PROP 静态属性，为什么不直接写?这样设计的好处是？看不懂！！！
+     */
     static {
         DEFAULT_NEURON_PROP.setProperty("inputFunction", WeightedSum.class);
-        DEFAULT_NEURON_PROP.setProperty("transferFunction", Tanh.class); // <<<--- use Sigmoid, Tanh?        RectifiedLinear
+        DEFAULT_NEURON_PROP.setProperty("transferFunction", Tanh.class); // <<<--- use Sigmoid, Tanh? RectifiedLinear
         DEFAULT_NEURON_PROP.setProperty("useBias", true);
     }
 
@@ -75,9 +77,9 @@ public class ConvolutionalLayer extends FeatureMapsLayer {
      * number of feature maps with default neuron settings for convolutional
      * layer.
      *
-     * @param fromLayer previous layer, which will be connected to this layer
-     * @param kernel kernel for all feature maps
-     * @param numberOfMaps number of feature maps to create in this layer
+     * @param fromLayer       previous layer, which will be connected to this layer
+     * @param kernelDimension kernel for all feature maps
+     * @param numberOfMaps    number of feature maps to create in this layer
      */
     public ConvolutionalLayer(FeatureMapsLayer fromLayer, Dimension2D kernelDimension, int numberOfMaps) {
         Dimension2D fromDimension = fromLayer.getMapDimensions();
@@ -88,39 +90,39 @@ public class ConvolutionalLayer extends FeatureMapsLayer {
 
         createFeatureMaps(numberOfMaps, this.mapDimensions, kernelDimension, ConvolutionalLayer.DEFAULT_NEURON_PROP);
     }
-    
-     /**
+
+    /**
      * Creates convolutional layer with specified kernel, appropriate map
      * dimensions in regard to previous layer (fromLayer param) and specified
      * number of feature maps with default neuron settings for convolutional
      * layer.
      *
-     * @param fromLayer previous layer, which will be connected to this layer
-     * @param kernel kernel for all feature maps
-     * @param numberOfMaps number of feature maps to create in this layer
+     * @param fromLayer        previous layer, which will be connected to this layer
+     * @param kernelDimension  kernel for all feature maps
+     * @param numberOfMaps     number of feature maps to create in this layer
      * @param transferFunction neuron's transfer function to use
      */
-    public ConvolutionalLayer(FeatureMapsLayer fromLayer, Dimension2D kernelDimension, int numberOfMaps, Class <? extends TransferFunction> transferFunction) {
+    public ConvolutionalLayer(FeatureMapsLayer fromLayer, Dimension2D kernelDimension, int numberOfMaps, Class<? extends TransferFunction> transferFunction) {
         Dimension2D fromDimension = fromLayer.getMapDimensions();
 
         int mapWidth = fromDimension.getWidth() - kernelDimension.getWidth() + 1;
         int mapHeight = fromDimension.getHeight() - kernelDimension.getHeight() + 1;
         this.mapDimensions = new Dimension2D(mapWidth, mapHeight);
-        
+
         NeuronProperties neuronProp = new NeuronProperties(Neuron.class, transferFunction);
 
         createFeatureMaps(numberOfMaps, this.mapDimensions, kernelDimension, neuronProp);
-    }    
+    }
 
     /**
      * Creates convolutional layer with specified kernel, appropriate map
      * dimensions in regard to previous layer (fromLayer param) and specified
      * number of feature maps with given neuron properties.
      *
-     * @param fromLayer previous layer, which will be connected to this layer
-     * @param kernel kernel for all feature maps
-     * @param numberOfMaps number of feature maps to create in this layer
-     * @param neuronProp settings for neurons in feature maps
+     * @param fromLayer       previous layer, which will be connected to this layer
+     * @param kernelDimension kernel for all feature maps
+     * @param numberOfMaps    number of feature maps to create in this layer
+     * @param neuronProp      settings for neurons in feature maps
      */
     public ConvolutionalLayer(FeatureMapsLayer fromLayer, Dimension2D kernelDimension, int numberOfMaps, NeuronProperties neuronProp) {
         Dimension2D fromDimension = fromLayer.getMapDimensions();
@@ -141,14 +143,14 @@ public class ConvolutionalLayer extends FeatureMapsLayer {
      * position share the same weights
      *
      * @param fromMap source feature map
-     * @param toMap destination feature map
+     * @param toMap   destination feature map
      */
     @Override
     public void connectMaps(FeatureMapLayer fromMap, FeatureMapLayer toMap) {
 
         Kernel kernel = toMap.getKernel();
         kernel.initWeights(-0.15, 0.15); // zasto ove vrednosti ???
-      //  int numberOfSharedWeights = kernel.getArea();
+        //  int numberOfSharedWeights = kernel.getArea();
 //        Weight[][] weights = new Weight[kernel.getHeight()][kernel.getWidth()];
 //        //double coefficient = getWeightCoeficient(toMap);
 //        // initialize kernel with random weights
@@ -165,8 +167,8 @@ public class ConvolutionalLayer extends FeatureMapsLayer {
 //                                    // pored kernela dodati mu i BiasNeuron...
         BiasNeuron biasNeuron = new BiasNeuron();
         fromMap.addNeuron(biasNeuron);
-                                    
-                                    
+
+
         // ovo se koristi samo za povezivanje dva konvoluciona sloja !!! 
         // dodati step za from - ne mora da bude samo 1
         // ostaje pitanje kako se primenjuje na ivici - trebalo bi od centra - dodati onaj okvir sa strane!!!!
@@ -197,4 +199,5 @@ public class ConvolutionalLayer extends FeatureMapsLayer {
         coefficient = !Double.isInfinite(coefficient) || !Double.isNaN(coefficient) || coefficient == 0 ? 1 : coefficient;
         return coefficient;
     }
+
 }

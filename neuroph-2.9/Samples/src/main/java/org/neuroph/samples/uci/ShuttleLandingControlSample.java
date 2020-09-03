@@ -21,7 +21,7 @@ import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
 import org.neuroph.core.events.LearningEvent;
 import org.neuroph.core.events.LearningEventListener;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.nnet.learning.BackPropagation;
 import org.neuroph.nnet.learning.MomentumBackpropagation;
 
@@ -74,7 +74,7 @@ public class ShuttleLandingControlSample implements LearningEventListener {
 
         System.out.println("Creating neural network...");
         // create MultiLayerPerceptron neural network
-        MultiLayerPerceptron neuralNet = new MultiLayerPerceptron(inputsCount, 16, outputsCount);
+        MultiLayerPerception neuralNet = new MultiLayerPerception(inputsCount, 16, outputsCount);
 
 
         // attach listener to learning rule

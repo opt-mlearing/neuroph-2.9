@@ -21,7 +21,7 @@ import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.events.LearningEvent;
 import org.neuroph.core.events.LearningEventListener;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.nnet.learning.BackPropagation;
 import org.neuroph.nnet.learning.MomentumBackpropagation;
 
@@ -36,7 +36,7 @@ public class TrainNetwork implements LearningEventListener {
     //Creating and saving neural network to file
     public void createNeuralNetwork() {
         System.out.println("Creating neural network... ");
-        MultiLayerPerceptron neuralNet = new MultiLayerPerceptron(config.getInputCount(), config.getFirstHiddenLayerCount(), config.getSecondHiddenLayerCount(), config.getOutputCount());
+        MultiLayerPerception neuralNet = new MultiLayerPerception(config.getInputCount(), config.getFirstHiddenLayerCount(), config.getSecondHiddenLayerCount(), config.getOutputCount());
         MomentumBackpropagation learningRule = (MomentumBackpropagation) neuralNet.getLearningRule();
         learningRule.setLearningRate(0.01);
         learningRule.setMaxError(0.1);
@@ -49,7 +49,7 @@ public class TrainNetwork implements LearningEventListener {
     //Training neural network with normalized balanced training data set
     public void train() {
         System.out.println("Training neural network... ");
-        MultiLayerPerceptron neuralNet = (MultiLayerPerceptron) NeuralNetwork.createFromFile(config.getTrainedNetworkFileName());
+        MultiLayerPerception neuralNet = (MultiLayerPerception) NeuralNetwork.createFromFile(config.getTrainedNetworkFileName());
 
         DataSet dataSet = DataSet.load(config.getNormalizedBalancedFileName());
         neuralNet.getLearningRule().addListener(this);

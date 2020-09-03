@@ -21,6 +21,7 @@ import java.io.Serializable;
 import org.neuroph.core.learning.SupervisedLearning;
 
 /**
+ * 误差低于设定的阈值，即停止迭代.
  * Stops learning rule if total network error is below some specified value
  *
  * @author Zoran Sevarac <sevarac@gmail.com>
@@ -38,7 +39,6 @@ public class MaxErrorStop implements StopCondition, Serializable {
         if (learningRule.getTotalNetworkError() < learningRule.getMaxError()) {
             return true;
         }
-
         return false;
     }
 

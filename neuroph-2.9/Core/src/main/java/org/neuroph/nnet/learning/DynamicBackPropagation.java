@@ -21,6 +21,7 @@ import org.neuroph.core.data.DataSet;
 
 /**
  * Backpropagation learning rule with dynamic learning rate and momentum
+ *
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
 public class DynamicBackPropagation extends MomentumBackpropagation {
@@ -36,8 +37,6 @@ public class DynamicBackPropagation extends MomentumBackpropagation {
     private boolean useDynamicMomentum = true;
 
     // private double previousNetworkError;
-
-
     public DynamicBackPropagation() {
         super();
     }
@@ -126,16 +125,6 @@ public class DynamicBackPropagation extends MomentumBackpropagation {
 
         if (this.momentum < this.minMomentum)
             this.momentum = this.minMomentum;
-
-        // one more approach suggested at https://sourceforge.net/tracker/?func=detail&atid=1107579&aid=3130561&group_id=238532
-        // Probably want to drop momentum to minimum value.
-//            if (this.totalNetworkError >= this.previousEpochError) {
-//                momentum = momentum * momentumChange;
-//                if (momentum < minMomentum) momentum = minMomentum;
-//            } else {
-//                momentum = momentum * (1 + (1 - momentumChange)); // *1.01
-//                if (momentum > maxMomentum) momentum = maxMomentum;
-//            }
 
     }
 

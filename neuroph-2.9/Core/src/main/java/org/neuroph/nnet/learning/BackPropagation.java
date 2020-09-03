@@ -52,7 +52,9 @@ public class BackPropagation extends LMS {
      */
     @Override
     protected void calculateWeightChanges(double[] outputError) {
+        // 在backPropagation模型中，首先"计算输出层"和"输出层的前一层"之间的delta的权值.
         calculateErrorAndUpdateOutputNeurons(outputError);
+        // 在多个隐藏层直接计算.
         calculateErrorAndUpdateHiddenNeurons();
     }
 
@@ -66,27 +68,28 @@ public class BackPropagation extends LMS {
      */
     protected void calculateErrorAndUpdateOutputNeurons(double[] outputError) {
         int i = 0;
-
         // for all output neurons
         final List<Neuron> outputNeurons = neuralNetwork.getOutputNeurons();
         for (Neuron neuron : outputNeurons) {
             // if error is zero, just set zero error and continue to next neuron
+            // 如何误差为0，则delta 权值为0.
             if (outputError[i] == 0) {
                 neuron.setDelta(0);
                 i++;
                 continue;
             }
-
-            // otherwise calculate and set error/delta for the current neuron
+            // otherwise calculate and set error/delta for the current neuron.
+            // 获取当前神经元使用的激活函数, 其中transferFunction.getDerivative(..), transformFunction实例对象同时持有激活函数的求导对象.
             final TransferFunction transferFunction = neuron.getTransferFunction();
             final double neuronInput = neuron.getNetInput();
-            final double delta = outputError[i] * transferFunction.getDerivative(neuronInput); // delta = (y-d)*df(net)
+            // delta = (y-d)*df(net)
+            // 通过偏导计算delta.
+            final double delta = outputError[i] * transferFunction.getDerivative(neuronInput);
             neuron.setDelta(delta);
-
             // and update weights of the current neuron
             calculateWeightChanges(neuron);
             i++;
-        } // for
+        } // end for.
     }
 
     /**
@@ -94,13 +97,15 @@ public class BackPropagation extends LMS {
      */
     protected void calculateErrorAndUpdateHiddenNeurons() {
         List<Layer> layers = neuralNetwork.getLayers();
+        // 反向计算，起点就是隐藏层.
         for (int layerIdx = layers.size() - 2; layerIdx > 0; layerIdx--) {
             for (Neuron neuron : layers.get(layerIdx).getNeurons()) {
                 // calculate the neuron's error (delta)
                 final double delta = calculateHiddenNeuronError(neuron);
                 neuron.setDelta(delta);
+                // and update weights of the current neuron
                 calculateWeightChanges(neuron);
-            } // for
+            } // end
         } // for
     }
 
@@ -119,7 +124,8 @@ public class BackPropagation extends LMS {
 
         TransferFunction transferFunction = neuron.getTransferFunction();
         double netInput = neuron.getNetInput();
-        double f1 = transferFunction.getDerivative(netInput);   // does this use netInput or cached output in order to avoid double caluclation? 
+        // does this use netInput or cached output in order to avoid double caluclation?
+        double f1 = transferFunction.getDerivative(netInput);
         double delta = f1 * deltaSum;
         return delta;
     }

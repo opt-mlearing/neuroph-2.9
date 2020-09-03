@@ -14,7 +14,7 @@ import net.sf.javaml.filter.normalize.NormalizeMidrange;
 import net.sf.javaml.tools.data.FileHandler;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 
 /**
  * Example how to use adapters for Java ML http://java-ml.sourceforge.net/
@@ -137,7 +137,7 @@ public class JMLNeurophSample {
      * @param jmlDataset Dataset Java-ML data set
      */
     private static void testJMLNeurophClassifier(Dataset jmlDataset) {
-        MultiLayerPerceptron neuralNet = new MultiLayerPerceptron(4, 16, 3);
+        MultiLayerPerception neuralNet = new MultiLayerPerception(4, 16, 3);
         
         // set labels for output neurons
         neuralNet.getOutputNeurons().get(0).setLabel("Setosa");

@@ -21,7 +21,7 @@ import java.io.FileNotFoundException;
 import java.sql.DriverManager;
 import java.io.IOException;
 import java.sql.SQLException;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.util.io.JDBCInputAdapter;
 import org.neuroph.util.io.JDBCOutputAdapter;
 
@@ -38,7 +38,7 @@ public class JDBCSample {
     public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
 
         // create neural network
-        MultiLayerPerceptron neuralNet = new MultiLayerPerceptron(2, 3, 1);
+        MultiLayerPerception neuralNet = new MultiLayerPerception(2, 3, 1);
 
         // Load the database driver
         Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");

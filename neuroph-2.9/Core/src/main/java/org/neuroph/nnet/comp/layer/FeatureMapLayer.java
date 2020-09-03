@@ -1,22 +1,19 @@
 /**
  * Copyright 2013 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.neuroph.nnet.comp.layer;
-
-import java.util.concurrent.Callable;
 
 import org.neuroph.core.Layer;
 import org.neuroph.core.Neuron;
@@ -26,46 +23,41 @@ import org.neuroph.util.NeuronFactory;
 import org.neuroph.util.NeuronProperties;
 
 /**
- * FeatureMapLayer Layer provides 2D layout of the neurons in layer. All the neurons
- * are actually stored in one dimensional array in superclass.
- * This type of layer is used as feature map for convolutional networks
+ * FeatureMapLayer Layer provides 2D layout of the neurons in layer.
+ * All the neurons are actually stored in one dimensional array in superclass.
+ * This type of layer is used as feature map for convolutional networks.
+ * <p>
+ * todo suggest to use establish model to initialize a FeatureMapLayer instance.
  *
  * @author Boris Fulurija
  * @author Zoran Sevarac
  */
-public class FeatureMapLayer extends Layer /*implements Callable<Void>*/ {
+public class FeatureMapLayer extends Layer {
 
     private static final long serialVersionUID = 2498669699995172395L;
 
-    /**
-     * Dimensions of this layer (width and height)
-     */
+    // Dimensions of this layer (width and height).
     private Dimension2D dimensions;
-    
-    /**
-     * Kernel of this feature map
-     */
+
+    // Kernel of this feature map.
     private Kernel kernel;
-    
-    
-   
+
     /**
-     * Creates an empty 2D layer with specified dimensions
+     * Creates an empty 2D layer with specified dimensions.
      *
      * @param dimensions layer dimensions (width and weight)
-     */    
+     */
     public FeatureMapLayer(Dimension2D dimensions, NeuronProperties neuronProperties) {
         this.dimensions = dimensions;
-        
+        // 将二维矩阵展开，形成一个dimensions.getHeight() * dimensions.getWidth() 维的向量.
         for (int i = 0; i < dimensions.getHeight() * dimensions.getWidth(); i++) {
             Neuron neuron = NeuronFactory.createNeuron(neuronProperties);
             addNeuron(neuron);
-        }        
-    }    
-    
+        }
+    }
 
     /**
-     * Creates an empty 2D layer with specified dimensions and kernel
+     * Creates an empty 2D layer with specified dimensions and kernel.
      *
      * @param dimensions layer dimensions (width and weight)
      */
@@ -75,8 +67,7 @@ public class FeatureMapLayer extends Layer /*implements Callable<Void>*/ {
     }
 
     /**
-     * Creates 2D layer with specified dimensions, filled with neurons with
-     * specified properties
+     * Creates 2D layer with specified dimensions, filled with neurons with specified properties.
      *
      * @param dimensions       layer dimensions
      * @param neuronProperties neuron properties
@@ -108,7 +99,6 @@ public class FeatureMapLayer extends Layer /*implements Callable<Void>*/ {
         return dimensions.getHeight();
     }
 
-
     /**
      * Returns dimensions of this layer
      *
@@ -117,7 +107,6 @@ public class FeatureMapLayer extends Layer /*implements Callable<Void>*/ {
     public Dimension2D getDimensions() {
         return dimensions;
     }
-
 
     /**
      * Returns neuron at specified position in this layer
@@ -133,16 +122,5 @@ public class FeatureMapLayer extends Layer /*implements Callable<Void>*/ {
     public Kernel getKernel() {
         return kernel;
     }
-
- 
-//    @Override
-//    public Void call() throws Exception {
-//        calculate();
-//        return null;
-//    }
-
-
-  
-
 
 }

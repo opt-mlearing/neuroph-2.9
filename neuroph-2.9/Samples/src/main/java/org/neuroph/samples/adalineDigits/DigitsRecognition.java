@@ -5,7 +5,7 @@ import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
 import org.neuroph.core.events.LearningEvent;
 import org.neuroph.core.events.LearningEventListener;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.nnet.learning.BackPropagation;
 
 /**
@@ -38,7 +38,7 @@ public class DigitsRecognition {
         
 
         //create neural network
-        MultiLayerPerceptron neuralNet = new MultiLayerPerceptron(inputCount, hiddenNeurons, outputCount);
+        MultiLayerPerception neuralNet = new MultiLayerPerception(inputCount, hiddenNeurons, outputCount);
         //get backpropagation learning rule from network
         BackPropagation learningRule = neuralNet.getLearningRule();
 

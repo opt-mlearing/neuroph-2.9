@@ -1,13 +1,12 @@
 package org.neuroph.contrib.model.modelselection;
 
-import org.neuroph.contrib.model.errorestimation.Bootstrapping;
 import org.neuroph.eval.CrossValidation;
 import org.neuroph.eval.classification.ClassificationMetrics;
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.events.LearningEvent;
 import org.neuroph.core.events.LearningEventListener;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.nnet.learning.BackPropagation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +18,6 @@ import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import org.neuroph.eval.ClassifierEvaluator;
-import org.neuroph.eval.CrossValidation;
 
 /**
  * @param <T> Type which defined which LearningRule will be used during model optimization
@@ -115,7 +113,7 @@ public class MultilayerPerceptronOptimazer<T extends BackPropagation> implements
                 
                 LOG.info("Architecture: [{}]", architecture);
                 
-                MultiLayerPerceptron network = new MultiLayerPerceptron(architecture);
+                MultiLayerPerception network = new MultiLayerPerception(architecture);
                 LearningListener listener = new LearningListener(10, learningRule.getMaxIterations());
                 learningRule.addListener(listener);
                 network.setLearningRule(learningRule);

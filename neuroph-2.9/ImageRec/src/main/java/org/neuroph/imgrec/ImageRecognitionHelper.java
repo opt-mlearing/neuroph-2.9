@@ -35,7 +35,7 @@ import org.neuroph.core.exceptions.VectorSizeMismatchException;
 import org.neuroph.imgrec.image.Dimension;
 import org.neuroph.imgrec.image.Image;
 import org.neuroph.imgrec.image.ImageFactory;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.nnet.learning.MomentumBackpropagation;
 import org.neuroph.util.TransferFunctionType;
 import org.neuroph.util.plugins.PluginBase;
@@ -78,7 +78,7 @@ public class ImageRecognitionHelper {
 		
 		System.out.println("Neuron layer size counts vector = " + layersNeuronsCount);
 		
-		NeuralNetwork neuralNetwork = new MultiLayerPerceptron(layersNeuronsCount, transferFunctionType);
+		NeuralNetwork neuralNetwork = new MultiLayerPerception(layersNeuronsCount, transferFunctionType);
 
 		neuralNetwork.setLabel(label);
 		PluginBase imageRecognitionPlugin = new ImageRecognitionPlugin(samplingResolution, colorMode);

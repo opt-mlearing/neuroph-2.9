@@ -30,7 +30,7 @@ import org.neuroph.nnet.comp.neuron.ThresholdNeuron;
  *
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
-public class BinaryDeltaRule extends PerceptronLearning {
+public class BinaryDeltaRule extends PerceptionLearning {
 
     /**
      * The class fingerprint that is set to indicate serialization

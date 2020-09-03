@@ -29,7 +29,7 @@ import org.neuroph.nnet.Hopfield;
 import org.neuroph.nnet.Instar;
 import org.neuroph.nnet.Kohonen;
 import org.neuroph.nnet.MaxNet;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.nnet.Outstar;
 import org.neuroph.nnet.Perceptron;
 import org.neuroph.nnet.RBFNetwork;
@@ -40,7 +40,7 @@ import org.neuroph.nnet.learning.BackPropagation;
 import org.neuroph.nnet.learning.BinaryDeltaRule;
 import org.neuroph.nnet.learning.DynamicBackPropagation;
 import org.neuroph.nnet.learning.MomentumBackpropagation;
-import org.neuroph.nnet.learning.PerceptronLearning;
+import org.neuroph.nnet.learning.PerceptionLearning;
 import org.neuroph.nnet.learning.ResilientPropagation;
 
 /**
@@ -87,8 +87,8 @@ public class NeuralNetworkFactory {
     public static Perceptron createPerceptron(int inputNeuronsCount, int outputNeuronsCount, TransferFunctionType transferFunctionType, Class learningRule) {
         Perceptron nnet = new Perceptron(inputNeuronsCount, outputNeuronsCount, transferFunctionType);
 
-        if (learningRule.getName().equals(PerceptronLearning.class.getName())) {
-            nnet.setLearningRule(new PerceptronLearning());
+        if (learningRule.getName().equals(PerceptionLearning.class.getName())) {
+            nnet.setLearningRule(new PerceptionLearning());
         } else if (learningRule.getName().equals(BinaryDeltaRule.class.getName())) {
             nnet.setLearningRule(new BinaryDeltaRule());
         }
@@ -103,9 +103,9 @@ public class NeuralNetworkFactory {
      * @param transferFunctionType transfer function type for neurons
      * @return instance of Multi Layer Perceptron
      */
-    public static MultiLayerPerceptron createMLPerceptron(String layersStr, TransferFunctionType transferFunctionType) {
+    public static MultiLayerPerception createMLPerceptron(String layersStr, TransferFunctionType transferFunctionType) {
         ArrayList<Integer> layerSizes = VectorParser.parseInteger(layersStr);
-        MultiLayerPerceptron nnet = new MultiLayerPerceptron(layerSizes,
+        MultiLayerPerception nnet = new MultiLayerPerception(layerSizes,
                 transferFunctionType);
         return nnet;
     }
@@ -117,10 +117,10 @@ public class NeuralNetworkFactory {
      * @param transferFunctionType transfer function type for neurons
      * @return instance of Multi Layer Perceptron
      */
-    public static MultiLayerPerceptron createMLPerceptron(String layersStr, TransferFunctionType transferFunctionType, Class learningRule, boolean useBias, boolean connectIO) {
+    public static MultiLayerPerception createMLPerceptron(String layersStr, TransferFunctionType transferFunctionType, Class learningRule, boolean useBias, boolean connectIO) {
         ArrayList<Integer> layerSizes = VectorParser.parseInteger(layersStr);
         NeuronProperties neuronProperties = new NeuronProperties(transferFunctionType, useBias);
-        MultiLayerPerceptron nnet = new MultiLayerPerceptron(layerSizes, neuronProperties);
+        MultiLayerPerception nnet = new MultiLayerPerception(layerSizes, neuronProperties);
 
         // set learning rule - TODO: use reflection here
         if (learningRule.getName().equals(BackPropagation.class.getName())) {

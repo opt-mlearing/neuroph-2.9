@@ -191,7 +191,7 @@ abstract public class IterativeLearning extends LearningRule implements Serializ
             // doLearningEpoch()的过程中batchMode==false模式下会触发权值更新.
             doLearningEpoch(trainingSet);
             this.currentIteration++;
-            // afterEpoch()的过程中batchMode=true模式下会触发权值更新.
+            // afterEpoch()的过程中batchMode==true模式下会触发权值更新.
             afterEpoch();
 
             // todo 迭代后置处理结束的内容是否可以归纳总结为一个新的方法.

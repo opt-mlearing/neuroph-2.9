@@ -63,15 +63,12 @@ public class CompetitiveLearning extends UnsupervisedLearning {
     /**
      * Adjusts weights for the winning neuron
      */
+    @Override
     protected void updateNetworkWeights() {
         // find active neuron in output layer
         // TODO : change idx, in general case not 1
-        CompetitiveNeuron winningNeuron = ((CompetitiveLayer) neuralNetwork
-                .getLayerAt(1)).getWinner();
-
-        List<Connection> inputConnections = winningNeuron
-                .getConnectionsFromOtherLayers();
-
+        CompetitiveNeuron winningNeuron = ((CompetitiveLayer) neuralNetwork.getLayerAt(1)).getWinner();
+        List<Connection> inputConnections = winningNeuron.getConnectionsFromOtherLayers();
         for (Connection connection : inputConnections) {
             double weight = connection.getWeight().getValue();
             double input = connection.getInput();

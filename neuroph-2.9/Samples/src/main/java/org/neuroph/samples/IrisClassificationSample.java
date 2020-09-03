@@ -22,7 +22,7 @@ import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
 import org.neuroph.core.events.LearningEvent;
 import org.neuroph.core.events.LearningEventListener;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.nnet.learning.BackPropagation;
 
 /**
@@ -42,7 +42,7 @@ public class IrisClassificationSample {
         String inputFileName = "data_sets/iris_data_normalised.txt";
         
         // create MultiLayerPerceptron neural network
-        MultiLayerPerceptron neuralNet = new MultiLayerPerceptron(4, 16, 3);
+        MultiLayerPerception neuralNet = new MultiLayerPerception(4, 16, 3);
         // create training set from file
         DataSet irisDataSet = DataSet.createFromFile(inputFileName, 4, 3, ",");
         // train the network with training set

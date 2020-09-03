@@ -27,5 +27,6 @@ public class ErrorEvaluator implements Evaluator<Double> {
     public void reset() {
         errorFunction.reset();
     }
+
 }
 

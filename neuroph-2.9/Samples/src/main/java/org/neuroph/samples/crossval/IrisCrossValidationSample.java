@@ -6,7 +6,7 @@ import org.neuroph.eval.CrossValidation;
 import org.neuroph.eval.CrossValidationResult;
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSet;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 
 /**
  *
@@ -15,7 +15,7 @@ import org.neuroph.nnet.MultiLayerPerceptron;
 public class IrisCrossValidationSample {
     
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        MultiLayerPerceptron neuralNet = (MultiLayerPerceptron) NeuralNetwork.createFromFile("irisNet.nnet");
+        MultiLayerPerception neuralNet = (MultiLayerPerception) NeuralNetwork.createFromFile("irisNet.nnet");
         DataSet dataSet = DataSet.createFromFile("data_sets/iris_data_normalised.txt", 4, 3, ",");       
         String[] classNames = {"Virginica", "Setosa", "Versicolor"};
         

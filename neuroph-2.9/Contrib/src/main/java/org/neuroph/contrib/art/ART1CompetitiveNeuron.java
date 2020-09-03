@@ -8,7 +8,6 @@ package org.neuroph.contrib.art;
 import org.neuroph.core.Neuron;
 
 /**
- *
  * @author ja
  */
 public class ART1CompetitiveNeuron extends Neuron {
@@ -22,6 +21,7 @@ public class ART1CompetitiveNeuron extends Neuron {
 
     /**
      * Returns true if neuron is active, false otherwise.
+     *
      * @return
      */
     public boolean isActive() {
@@ -29,7 +29,6 @@ public class ART1CompetitiveNeuron extends Neuron {
     }
 
     /**
-     *
      * @param active
      */
     public void setActive(boolean active) {
@@ -37,7 +36,6 @@ public class ART1CompetitiveNeuron extends Neuron {
     }
 
     /**
-     *
      * @return
      */
     public boolean isInhibited() {
@@ -45,7 +43,6 @@ public class ART1CompetitiveNeuron extends Neuron {
     }
 
     /**
-     *
      * @param inhibited
      */
     public void setInhibited(boolean inhibited) {

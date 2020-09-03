@@ -10,7 +10,7 @@ import org.neuroph.core.Neuron;
 import org.neuroph.util.plugins.PluginBase;
 
 /**
- * Classifier plugin for neurla networks
+ * Classifier plugin for neural networks
  *
  * @author zoran
  */

@@ -1,6 +1,7 @@
 package org.neuroph.contrib.art;
 
 import java.util.List;
+
 import org.neuroph.core.Connection;
 import org.neuroph.core.Layer;
 import org.neuroph.core.Neuron;
@@ -8,7 +9,6 @@ import org.neuroph.core.Weight;
 import org.neuroph.util.NeuronProperties;
 
 /**
- *
  * @author ja
  */
 public class ARTF2Layer extends Layer {
@@ -28,7 +28,7 @@ public class ARTF2Layer extends Layer {
      * Create an instance of CompetitiveLayer with the specified number of
      * neurons with neuron properties
      *
-     * @param neuronNum neuron number in this layer
+     * @param neuronNum        neuron number in this layer
      * @param neuronProperties properties for the neurons in this layer
      */
     public ARTF2Layer(int neuronNum, NeuronProperties neuronProperties) {
@@ -36,7 +36,7 @@ public class ARTF2Layer extends Layer {
     }
 
     /*
-        * Performs calculation for all neurons in this layer
+     * Performs calculation for all neurons in this layer
      */
 
     @Override
@@ -47,8 +47,8 @@ public class ARTF2Layer extends Layer {
         int iterationsCount = 0;
 
         /*
-                * Perform calculation for every neuron
-                * that is not inhibited
+         * Perform calculation for every neuron
+         * that is not inhibited
          */
         for (Neuron neuron : this.getNeurons()) {
             ART1CompetitiveNeuron artNeuron = (ART1CompetitiveNeuron) neuron;
@@ -150,7 +150,7 @@ public class ARTF2Layer extends Layer {
                     /**
                      * Updating top-down weights
                      */
-                    List<Connection>topDownConnections = winner.getOutConnections();
+                    List<Connection> topDownConnections = winner.getOutConnections();
 
                     for (int i = 0; i < topDownConnections.size(); i++) {
                         Connection topDownConnection = topDownConnections.get(i);

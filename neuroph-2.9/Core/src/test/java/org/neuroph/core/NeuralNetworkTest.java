@@ -25,7 +25,6 @@ import org.neuroph.util.plugins.PluginBase;
 import org.neuroph.util.random.WeightsRandomizer;
 
 /**
- *
  * @author Shivanth, Jubin, Tijana
  */
 public class NeuralNetworkTest {
@@ -210,9 +209,9 @@ public class NeuralNetworkTest {
     @Test
     public void testGetNetworkType() {
         assertNull(instance.getNetworkType());
-        instance.setNetworkType(NeuralNetworkType.PERCEPTRON);
-        assertTrue(instance.getNetworkType() == NeuralNetworkType.PERCEPTRON);
-        assertTrue(instance.getNetworkType().toString().equals("PERCEPTRON"));
+        instance.setNetworkType(NeuralNetworkType.PERCEPTION);
+        assertTrue(instance.getNetworkType() == NeuralNetworkType.PERCEPTION);
+        assertTrue(instance.getNetworkType().toString().equals("PERCEPTION"));
     }
 
     @Test
@@ -352,8 +351,8 @@ public class NeuralNetworkTest {
 
         instance.randomizeWeights(new WeightsRandomizer(new Random(123)));
         Random r = new Random(123);
-        assertEquals(r.nextDouble()- 0.5, instance.getWeights()[0], 0.0);
-        assertEquals(r.nextDouble()- 0.5, instance.getWeights()[1], 0.0);
+        assertEquals(r.nextDouble() - 0.5, instance.getWeights()[0], 0.0);
+        assertEquals(r.nextDouble() - 0.5, instance.getWeights()[1], 0.0);
     }
 
     @Test
@@ -481,12 +480,12 @@ public class NeuralNetworkTest {
 
     @Test
     public void testSetNetworkType() {
-        instance.setNetworkType(NeuralNetworkType.PERCEPTRON);
-        assertTrue(instance.getNetworkType() == NeuralNetworkType.PERCEPTRON);
-        assertTrue(instance.getNetworkType().toString().equals("PERCEPTRON"));
-        instance.setNetworkType(NeuralNetworkType.MULTI_LAYER_PERCEPTRON);
-        assertTrue(instance.getNetworkType() == NeuralNetworkType.MULTI_LAYER_PERCEPTRON);
-        assertTrue(instance.getNetworkType().toString().equals("MULTI_LAYER_PERCEPTRON"));
+        instance.setNetworkType(NeuralNetworkType.PERCEPTION);
+        assertTrue(instance.getNetworkType() == NeuralNetworkType.PERCEPTION);
+        assertTrue(instance.getNetworkType().toString().equals("PERCEPTION"));
+        instance.setNetworkType(NeuralNetworkType.MULTI_LAYER_PERCEPTION);
+        assertTrue(instance.getNetworkType() == NeuralNetworkType.MULTI_LAYER_PERCEPTION);
+        assertTrue(instance.getNetworkType().toString().equals("MULTI_LAYER_PERCEPTION"));
     }
 
     @Test

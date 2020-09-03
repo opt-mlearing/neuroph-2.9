@@ -18,7 +18,7 @@ package org.neuroph.util.benchmark;
 
 import org.neuroph.core.data.DataSetRow;
 import org.neuroph.core.data.DataSet;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.nnet.learning.MomentumBackpropagation;
 
 /**
@@ -28,7 +28,7 @@ import org.neuroph.nnet.learning.MomentumBackpropagation;
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
 public class MyBenchmarkTask extends BenchmarkTask {    
-    private MultiLayerPerceptron network;
+    private MultiLayerPerception network;
     private DataSet trainingSet;
     
     public MyBenchmarkTask(String name) {
@@ -62,7 +62,7 @@ public class MyBenchmarkTask extends BenchmarkTask {
         }
         
         
-        network = new MultiLayerPerceptron(inputSize, 8, 7, outputSize);
+        network = new MultiLayerPerception(inputSize, 8, 7, outputSize);
         ((MomentumBackpropagation)network.getLearningRule()).setMaxIterations(2000);
         
     }

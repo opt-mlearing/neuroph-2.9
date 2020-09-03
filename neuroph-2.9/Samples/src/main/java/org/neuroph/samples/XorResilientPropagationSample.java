@@ -24,7 +24,7 @@ import org.neuroph.core.events.LearningEvent;
 import org.neuroph.core.events.LearningEventListener;
 import org.neuroph.core.learning.LearningRule;
 import org.neuroph.core.learning.SupervisedLearning;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.nnet.learning.BackPropagation;
 import org.neuroph.nnet.learning.ResilientPropagation;
 import org.neuroph.util.TransferFunctionType;
@@ -53,7 +53,7 @@ public class XorResilientPropagationSample implements LearningEventListener {
         trainingSet.addRow(new DataSetRow(new double[]{1, 1}, new double[]{0}));
 
         // create multi layer perceptron
-        MultiLayerPerceptron myMlPerceptron = new MultiLayerPerceptron(TransferFunctionType.SIGMOID, 2, 3, 1);
+        MultiLayerPerception myMlPerceptron = new MultiLayerPerception(TransferFunctionType.SIGMOID, 2, 3, 1);
         // set ResilientPropagation learning rule
         myMlPerceptron.setLearningRule(new ResilientPropagation()); 
         LearningRule learningRule = myMlPerceptron.getLearningRule();

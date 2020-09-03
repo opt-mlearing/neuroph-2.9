@@ -4,7 +4,7 @@ import org.neuroph.core.Connection;
 import org.neuroph.core.Layer;
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.Neuron;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.util.random.DistortRandomizer;
 import org.neuroph.util.random.NguyenWidrowRandomizer;
 
@@ -19,7 +19,7 @@ public class RandomizationSample {
      */
     public static void main(String[] args) {
 
-        MultiLayerPerceptron neuralNet = new MultiLayerPerceptron(2, 3, 1);
+        MultiLayerPerception neuralNet = new MultiLayerPerception(2, 3, 1);
         // neuralNet.randomizeWeights(new WeightsRandomizer());
         // neuralNet.randomizeWeights(new RangeRandomizer(0.1, 0.9));
         // neuralNet.randomizeWeights(new GaussianRandomizer(0.4, 0.3));

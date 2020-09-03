@@ -18,22 +18,28 @@ package org.neuroph.util;
 
 /**
  * Contains neural network types and labels.
+ * 神经网络类型.
  */
 public enum NeuralNetworkType {
+    // 自适应线性神经网络.
     ADALINE("Adaline"),
-    PERCEPTRON("Perceptron"),
-    MULTI_LAYER_PERCEPTRON("Multi Layer Perceptron"),
+    // 感知机.
+    PERCEPTION("Perception"),
+    // 多层感知机.
+    MULTI_LAYER_PERCEPTION("Multi Layer Perception"),
     HOPFIELD("Hopfield"),
     KOHONEN("Kohonen"),
     NEURO_FUZZY_REASONER("Neuro Fuzzy Reasoner"),
     SUPERVISED_HEBBIAN_NET("Supervised Hebbian network"),
     UNSUPERVISED_HEBBIAN_NET("Unsupervised Hebbian network"),
+    // 竞争神经网络.
     COMPETITIVE("Competitive"),
     MAXNET("Maxnet"),
     INSTAR("Instar"),
     OUTSTAR("Outstar"),
     RBF_NETWORK("RBF Network"),
     BAM("BAM"),
+    // 波兹曼机.
     BOLTZMAN("Boltzman"),
     COUNTERPROPAGATION("CounterPropagation"),
     INSTAR_OUTSTAR("InstarOutstar"),

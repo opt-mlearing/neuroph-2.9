@@ -39,7 +39,9 @@ public class AntiHebbianLearning extends UnsupervisedHebbianLearning {
         for (Connection connection : neuron.getInputConnections()) {
             double input = connection.getInput();
             double deltaWeight = input * output * this.learningRate;
-            connection.getWeight().dec(deltaWeight); // the only difference to UnsupervisedHebbianLearning is this substraction instead addition
+            // the only difference to UnsupervisedHebbianLearning is this substraction instead addition.
+            // use decrease operation to update connection weight.
+            connection.getWeight().dec(deltaWeight);
         }
     }
 

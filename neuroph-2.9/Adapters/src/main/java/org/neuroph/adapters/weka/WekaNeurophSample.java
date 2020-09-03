@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 import weka.core.DenseInstance;
 import weka.core.Instance;
 import weka.core.Instances;
@@ -97,7 +97,7 @@ public class WekaNeurophSample {
      */
     private static void testNeurophWekaClassifier(Instances wekaDataset) {
         try {
-            MultiLayerPerceptron neuralNet = new MultiLayerPerceptron(4, 16, 3);
+            MultiLayerPerception neuralNet = new MultiLayerPerception(4, 16, 3);
 
             // set labels manualy
             neuralNet.getOutputNeurons().get(0).setLabel("Setosa");

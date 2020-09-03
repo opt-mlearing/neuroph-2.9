@@ -18,7 +18,7 @@ package org.neuroph.contrib.matrixmlp;
 
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.util.TransferFunctionType;
 
 /**
@@ -38,8 +38,8 @@ public class TestMatrixMLP {
         trainingSet.addRow(new DataSetRow(new double[]{1, 0}, new double[]{1}));
         trainingSet.addRow(new DataSetRow(new double[]{1, 1}, new double[]{0}));
 
-        MultiLayerPerceptron nnet = new MultiLayerPerceptron( TransferFunctionType.TANH ,2, 3, 1);
-        MatrixMultiLayerPerceptron mnet = new MatrixMultiLayerPerceptron(nnet);
+        MultiLayerPerception nnet = new MultiLayerPerception( TransferFunctionType.TANH ,2, 3, 1);
+        MatrixMultiLayerPerception mnet = new MatrixMultiLayerPerception(nnet);
 
         System.out.println("Training network...");
 

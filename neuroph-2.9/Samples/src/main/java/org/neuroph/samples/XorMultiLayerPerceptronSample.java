@@ -24,9 +24,8 @@ import org.neuroph.core.events.LearningEventListener;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
 import org.neuroph.core.learning.LearningRule;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.nnet.learning.BackPropagation;
-import org.neuroph.nnet.learning.MomentumBackpropagation;
 import org.neuroph.util.TransferFunctionType;
 import org.neuroph.util.random.WeightsRandomizer;
 
@@ -54,7 +53,7 @@ public class XorMultiLayerPerceptronSample implements LearningEventListener {
         trainingSet.addRow(new DataSetRow(new double[]{1, 1}, new double[]{0}));
 
         // create multi layer perceptron
-        MultiLayerPerceptron myMlPerceptron = new MultiLayerPerceptron(TransferFunctionType.SIGMOID, 2, 3, 1);
+        MultiLayerPerception myMlPerceptron = new MultiLayerPerception(TransferFunctionType.SIGMOID, 2, 3, 1);
         myMlPerceptron.randomizeWeights(new WeightsRandomizer(new Random(123)));
         
         System.out.println(Arrays.toString(myMlPerceptron.getWeights()));

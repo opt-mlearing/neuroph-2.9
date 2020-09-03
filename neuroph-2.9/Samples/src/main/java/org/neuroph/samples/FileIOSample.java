@@ -18,7 +18,7 @@ package org.neuroph.samples;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.util.io.FileInputAdapter;
 import org.neuroph.util.io.FileOutputAdapter;
 import org.neuroph.util.io.IOHelper;
@@ -45,7 +45,7 @@ public class FileIOSample {
     public static void main(String[] args) throws FileNotFoundException, IOException {
         
         // create neural network
-        MultiLayerPerceptron neuralNet = new MultiLayerPerceptron(2, 3, 1); 
+        MultiLayerPerception neuralNet = new MultiLayerPerception(2, 3, 1);
         
         // use file provided in org.neuroph.sample.data package
         String inputFileName = FileIOSample.class.getResource("data/xor_data.txt").getFile();

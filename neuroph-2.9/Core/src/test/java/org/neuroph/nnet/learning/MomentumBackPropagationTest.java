@@ -1,6 +1,5 @@
 package org.neuroph.nnet.learning;
 
-import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 import java.util.Random;
@@ -10,7 +9,7 @@ import org.junit.Test;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
 import org.neuroph.core.learning.error.MeanSquaredError;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.util.TransferFunctionType;
 import org.neuroph.util.random.WeightsRandomizer;
 
@@ -44,7 +43,7 @@ public class MomentumBackPropagationTest {
 
     @Test
     public void testXorMaxError() {
-        MultiLayerPerceptron myMlPerceptron = new MultiLayerPerceptron(TransferFunctionType.SIGMOID, 2, 3, 1);
+        MultiLayerPerception myMlPerceptron = new MultiLayerPerception(TransferFunctionType.SIGMOID, 2, 3, 1);
         myMlPerceptron.randomizeWeights(new WeightsRandomizer(new Random(123)));
 
         myMlPerceptron.setLearningRule(instance);
@@ -55,7 +54,7 @@ public class MomentumBackPropagationTest {
 
     @Test
     public void testXorMSE() {
-        MultiLayerPerceptron myMlPerceptron = new MultiLayerPerceptron(TransferFunctionType.SIGMOID, 2, 3, 1);
+        MultiLayerPerception myMlPerceptron = new MultiLayerPerception(TransferFunctionType.SIGMOID, 2, 3, 1);
         myMlPerceptron.randomizeWeights(new WeightsRandomizer(new Random(123)));
 
         myMlPerceptron.setLearningRule(instance);
@@ -73,7 +72,7 @@ public class MomentumBackPropagationTest {
 
     @Test
     public void testXorIterations() {
-        MultiLayerPerceptron myMlPerceptron = new MultiLayerPerceptron(TransferFunctionType.SIGMOID, 2, 3, 1);
+        MultiLayerPerception myMlPerceptron = new MultiLayerPerception(TransferFunctionType.SIGMOID, 2, 3, 1);
         myMlPerceptron.randomizeWeights(new WeightsRandomizer(new Random(123)));
 
         myMlPerceptron.setLearningRule(instance);
@@ -83,7 +82,7 @@ public class MomentumBackPropagationTest {
         Double[] weights = myMlPerceptron.getWeights();
 
         for (int i = 0; i < 5; i++) {
-            myMlPerceptron = new MultiLayerPerceptron(TransferFunctionType.SIGMOID, 2, 3, 1);
+            myMlPerceptron = new MultiLayerPerception(TransferFunctionType.SIGMOID, 2, 3, 1);
             myMlPerceptron.randomizeWeights(new WeightsRandomizer(new Random(123)));
             myMlPerceptron.setLearningRule(instance);
             myMlPerceptron.learn(xorDataSet);
@@ -97,7 +96,7 @@ public class MomentumBackPropagationTest {
 
     @Test
     public void testIrisMaxError() {
-        MultiLayerPerceptron myMlPerceptron = new MultiLayerPerceptron(4, 16, 3);
+        MultiLayerPerception myMlPerceptron = new MultiLayerPerception(4, 16, 3);
         myMlPerceptron.randomizeWeights(new WeightsRandomizer(new Random(123)));
         myMlPerceptron.setLearningRule(instance);
 
@@ -127,7 +126,7 @@ public class MomentumBackPropagationTest {
 
     @Test
     public void testIrisIterations() {
-        MultiLayerPerceptron myMlPerceptron = new MultiLayerPerceptron(4, 16, 3);
+        MultiLayerPerception myMlPerceptron = new MultiLayerPerception(4, 16, 3);
         myMlPerceptron.randomizeWeights(new WeightsRandomizer(new Random(123)));
         myMlPerceptron.setLearningRule(instance);
         myMlPerceptron.learn(irisDataSet);
@@ -135,7 +134,7 @@ public class MomentumBackPropagationTest {
         int iterations = instance.getCurrentIteration();
         Double[] weights = myMlPerceptron.getWeights();
         for (int i = 0; i < 5; i++) {
-            myMlPerceptron = new MultiLayerPerceptron(4, 16, 3);
+            myMlPerceptron = new MultiLayerPerception(4, 16, 3);
             myMlPerceptron.randomizeWeights(new WeightsRandomizer(new Random(123)));
             myMlPerceptron.setLearningRule(instance);
             myMlPerceptron.learn(irisDataSet);

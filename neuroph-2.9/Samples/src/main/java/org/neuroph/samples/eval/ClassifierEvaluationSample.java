@@ -13,7 +13,7 @@ import org.neuroph.eval.classification.ConfusionMatrix;
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.learning.error.MeanSquaredError;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 
 /**
  *
@@ -27,7 +27,7 @@ public class ClassifierEvaluationSample {
     
         String[] classNames = {"Virginica", "Setosa", "Versicolor"};
                 
-        MultiLayerPerceptron neuralNet = (MultiLayerPerceptron) NeuralNetwork.createFromFile("irisNet.nnet");
+        MultiLayerPerception neuralNet = (MultiLayerPerception) NeuralNetwork.createFromFile("irisNet.nnet");
         DataSet dataSet = DataSet.createFromFile("data_sets/iris_data_normalised.txt", 4, 3, ",");
         
         evaluation.addEvaluator(new ClassifierEvaluator.MultiClass(classNames));

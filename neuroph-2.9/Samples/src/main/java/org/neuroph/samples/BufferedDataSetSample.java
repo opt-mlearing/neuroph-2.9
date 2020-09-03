@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import org.neuroph.core.data.BufferedDataSet;
 import org.neuroph.core.events.LearningEvent;
 import org.neuroph.core.events.LearningEventListener;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.nnet.learning.BackPropagation;
 
 /**
@@ -24,7 +24,7 @@ public class BufferedDataSetSample implements LearningEventListener {
         String inputFileName = BufferedDataSetSample.class.getResource("data/iris_data_normalised.txt").getFile();
         
         // create MultiLayerPerceptron neural network
-        MultiLayerPerceptron neuralNet = new MultiLayerPerceptron(4, 16, 3);
+        MultiLayerPerception neuralNet = new MultiLayerPerception(4, 16, 3);
         
         BufferedDataSet irisDataSet = new BufferedDataSet(new File(inputFileName), 4, 3,  ",");
         

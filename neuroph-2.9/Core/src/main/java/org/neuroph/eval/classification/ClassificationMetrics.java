@@ -1,6 +1,5 @@
 package org.neuroph.eval.classification;
 
-
 import static java.lang.Math.sqrt;
 
 import java.util.ArrayList;
@@ -178,7 +177,6 @@ public final class ClassificationMetrics {
                     + Math.pow(falsePositive / (trueNegative + falsePositive), 2));
     }
 
-
     public double getBalancedClassificationRate() {
         if (trueNegative == 0 && falsePositive == 0)
             return truePositive / (truePositive + falseNegative);
@@ -187,7 +185,6 @@ public final class ClassificationMetrics {
 
         return 0.5 * (truePositive / (truePositive + falseNegative) + trueNegative / (trueNegative + falsePositive));
     }
-
 
     @Override
     public String toString() {
@@ -212,7 +209,6 @@ public final class ClassificationMetrics {
         return sb.toString();
     }
 
-
     public static class Stats {
         public double accuracy = 0;
         public double precision = 0;
@@ -223,19 +219,19 @@ public final class ClassificationMetrics {
 
         @Override
         public String toString() {
-            return "Stats{" + "accuracy=" + accuracy + ", precision=" + precision + ", recall=" + recall + ", fScore=" + fScore + ", mserror=" + mserror + ", corelationCoefficient=" + correlationCoefficient + '}';
+            return "Stats{" + "accuracy=" + accuracy + ", precision=" + precision + ", recall=" + recall + ", fScore="
+                    + fScore + ", mserror=" + mserror + ", corelationCoefficient=" + correlationCoefficient + '}';
         }
 
-
     }
-
 
     public static ClassificationMetrics[] createFromMatrix(ConfusionMatrix confusionMatrix) {
         // Create Classification measure for each class 
         // Ovde rezdvojiti binary i multi
 
         int classCount = confusionMatrix.getClassCount();
-        if (classCount == 2) { // binary classification
+        if (classCount == 2) {
+            // binary classification --> 二元分类.
             ClassificationMetrics[] measures = new ClassificationMetrics[1];
             String[] classLabels = confusionMatrix.getClassLabels();
 
@@ -268,7 +264,6 @@ public final class ClassificationMetrics {
 
     }
 
-
     /**
      * @param results list of different metric results computed on different sets of data
      * @return average metrics computed different MetricResults
@@ -288,7 +283,6 @@ public final class ClassificationMetrics {
                 classLabels.add(cm.getClassLabel());
         }
         count++;
-
         count = count * classLabels.size(); // * classes count
         average.accuracy = average.accuracy / count;
         average.precision = average.precision / count;

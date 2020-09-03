@@ -26,13 +26,13 @@ import org.neuroph.nnet.learning.MomentumBackpropagation;
  */
 public class MatrixMomentumBackpropagation extends MomentumBackpropagation {
 
-        private MatrixMultiLayerPerceptron matrixMlp;
+        private MatrixMultiLayerPerception matrixMlp;
         private MatrixLayer[] matrixLayers;
 
         @Override
         public void setNeuralNetwork(NeuralNetwork neuralNetwork) {
             super.setNeuralNetwork(neuralNetwork);
-            this.matrixMlp = (MatrixMultiLayerPerceptron)this.getNeuralNetwork();
+            this.matrixMlp = (MatrixMultiLayerPerception)this.getNeuralNetwork();
             matrixLayers = matrixMlp.getMatrixLayers();
         }
 

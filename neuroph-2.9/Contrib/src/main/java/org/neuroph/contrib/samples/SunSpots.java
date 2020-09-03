@@ -22,7 +22,7 @@ import org.neuroph.core.data.DataSetRow;
 import org.neuroph.core.events.LearningEvent;
 import org.neuroph.core.events.LearningEventListener;
 import org.neuroph.core.learning.SupervisedLearning;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.util.Neuroph;
 import org.neuroph.util.TransferFunctionType;
 
@@ -248,7 +248,7 @@ public class SunSpots implements LearningEventListener {
 		// uncomment the following line to use regular Neuroph (non-flat) processing
 		//Neuroph.getInstance().setFlattenNetworks(false);
 		// create neural network
-		NeuralNetwork network = new MultiLayerPerceptron(TransferFunctionType.SIGMOID, WINDOW_SIZE, 10, 1);
+		NeuralNetwork network = new MultiLayerPerception(TransferFunctionType.SIGMOID, WINDOW_SIZE, 10, 1);
 		
                 // normalize training data
 		normalizeSunspots(0.1, 0.9);

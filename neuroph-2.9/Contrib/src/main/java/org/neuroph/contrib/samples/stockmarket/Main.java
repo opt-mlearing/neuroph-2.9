@@ -23,7 +23,7 @@ import java.util.Date;
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSetRow;
 import org.neuroph.core.data.DataSet;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.nnet.learning.LMS;
 
 /**
@@ -37,7 +37,7 @@ public class Main {
         System.out.println("Time stamp N1:" + new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss:MM").format(new Date()));
 
         int maxIterations = 10000;
-        NeuralNetwork neuralNet = new MultiLayerPerceptron(4, 9, 1);
+        NeuralNetwork neuralNet = new MultiLayerPerception(4, 9, 1);
         ((LMS) neuralNet.getLearningRule()).setMaxError(0.001);//0-1
         ((LMS) neuralNet.getLearningRule()).setLearningRate(0.7);//0-1
         ((LMS) neuralNet.getLearningRule()).setMaxIterations(maxIterations);//0-1

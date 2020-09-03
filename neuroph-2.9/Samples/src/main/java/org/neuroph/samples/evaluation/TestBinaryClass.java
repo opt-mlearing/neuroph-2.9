@@ -3,7 +3,7 @@ package org.neuroph.samples.evaluation;
 import org.neuroph.eval.Evaluation;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.util.TransferFunctionType;
 
 /**
@@ -19,7 +19,7 @@ public class TestBinaryClass {
         trainingSet.addRow(new DataSetRow(new double[]{1, 0}, new double[]{1}));
         trainingSet.addRow(new DataSetRow(new double[]{1, 1}, new double[]{0}));
 
-        MultiLayerPerceptron neuralNet = new MultiLayerPerceptron(TransferFunctionType.TANH, 2, 3, 1);
+        MultiLayerPerception neuralNet = new MultiLayerPerception(TransferFunctionType.TANH, 2, 3, 1);
         neuralNet.learn(trainingSet);
 
         Evaluation.runFullEvaluation(neuralNet, trainingSet);

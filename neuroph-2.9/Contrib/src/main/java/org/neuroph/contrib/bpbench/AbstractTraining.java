@@ -6,7 +6,7 @@ import org.neuroph.eval.classification.ConfusionMatrix;
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.learning.LearningRule;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.util.TransferFunctionType;
 
 /**
@@ -88,7 +88,7 @@ public abstract class AbstractTraining {
         this.dataset = dataset;
         this.settings = settings;
         this.stats = new TrainingStatistics();
-        this.neuralNet = new MultiLayerPerceptron(TransferFunctionType.SIGMOID, dataset.getInputSize(), settings.getHiddenNeurons(), dataset.getOutputSize());
+        this.neuralNet = new MultiLayerPerception(TransferFunctionType.SIGMOID, dataset.getInputSize(), settings.getHiddenNeurons(), dataset.getOutputSize());
     }
 
     /**

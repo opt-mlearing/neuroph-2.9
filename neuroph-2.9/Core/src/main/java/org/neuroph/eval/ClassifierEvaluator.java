@@ -3,13 +3,12 @@ package org.neuroph.eval;
 import org.neuroph.eval.classification.ConfusionMatrix;
 import org.neuroph.eval.classification.Utils;
 
-
 public abstract class ClassifierEvaluator implements Evaluator<ConfusionMatrix> {
 
     private final String[] classLabels;
-    private double threshold; // used for binary classifier but should also be used for multi class
+    // used for binary classifier but should also be used for multi class
+    private double threshold;
     ConfusionMatrix confusionMatrix;
-
 
     private ClassifierEvaluator(String[] labels) {
         this.classLabels = labels;
@@ -20,7 +19,6 @@ public abstract class ClassifierEvaluator implements Evaluator<ConfusionMatrix> 
     public ConfusionMatrix getResult() {
         return confusionMatrix;
     }
-
 
     public double getThreshold() {
         return threshold;

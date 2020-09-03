@@ -1,12 +1,12 @@
 /**
  * Copyright 2013 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,12 +16,13 @@
 package org.neuroph.nnet.comp;
 
 import java.io.Serializable;
+
 import org.neuroph.core.Weight;
 
 /**
- * Kernel used in convolution networks. Kernel is (width x height) window
- * sliding over 2D input space. Each window position provides (width x height)
- * inputs for the neurons in next layer.
+ * 卷积核，这个卷卷积核是一个简单的二维卷积核.
+ * Kernel used in convolution networks. Kernel is (width x height) window sliding over 2D input space.
+ * Each window position provides (width x height) inputs for the neurons in next layer.
  *
  * @author Boris Fulurija
  * @author Zoran Sevarac
@@ -30,34 +31,28 @@ public class Kernel implements Serializable {
 
     private static final long serialVersionUID = -3948374914759253222L;
 
-    /**
-     * Kernel width
-     */
+    // Kernel width
     private int width;
 
-    /**
-     * Kernel height
-     */
+    // Kernel height
     private int height;
 
     private Weight[][] weights;
 
-    
     /**
      * Creates new kernel with specified width and height
      *
-     * @param width kernel width
-     * @param height kernel height
+     * @param dimension 卷积核的维度信息.
      */
     public Kernel(Dimension2D dimension) {
         this.width = dimension.getWidth();
         this.height = dimension.getHeight();
-    }    
-    
+    }
+
     /**
      * Creates new kernel with specified width and height
      *
-     * @param width kernel width
+     * @param width  kernel width
      * @param height kernel height
      */
     public Kernel(int width, int height) {
@@ -117,17 +112,23 @@ public class Kernel implements Serializable {
     public void setWeights(Weight[][] weights) {
         this.weights = weights;
     }
-    
+
+    /**
+     * initialize the current Kernel instance weights's property.
+     *
+     * @param min minimum value
+     * @param max maximum value
+     */
     public void initWeights(double min, double max) {
         weights = new Weight[height][width];
-
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 Weight weight = new Weight();
+                // 介于[min, max]之间的随机权值.
                 weight.randomize(min, max);
                 weights[i][j] = weight;
             }
-        }        
+        }
     }
 
 }

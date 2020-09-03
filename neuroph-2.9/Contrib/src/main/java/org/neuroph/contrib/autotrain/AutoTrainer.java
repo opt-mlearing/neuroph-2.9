@@ -5,10 +5,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.neuroph.eval.classification.ConfusionMatrix;
-import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.nnet.learning.BackPropagation;
 import org.neuroph.util.TransferFunctionType;
 
@@ -346,8 +345,8 @@ public class AutoTrainer {
             for (int subtrainNo = 1; subtrainNo <= repeat; subtrainNo++) {
                 System.out.println("#SubTraining: " + subtrainNo);
 
-                MultiLayerPerceptron neuralNet
-                        = new MultiLayerPerceptron(dataSet.getInputSize(), trainingSetting.getHiddenNeurons(), dataSet.getOutputSize());
+                MultiLayerPerception neuralNet
+                        = new MultiLayerPerception(dataSet.getInputSize(), trainingSetting.getHiddenNeurons(), dataSet.getOutputSize());
 
                 BackPropagation bp = neuralNet.getLearningRule();
 
@@ -392,7 +391,7 @@ public class AutoTrainer {
         return result;
     }
 
-    private void testNeuralNetwork(MultiLayerPerceptron neuralNet, DataSet testSet) {
+    private void testNeuralNetwork(MultiLayerPerception neuralNet, DataSet testSet) {
         // not implemented
         for (DataSetRow testSetRow : testSet.getRows()) {
             neuralNet.setInput(testSetRow.getInput());

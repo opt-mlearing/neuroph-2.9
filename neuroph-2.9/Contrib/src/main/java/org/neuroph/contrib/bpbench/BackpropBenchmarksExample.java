@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import org.neuroph.core.data.DataSet;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.util.TransferFunctionType;
 
 /**
@@ -25,7 +25,7 @@ public class BackpropBenchmarksExample {
         BackPropBenchmarks bpb = new BackPropBenchmarks();
         bpb.setNoOfRepetitions(3);
         
-        MultiLayerPerceptron mlp = new MultiLayerPerceptron(TransferFunctionType.SIGMOID, 4, 7, 3);
+        MultiLayerPerception mlp = new MultiLayerPerception(TransferFunctionType.SIGMOID, 4, 7, 3);
         
         DataSet trainingSet = DataSet.createFromFile("iris_data_normalised.txt", 4, 3, ",");
 

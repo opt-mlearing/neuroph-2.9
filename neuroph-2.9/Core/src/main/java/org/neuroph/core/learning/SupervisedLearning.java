@@ -39,6 +39,7 @@ import org.neuroph.core.learning.stop.MaxErrorStop;
  * TODO: random pattern order
  *
  * @author Zoran Sevarac <sevarac@gmail.com>
+ * @modifier caogl<caogaoli058 @ gmail.com>
  */
 abstract public class SupervisedLearning extends IterativeLearning implements Serializable {
 
@@ -50,6 +51,7 @@ abstract public class SupervisedLearning extends IterativeLearning implements Se
 
     /**
      * Total network error in previous epoch
+     * 记录上一轮迭代的误差数值大小.
      */
     protected transient double previousEpochError;
 
@@ -81,6 +83,7 @@ abstract public class SupervisedLearning extends IterativeLearning implements Se
      */
     private boolean batchMode = false;
 
+    // 误差计算函数.
     private ErrorFunction errorFunction;
 
     /**
@@ -99,6 +102,12 @@ abstract public class SupervisedLearning extends IterativeLearning implements Se
      *                    usually the difference between desired and actual output
      */
     abstract protected void calculateWeightChanges(double[] outputError);
+
+    /**
+     * <keep-note>这里使用多个参数的learn(...)重载方法的方式值得商榷？really is the best ways?</keep-note>
+     * or you can have try learn(DataSet trainingSet, Properties basedSupervisedLearningProperties);
+     * or learn(baseLearningContext) and baseLearningContext is an instance like ApplicationContext in Spring.
+     */
 
     /**
      * Trains network for the specified training set and maxError
@@ -195,17 +204,43 @@ abstract public class SupervisedLearning extends IterativeLearning implements Se
         // 实现神经元之间权值的更新，不同的神经网络其权值更新及其传播的方式存在差异，需要分别实现.
         calculateWeightChanges(patternError);
         /**
-         * 在监督学习下:
          * todo
+         * 在监督学习下:
          * 注意，doBatchWeightsUpdate()和applyWeightChanges()处理的场景和方法触发的位置完全不同.
          * 原作者在applyWeightChanges()、doBatchWeightsUpdate()的设计有一定的问题，导致读者哟有点乱.
          * 改进设计如下：
          * step1：设计一个WeightUpdate相关接口；
          * step2：其具体实现者粗略划分两个实现类，通过事件监听，触发不同阶段的权值更新.
+         * step3：类似于 afterLearnPattern，在父类或者定级类中定义模板方法.
          */
         if (!batchMode) {
             // batch mode updates are done i doBatchWeightsUpdate
             applyWeightChanges();
+        }
+    }
+
+    /**
+     * this method updates network weight not in batch mode - update the weight change by each input data Patten.
+     * and it will be trigger off the weight update operation after each patten finish learning operation。
+     */
+    private void applyWeightChanges() {
+        List<Layer> layers = neuralNetwork.getLayers();
+        for (int i = neuralNetwork.getLayersCount() - 1; i > 0; i--) {
+            // iterate neurons at each layer
+            for (Neuron neuron : layers.get(i)) {
+                // iterate connections/weights for each neuron
+                for (Connection connection : neuron.getInputConnections()) {
+                    // for each connection weight apply accumulated weight change
+                    Weight weight = connection.getWeight();
+                    if (!isBatchMode()) {
+                        weight.value += weight.weightChange;
+                    } else {
+                        weight.value += (weight.weightChange / getTrainingSet().size());
+                    }
+                    // reset deltaWeight
+                    weight.weightChange = 0;
+                }
+            }
         }
     }
 
@@ -225,7 +260,8 @@ abstract public class SupervisedLearning extends IterativeLearning implements Se
                 for (Connection connection : neuron.getInputConnections()) {
                     // for each connection weight apply accumulated weight change
                     Weight weight = connection.getWeight();
-                    weight.value += weight.weightChange / getTrainingSet().size(); // apply delta weight which is the sum of delta weights in batch mode    - TODO: add mini batch
+                    // apply delta weight which is the sum of delta weights in batch mode    - TODO: add mini batch
+                    weight.value += weight.weightChange / getTrainingSet().size();
                     weight.weightChange = 0; // reset deltaWeight
                 }
             }
@@ -333,27 +369,6 @@ abstract public class SupervisedLearning extends IterativeLearning implements Se
 
     public double getTotalNetworkError() {
         return errorFunction.getTotalError();
-    }
-
-    private void applyWeightChanges() {
-        List<Layer> layers = neuralNetwork.getLayers();
-        for (int i = neuralNetwork.getLayersCount() - 1; i > 0; i--) {
-            // iterate neurons at each layer
-            for (Neuron neuron : layers.get(i)) {
-                // iterate connections/weights for each neuron
-                for (Connection connection : neuron.getInputConnections()) {
-                    // for each connection weight apply accumulated weight change
-                    Weight weight = connection.getWeight();
-                    if (!isBatchMode()) {
-                        weight.value += weight.weightChange;
-                    } else {
-                        weight.value += (weight.weightChange / getTrainingSet().size());
-                    }
-                    // reset deltaWeight
-                    weight.weightChange = 0;
-                }
-            }
-        }
     }
 
 }

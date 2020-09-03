@@ -41,8 +41,7 @@ public class ConvolutionalBackpropagation extends MomentumBackpropagation {
         // for pooling layer just transfer error without using tranfer function derivative
         double deltaSum = 0d;
         for (Connection connection : neuron.getOutConnections()) {
-            double delta = connection.getToNeuron().getDelta()
-                    * connection.getWeight().value;
+            double delta = connection.getToNeuron().getDelta() * connection.getWeight().value;
             deltaSum += delta; // weighted delta sum from the next layer
         } // for
 

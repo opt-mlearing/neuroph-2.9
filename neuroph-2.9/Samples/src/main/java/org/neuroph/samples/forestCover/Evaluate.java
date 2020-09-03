@@ -20,7 +20,7 @@ import java.math.RoundingMode;
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 
 public class Evaluate {
 
@@ -37,7 +37,7 @@ public class Evaluate {
     public void evaluate() {
         System.out.println("Evaluating neural network...");
         //Loading neural network from file
-        MultiLayerPerceptron neuralNet = (MultiLayerPerceptron) NeuralNetwork.createFromFile(config.getTrainedNetworkFileName());
+        MultiLayerPerception neuralNet = (MultiLayerPerception) NeuralNetwork.createFromFile(config.getTrainedNetworkFileName());
 
         //Load normalized balanced data set from file
         DataSet dataSet = DataSet.load(config.getTestFileName());

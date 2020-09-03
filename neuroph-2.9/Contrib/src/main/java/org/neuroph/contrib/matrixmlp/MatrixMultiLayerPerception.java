@@ -19,18 +19,18 @@ package org.neuroph.contrib.matrixmlp;
 import org.neuroph.core.Layer;
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.transfer.Tanh;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 
 /**
  * Matrix based implementation of Multi LAyer Perceptron
  * @author Zoran Sevarac
  */
-public class MatrixMultiLayerPerceptron extends NeuralNetwork {
+public class MatrixMultiLayerPerception extends NeuralNetwork {
 
-    MultiLayerPerceptron sourceNetwork;
+    MultiLayerPerception sourceNetwork;
     MatrixLayer[] matrixLayers;
 
-    public MatrixMultiLayerPerceptron(MultiLayerPerceptron sourceNetwork) {
+    public MatrixMultiLayerPerception(MultiLayerPerception sourceNetwork) {
         this.sourceNetwork = sourceNetwork;
         // copy layers, input and output neurons
 

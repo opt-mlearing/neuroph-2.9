@@ -3,7 +3,7 @@ package org.neuroph.samples.evaluation;
 import org.neuroph.eval.Evaluation;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.learning.error.MeanSquaredError;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 
 
 /**
@@ -18,7 +18,7 @@ public class TestMultiClass {
 
         DataSet irisDataSet = loadDataSet();
 
-        MultiLayerPerceptron neuralNet = new MultiLayerPerceptron(4, 15, 3);
+        MultiLayerPerception neuralNet = new MultiLayerPerception(4, 15, 3);
 
         configureLearningRule(neuralNet);
         neuralNet.learn(irisDataSet);
@@ -32,7 +32,7 @@ public class TestMultiClass {
         return irisDataSet;
     }
 
-    private static void configureLearningRule(MultiLayerPerceptron neuralNet) {
+    private static void configureLearningRule(MultiLayerPerception neuralNet) {
         neuralNet.getLearningRule().setLearningRate(0.02);
         neuralNet.getLearningRule().setMaxError(0.01);
         neuralNet.getLearningRule().setErrorFunction(new MeanSquaredError());

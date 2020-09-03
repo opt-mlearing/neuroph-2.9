@@ -2,7 +2,7 @@ package org.neuroph.contrib.graphml;
 
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.util.TransferFunctionType;
 /**
  * Approximate XOR gate using a multilayer percepton with 2 inputs, 3 hidden neurons and 1 output. 
@@ -37,9 +37,9 @@ public class ExampleNetworXOR
 	 * Returns multilayer percepton learned to approximate the XOR gate. 
 	 * @return
 	 */
-	public static MultiLayerPerceptron getNetwork() {
+	public static MultiLayerPerception getNetwork() {
 		
-		MultiLayerPerceptron mlPerceptron = new MultiLayerPerceptron(TransferFunctionType.TANH, 2, 3, 1);
+		MultiLayerPerception mlPerceptron = new MultiLayerPerception(TransferFunctionType.TANH, 2, 3, 1);
 		
 		
 		mlPerceptron.learn( getTrainingData() );

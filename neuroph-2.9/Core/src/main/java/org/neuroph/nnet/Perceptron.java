@@ -21,6 +21,7 @@ import org.neuroph.core.NeuralNetwork;
 import org.neuroph.nnet.comp.layer.InputLayer;
 import org.neuroph.nnet.comp.neuron.ThresholdNeuron;
 import org.neuroph.nnet.learning.BinaryDeltaRule;
+import org.neuroph.nnet.learning.PerceptionLearning;
 import org.neuroph.util.ConnectionFactory;
 import org.neuroph.util.LayerFactory;
 import org.neuroph.util.NeuralNetworkFactory;
@@ -31,7 +32,7 @@ import org.neuroph.util.TransferFunctionType;
 /**
  * Perceptron neural network with some LMS based learning algorithm.
  *
- * @see org.neuroph.nnet.learning.PerceptronLearning
+ * @see PerceptionLearning
  * @see org.neuroph.nnet.learning.BinaryDeltaRule
  * @see org.neuroph.nnet.learning.SigmoidDeltaRule
  * @author Zoran Sevarac <sevarac@gmail.com>
@@ -85,7 +86,7 @@ public class Perceptron extends NeuralNetwork {
 	 */
 	private void createNetwork(int inputNeuronsCount, int outputNeuronsCount, TransferFunctionType transferFunctionType) {
 		// set network type
-		this.setNetworkType(NeuralNetworkType.PERCEPTRON);
+		this.setNetworkType(NeuralNetworkType.PERCEPTION);
 
                 Layer inputLayer = new InputLayer(inputNeuronsCount);
 		this.addLayer(inputLayer);

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import org.neuroph.core.data.DataSet;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 
 /**
  * Base class for benchmarking of backpropagation algorithms. Defines list of
@@ -87,7 +87,7 @@ public class BackPropBenchmarks {
  * @param trainingSet
  * @param mlp 
  */
-   public void startBenchmark(List<Class<? extends AbstractTraining>> trainingTypeCollection, List<TrainingSettings> settingsCollection, DataSet trainingSet, MultiLayerPerceptron mlp) {
+   public void startBenchmark(List<Class<? extends AbstractTraining>> trainingTypeCollection, List<TrainingSettings> settingsCollection, DataSet trainingSet, MultiLayerPerception mlp) {
         for (TrainingSettings trainingSettings : settingsCollection) {
             for (Class<? extends AbstractTraining> trainingType : trainingTypeCollection) {
                 AbstractTraining training = null;

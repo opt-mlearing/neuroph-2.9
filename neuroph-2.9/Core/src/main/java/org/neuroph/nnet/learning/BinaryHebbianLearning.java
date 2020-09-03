@@ -21,6 +21,7 @@ import org.neuroph.core.Neuron;
 
 /**
  * Hebbian-like learning algorithm used for Hopfield network. Works with [0, 1] values
+ *
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
 public class BinaryHebbianLearning extends UnsupervisedHebbianLearning {
@@ -41,15 +42,14 @@ public class BinaryHebbianLearning extends UnsupervisedHebbianLearning {
     /**
      * This method implements weights update procedure for the single neuron
      *
-     * @param neuron
-     *            neuron to update weights
+     * @param neuron neuron to update weights
      */
     @Override
     protected void updateNeuronWeights(Neuron neuron) {
         double output = neuron.getOutput();
         for (Connection connection : neuron.getInputConnections()) {
             double input = connection.getInput();
-
+            // base on param just like input & output, auto determine increase or decrease the connection weight.
             if (((input > 0) && (output > 0)) || ((input <= 0) && (output <= 0))) {
                 connection.getWeight().inc(this.learningRate);
             } else {

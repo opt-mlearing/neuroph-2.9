@@ -21,7 +21,6 @@ import org.neuroph.imgrec.filter.ImageFilterChain;
 import org.neuroph.imgrec.filter.impl.GrayscaleFilter;
 import org.neuroph.imgrec.filter.impl.OtsuBinarizeFilter;
 import org.neuroph.imgrec.image.Dimension;
-import org.neuroph.nnet.MultiLayerPerceptron;
 import org.neuroph.nnet.learning.BackPropagation;
 import org.neuroph.ocr.util.Letter;
 import org.neuroph.ocr.util.Text;

@@ -78,7 +78,9 @@ public class UnsupervisedHebbianLearning extends UnsupervisedLearning {
         for (Connection connection : neuron.getInputConnections()) {
             double input = connection.getInput();
             double deltaWeight = input * output * this.learningRate;
+            // use increase operation to update the connect weigh.
             connection.getWeight().inc(deltaWeight);
         }
     }
+
 }

@@ -7,7 +7,7 @@ import org.neuroph.core.data.DataSetRow;
 import org.neuroph.core.events.LearningEvent;
 import org.neuroph.core.events.LearningEventListener;
 import org.neuroph.core.learning.SupervisedLearning;
-import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.nnet.learning.MomentumBackpropagation;
 import org.neuroph.util.TransferFunctionType;
 
@@ -30,7 +30,7 @@ public class TestTimeSeries implements LearningEventListener {
         String inputFileName = "C:\\timeseries\\BSW15";
         
         // create MultiLayerPerceptron neural network
-        neuralNet = new MultiLayerPerceptron(TransferFunctionType.TANH, 5, 10, 1);
+        neuralNet = new MultiLayerPerception(TransferFunctionType.TANH, 5, 10, 1);
         MomentumBackpropagation learningRule = (MomentumBackpropagation)neuralNet.getLearningRule();
         learningRule.setLearningRate(0.2);
         learningRule.setMomentum(0.5);
