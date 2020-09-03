@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import org.neuroph.eval.classification.ConfusionMatrix;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
@@ -12,7 +13,6 @@ import org.neuroph.nnet.learning.BackPropagation;
 import org.neuroph.util.TransferFunctionType;
 
 /**
- *
  * @author Milan Brkic - milan.brkic1@yahoo.com
  */
 public class AutoTrainer {
@@ -66,7 +66,6 @@ public class AutoTrainer {
      *
      * @return List of TrainingResult. If nothing was trained, method returns
      * empty ArrayList().
-     *
      */
     public List<TrainingResult> getResults() {
         return results;
@@ -241,7 +240,6 @@ public class AutoTrainer {
     }
 
     /**
-     *
      * @param maxMomentum
      */
     public void setMaxMomentum(double maxMomentum) {
@@ -261,7 +259,6 @@ public class AutoTrainer {
     }
 
     /**
-     *
      * @return if statistic is enabled
      */
     protected boolean generatesStatistics() {
@@ -280,7 +277,6 @@ public class AutoTrainer {
     }
 
     /**
-     *
      * @return true if split
      */
     protected boolean isSplitForTesting() {
@@ -309,7 +305,6 @@ public class AutoTrainer {
     }
 
     /**
-     *
      * You can get results calling getResults() method.
      *
      * @param neuralNetwork type of neural net
@@ -321,7 +316,7 @@ public class AutoTrainer {
         DataSet trainingSet, testSet; // validationSet;
 
         if (splitTrainTest) {
-            List<DataSet> dataSplit = dataSet.split(splitPercentage, 100-splitPercentage); //opet ne radi Maven za neuroph 2.92
+            List<DataSet> dataSplit = dataSet.split(splitPercentage, 100 - splitPercentage); //opet ne radi Maven za neuroph 2.92
             trainingSet = dataSplit.get(0);
             testSet = dataSplit.get(1);
         } else {
@@ -341,7 +336,7 @@ public class AutoTrainer {
             trainingSetting.setTrainingSet(splitPercentage);
             trainingSetting.setTestSet(100 - splitPercentage);
             //int subtrainNo = 0;
-             
+
             for (int subtrainNo = 1; subtrainNo <= repeat; subtrainNo++) {
                 System.out.println("#SubTraining: " + subtrainNo);
 
@@ -357,7 +352,7 @@ public class AutoTrainer {
                 neuralNet.learn(trainingSet);
 //                  testNeuralNetwork(neuralNet, testSet); // not implemented
                 ConfusionMatrix cm = new ConfusionMatrix(new String[]{""});
-                TrainingResult result = new TrainingResult(trainingSetting, bp.getTotalNetworkError(), bp.getCurrentIteration(),cm);
+                TrainingResult result = new TrainingResult(trainingSetting, bp.getTotalNetworkError(), bp.getCurrentIteration(), cm);
                 System.out.println(subtrainNo + ") iterations: " + bp.getCurrentIteration());
 
                 if (generateStatistics) {

@@ -1,12 +1,12 @@
 /**
  * Copyright 2013 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -17,6 +17,7 @@
 package org.neuroph.samples.uci;
 
 import java.util.Arrays;
+
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
@@ -27,7 +28,6 @@ import org.neuroph.nnet.learning.BackPropagation;
 import org.neuroph.nnet.learning.MomentumBackpropagation;
 
 /**
- *
  * @author Ivana Bajovic
  */
 
@@ -53,7 +53,7 @@ The original data set that will be used in this experiment can be found at link 
 */
 
 
-public class BalanceScaleSample  implements LearningEventListener {
+public class BalanceScaleSample implements LearningEventListener {
 
     /**
      * @param args the command line arguments
@@ -71,13 +71,13 @@ public class BalanceScaleSample  implements LearningEventListener {
 
         // create training set from file
         DataSet dataSet = DataSet.createFromFile(trainingSetFileName, inputsCount, outputsCount, "\t", false);
-        
-        
+
+
         System.out.println("Creating neural network...");
         // create MultiLayerPerceptron neural network
         MultiLayerPerception neuralNet = new MultiLayerPerception(inputsCount, 22, outputsCount);
 
-        
+
         // attach listener to learning rule
         MomentumBackpropagation learningRule = (MomentumBackpropagation) neuralNet.getLearningRule();
         learningRule.addListener(this);
@@ -120,6 +120,6 @@ public class BalanceScaleSample  implements LearningEventListener {
         System.out.println(bp.getCurrentIteration() + ". iteration | Total network error: " + bp.getTotalNetworkError());
     }
 
-    
+
 }
 

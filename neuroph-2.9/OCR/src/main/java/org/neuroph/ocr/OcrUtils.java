@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- * 
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,6 +20,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
+
 import org.neuroph.imgrec.FractionRgbData;
 import org.neuroph.imgrec.image.Image;
 import org.neuroph.imgrec.image.ImageFactory;
@@ -27,7 +28,7 @@ import org.neuroph.imgrec.image.ImageFactory;
 
 /**
  * Contains various utility methods used for OCR.
- * 
+ *
  * @author Ivana Jovicic, Vladimir Kolarevic, Marko Ivanovic, Zoran Sevarac
  */
 public class OcrUtils {
@@ -35,6 +36,7 @@ public class OcrUtils {
     /**
      * This method cleans input image by replacing
      * all non black pixels with white pixels
+     *
      * @param image - input image that will be cleaned
      * @return - cleaned input image as BufferedImage
      */
@@ -53,6 +55,7 @@ public class OcrUtils {
      * This method cleans input image by replacing all pixels with RGB values
      * from -4473925 (gray) to -1 (white) with white pixels and
      * from -4473925 (gray) to -16777216 (black) with black pixels
+     *
      * @param image - input image that will be cleaned
      * @return - cleaned input image as BufferedImage
      */
@@ -73,6 +76,7 @@ public class OcrUtils {
      * This method cleans input image by replacing all pixels with RGB values
      * from -3092272 (light gray) to -1 (white) with white pixels and
      * from -3092272 (light gray) to -16777216 (black) with black pixels
+     *
      * @param image - input image that will be cleaned
      * @return - cleaned input image as BufferedImage
      */
@@ -93,11 +97,12 @@ public class OcrUtils {
      * This method cleans input image by replacing all pixels with RGB values
      * from RGBcolor input (the input color) to -1 (white) with white pixels and
      * from RGBcolor input (the input color) to -16777216 (black) with black pixels
-     * @param image - input image that will be cleaned
+     *
+     * @param image    - input image that will be cleaned
      * @param RGBcolor - input RGB value of wanted color as reference for celaning
      * @return - cleaned input image as BufferedImage
      */
-    public static Image colorCleaning(Image image, int RGBcolor) {  	
+    public static Image colorCleaning(Image image, int RGBcolor) {
         for (int j = 0; j < image.getHeight(); j++) {
             for (int i = 0; i < image.getWidth(); i++) {
                 if (image.getPixel(i, j) == RGBcolor) {
@@ -112,27 +117,30 @@ public class OcrUtils {
 
     /**
      * This method loads the input Image and returns the cleaned version
+     *
      * @param f - input file that will be loaded as image
      * @return - return cleaned loaded image as BufferedImage
-     */  
+     */
     public static Image loadAndCleanImage(File f) {
-    	Image image = ImageFactory.getImage(f);
+        Image image = ImageFactory.getImage(f);
         return blackAndLightGrayCleaning(image);
     }
 
     /**
      * Loads image from the file.
+     *
      * @param file image file
      * @return loaded image
-     */ 
+     */
     public static Image loadImage(File file) {
-    	Image image = ImageFactory.getImage(file);
+        Image image = ImageFactory.getImage(file);
         return image;
     }
 
     /**
      * This method reads the image pixels until it reads the first black pixel
      * by height and then returns that value
+     *
      * @param Img - input image that will be read
      * @return - returns the value of height when conditions are true
      */
@@ -151,8 +159,9 @@ public class OcrUtils {
      * This method reads the input image from the input from
      * start pixel height (y1) until it reads the first next row
      * where all pixel are white by height and return that value
+     *
      * @param Img - input image that will be read
-     * @param y1 - input start height pixel of image
+     * @param y1  - input start height pixel of image
      * @return - returns the value of height when conditions are true
      */
     private static int trimLockdown(Image img, int y1) {
@@ -248,7 +257,7 @@ public class OcrUtils {
 //
 //        return image;
 //    }
-    
+
 //    public static Bitmap createImageFromText(String text) {
 //		TextView txtView = new TextView(null);
 //		txtView.setBackgroundColor(Color.WHITE);

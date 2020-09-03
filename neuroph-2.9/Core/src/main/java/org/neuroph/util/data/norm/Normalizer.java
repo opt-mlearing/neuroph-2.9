@@ -20,14 +20,16 @@ import org.neuroph.core.data.DataSet;
 
 /**
  * 归一化处理.
- *
+ * <p>
  * Interface for data set normalization methods.
+ *
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
 public interface Normalizer {
 
     /**
      * Normalize specified data set
+     *
      * @param dataSet data set to normalize
      */
     public void normalize(DataSet dataSet);

@@ -1,6 +1,5 @@
 package org.neuroph.samples.mnist.learn;
 
-
 import org.neuroph.core.data.DataSet;
 import org.neuroph.nnet.learning.BackPropagation;
 import org.neuroph.samples.convolution.mnist.MNISTDataSet;
@@ -32,7 +31,7 @@ public class MultiLayerMNIST {
 
         int maxIter = 10000; //Integer.parseInt(args[0]);
         double maxError = 0.01; // Double.parseDouble(args[1]);
-        double learningRate = 0.2 ; // Double.parseDouble(args[2]);
+        double learningRate = 0.2; // Double.parseDouble(args[2]);
 
         int validationFolds = Integer.parseInt(args[3]);
 
@@ -64,7 +63,7 @@ public class MultiLayerMNIST {
 
         LOG.info("Evaluating model on Test Set.....");
 // commented out due to errors
-      //  Evaluation.runFullEvaluation(neuralNet, testSet);
+        //  Evaluation.runFullEvaluation(neuralNet, testSet);
 
         LOG.info("MLP learning for MNIST successfully finished.....");
     }

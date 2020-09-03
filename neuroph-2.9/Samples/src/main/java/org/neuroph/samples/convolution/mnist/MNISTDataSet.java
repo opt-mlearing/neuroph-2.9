@@ -73,7 +73,7 @@ public class MNISTDataSet {
         dataSet.setColumnName(1031, "7");
         dataSet.setColumnName(1032, "8");
         dataSet.setColumnName(1033, "9");
-        
+
         return dataSet;
     }
 }

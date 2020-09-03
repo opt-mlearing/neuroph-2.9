@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.neuroph.nnet.comp.ConvolutionalUtils;
 import org.neuroph.nnet.comp.layer.FeatureMapsLayer;
 import org.neuroph.nnet.comp.layer.InputMapsLayer;
-import org.neuroph.nnet.comp.Kernel;
 import org.neuroph.nnet.comp.layer.PoolingLayer;
 import org.neuroph.core.Connection;
 import org.neuroph.core.Neuron;

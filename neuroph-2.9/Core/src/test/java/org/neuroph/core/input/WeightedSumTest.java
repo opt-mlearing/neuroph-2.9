@@ -1,6 +1,7 @@
 package org.neuroph.core.input;
 
 import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
@@ -16,7 +17,6 @@ import org.neuroph.core.Neuron;
 import org.neuroph.nnet.comp.neuron.InputNeuron;
 
 /**
- *
  * @author Shivanth, Tijana
  */
 @RunWith(value = Parameterized.class)
@@ -37,9 +37,9 @@ public class WeightedSumTest {
     @Parameters
     public static Collection<Object[]> getParamters() {
         return Arrays.asList(new Object[][]{
-            {new DoubleArray(new double[]{1, 3, 5, 7}), new DoubleArray(new double[]{.2, 5, 7, 8}), 106.2},
-            {new DoubleArray(new double[]{1, 3, 5, 7}),
-                new DoubleArray(new double[]{0.5d, 0.25d, -0.25d, 0.1d}), 0.7}});
+                {new DoubleArray(new double[]{1, 3, 5, 7}), new DoubleArray(new double[]{.2, 5, 7, 8}), 106.2},
+                {new DoubleArray(new double[]{1, 3, 5, 7}),
+                        new DoubleArray(new double[]{0.5d, 0.25d, -0.25d, 0.1d}), 0.7}});
 
     }
 

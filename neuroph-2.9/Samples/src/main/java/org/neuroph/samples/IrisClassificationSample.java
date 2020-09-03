@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,6 +17,7 @@
 package org.neuroph.samples;
 
 import java.util.Arrays;
+
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
@@ -29,18 +30,19 @@ import org.neuroph.nnet.learning.BackPropagation;
  * This sample shows how to train MultiLayerPerceptron neural network for iris classification problem using Neuroph
  * For more details about training process, error, iterations use NeurophStudio which provides rich environment  for
  * training and inspecting neural networks
+ *
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
 public class IrisClassificationSample {
 
 
     /**
-     *  Runs this sample
+     * Runs this sample
      */
-    public static void main(String[] args) {    
+    public static void main(String[] args) {
         // get the path to file with data
         String inputFileName = "data_sets/iris_data_normalised.txt";
-        
+
         // create MultiLayerPerceptron neural network
         MultiLayerPerception neuralNet = new MultiLayerPerception(4, 16, 3);
         // create training set from file
@@ -55,26 +57,27 @@ public class IrisClassificationSample {
         neuralNet.learn(irisDataSet);
 
         neuralNet.save("irisNet.nnet");
-        
+
         System.out.println("Done training.");
         System.out.println("Testing network...");
     }
-    
+
 
     /**
      * Prints network output for the each element from the specified training set.
+     *
      * @param neuralNet neural network
-     * @param testSet test data set
+     * @param testSet   test data set
      */
     public static void testNeuralNetwork(NeuralNetwork neuralNet, DataSet testSet) {
 
-        for(DataSetRow testSetRow : testSet.getRows()) {
+        for (DataSetRow testSetRow : testSet.getRows()) {
             neuralNet.setInput(testSetRow.getInput());
             neuralNet.calculate();
             double[] networkOutput = neuralNet.getOutput();
 
-            System.out.print("Input: " + Arrays.toString( testSetRow.getInput() ) );
-            System.out.println(" Output: " + Arrays.toString( networkOutput) );
+            System.out.print("Input: " + Arrays.toString(testSetRow.getInput()));
+            System.out.println(" Output: " + Arrays.toString(networkOutput));
         }
     }
 
@@ -89,5 +92,5 @@ public class IrisClassificationSample {
 
     }
 
-    
+
 }

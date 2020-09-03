@@ -5,9 +5,11 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
 import org.neuroph.nnet.MultiLayerPerception;
+
 import weka.core.DenseInstance;
 import weka.core.Instance;
 import weka.core.Instances;
@@ -17,6 +19,7 @@ import weka.filters.unsupervised.attribute.Normalize;
 
 /**
  * Example usage of Neuroph Weka adapters
+ *
  * @author Zoran Sevarac
  */
 public class WekaNeurophSample {
@@ -31,8 +34,8 @@ public class WekaNeurophSample {
         // normalize dataset
         Normalize filter = new Normalize();
         filter.setInputFormat(wekaDataset);
-        wekaDataset = Filter.useFilter(wekaDataset, filter);    
-        
+        wekaDataset = Filter.useFilter(wekaDataset, filter);
+
         // convert weka dataset to neuroph dataset
         DataSet neurophDataset = WekaDataSetConverter.convertWekaToNeurophDataset(wekaDataset, 4, 3);
 
@@ -42,10 +45,10 @@ public class WekaNeurophSample {
         // print out all to compare
         System.out.println("Weka data set from file");
         printDataSet(wekaDataset);
-        
+
         System.out.println("Neuroph data set converted from Weka data set");
         printDataSet(neurophDataset);
-        
+
         System.out.println("Weka data set reconverted from Neuroph data set");
         printDataSet(testWekaDataset);
 
@@ -108,7 +111,7 @@ public class WekaNeurophSample {
             WekaNeurophClassifier neurophWekaClassifier = new WekaNeurophClassifier(neuralNet);
             // set class index on data set
             wekaDataset.setClassIndex(4);
-            
+
             // process data set
             neurophWekaClassifier.buildClassifier(wekaDataset);
 
@@ -121,11 +124,11 @@ public class WekaNeurophSample {
 
             // test classification
             System.out.println("NeurophWekaClassifier - classifyInstance for {5.1, 3.5, 1.4, 0.2}");
-            System.out.println("Class idx: "+neurophWekaClassifier.classifyInstance(instance));
+            System.out.println("Class idx: " + neurophWekaClassifier.classifyInstance(instance));
             System.out.println("NeurophWekaClassifier - distributionForInstance for {5.1, 3.5, 1.4, 0.2}");
-            double dist[] = neurophWekaClassifier.distributionForInstance(instance);            
-            for (int i=0; i<dist.length; i++ ) {
-                System.out.println("Class "+i+": "+dist[i]);
+            double dist[] = neurophWekaClassifier.distributionForInstance(instance);
+            for (int i = 0; i < dist.length; i++) {
+                System.out.println("Class " + i + ": " + dist[i]);
             }
 
         } catch (Exception ex) {

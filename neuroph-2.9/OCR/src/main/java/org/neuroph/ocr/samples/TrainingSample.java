@@ -11,7 +11,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import javax.imageio.ImageIO;
+
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.imgrec.ColorMode;
@@ -28,7 +30,6 @@ import org.neuroph.ocr.OCRTraining;
 import org.neuroph.util.TransferFunctionType;
 
 /**
- *
  * @author Mihailo Stupar
  */
 public class TrainingSample {
@@ -51,10 +52,7 @@ public class TrainingSample {
         chain.addFilter(new OtsuBinarizeFilter());
         BufferedImage binarizedImage = chain.processImage(image);
 
-        
-        
-        
-        
+
         Letter letterInfo = new Letter(scanQuality, binarizedImage);
 //        letterInfo.recognizeDots(); // call this method only if you want to recognize dots and other litle characters, TODO
 
@@ -64,19 +62,18 @@ public class TrainingSample {
         ocrTraining.setFolderPath(folderPath);
         ocrTraining.setTrainingTextPath(textPath);
         ocrTraining.prepareTrainingSet();
-        
-  
-        
+
+
         List<String> characterLabels = ocrTraining.getCharacterLabels();
 
         Map<String, FractionRgbData> map = ImageRecognitionHelper.getFractionRgbDataForDirectory(new File(folderPath), new Dimension(20, 20));
         DataSet dataSet = ImageRecognitionHelper.createBlackAndWhiteTrainingSet(characterLabels, map);
-        
-        
+
+
         dataSet.setFilePath("C:/Users/Mihailo/Desktop/OCR/DataSet1.tset");
         dataSet.save();
-        
-        
+
+
         List<Integer> hiddenLayers = new ArrayList<Integer>();
         hiddenLayers.add(12);
 
@@ -85,10 +82,10 @@ public class TrainingSample {
         bp.setLearningRate(0.3);
         bp.setMaxError(0.1);
 
-        
+
 //        MultiLayerPerceptron mlp = new MultiLayerPerceptron(12,13);
 //        mlp.setOutputNeurons(null);
-        
+
         System.out.println("Start learning...");
         nnet.learn(dataSet);
         System.out.println("NNet learned");

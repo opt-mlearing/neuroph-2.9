@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -16,6 +16,7 @@
 package org.neuroph.util;
 
 import java.util.Iterator;
+
 import org.neuroph.core.Neuron;
 import org.neuroph.core.input.InputFunction;
 import org.neuroph.core.input.WeightedSum;
@@ -30,9 +31,9 @@ import org.neuroph.core.transfer.TransferFunction;
 public class NeuronProperties extends Properties {
 
     private static final long serialVersionUID = 2L;
-    
-   // public static final DEFAULT = new NeuronProperties();
-    
+
+    // public static final DEFAULT = new NeuronProperties();
+
 
     public NeuronProperties() {
         initKeys();
@@ -56,8 +57,8 @@ public class NeuronProperties extends Properties {
     }
 
     public NeuronProperties(Class<? extends Neuron> neuronClass,
-            Class<? extends InputFunction> inputFunctionClass,
-            Class<? extends TransferFunction> transferFunctionClass) {
+                            Class<? extends InputFunction> inputFunctionClass,
+                            Class<? extends TransferFunction> transferFunctionClass) {
         initKeys();
         this.setProperty("inputFunction", inputFunctionClass);
         this.setProperty("transferFunction", transferFunctionClass);
@@ -105,7 +106,7 @@ public class NeuronProperties extends Properties {
     public Properties getTransferFunctionProperties() {
         Properties tfProperties = new Properties();
         //Enumeration<?> en = this.keys(); 
-        Iterator iterator =  this.keySet().iterator();
+        Iterator iterator = this.keySet().iterator();
         while (iterator.hasNext()) {
             String name = iterator.next().toString();
             if (name.contains("transferFunction")) {

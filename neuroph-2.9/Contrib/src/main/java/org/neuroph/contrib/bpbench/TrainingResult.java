@@ -44,7 +44,7 @@ public class TrainingResult {
         this.trainingIterations = trainingIterations;
         this.totalError = error;
         this.confusionMatrix = confusionMatrix;
-        
+
     }
 
     /**

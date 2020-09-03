@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -23,6 +23,7 @@ import org.neuroph.util.TransferFunctionType;
 
 /**
  * Test class for matrix based MLP implementation.
+ *
  * @author Zoran Sevarac
  */
 public class TestMatrixMLP {
@@ -38,7 +39,7 @@ public class TestMatrixMLP {
         trainingSet.addRow(new DataSetRow(new double[]{1, 0}, new double[]{1}));
         trainingSet.addRow(new DataSetRow(new double[]{1, 1}, new double[]{0}));
 
-        MultiLayerPerception nnet = new MultiLayerPerception( TransferFunctionType.TANH ,2, 3, 1);
+        MultiLayerPerception nnet = new MultiLayerPerception(TransferFunctionType.TANH, 2, 3, 1);
         MatrixMultiLayerPerception mnet = new MatrixMultiLayerPerception(nnet);
 
         System.out.println("Training network...");

@@ -10,20 +10,21 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- *
  * @author Mladen Savic <mladensavic94@gmail.com>
  */
 public class ExportUtil {
-/**
- * Delimiter used for generating csv
- */
+    /**
+     * Delimiter used for generating csv
+     */
     private static final String DELIMITER = ", ";
-/**
- * Method for writing to csv into given file path
- * @param filePath
- * @param listOfTrainings
- * @throws IOException 
- */
+
+    /**
+     * Method for writing to csv into given file path
+     *
+     * @param filePath
+     * @param listOfTrainings
+     * @throws IOException
+     */
     public static void exportToCSV(String filePath, List<AbstractTraining> listOfTrainings) throws IOException {
         FileWriter out = new FileWriter(filePath + ".csv");
 
@@ -34,11 +35,13 @@ public class ExportUtil {
         out.flush();
         out.close();
     }
-/**
- * Method for generating one line from training
- * @param training
- * @return 
- */
+
+    /**
+     * Method for generating one line from training
+     *
+     * @param training
+     * @return
+     */
     private static String prepareLine(AbstractTraining training) {
         String line = "";
         line += training.getNeuralNet().getLearningRule().getClass().getName() + DELIMITER;
@@ -62,13 +65,15 @@ public class ExportUtil {
         line += training.getSettings().getInitialDelta() + DELIMITER;
         line += training.getSettings().getMaxDelta() + DELIMITER;
         line += training.getSettings().getMinDelta() + DELIMITER + "\n";
-        
+
         return line;
     }
-/**
- * Method for generating header for csv file
- * @return 
- */
+
+    /**
+     * Method for generating header for csv file
+     *
+     * @return
+     */
     private static String writeheader() {
         String header = "";
         header += "Algorithm" + DELIMITER;
@@ -91,7 +96,7 @@ public class ExportUtil {
         header += "Initial delta" + DELIMITER;
         header += "Maximum delta" + DELIMITER;
         header += "Minimum delta" + DELIMITER + "\n";
-       
+
         return header;
     }
 }

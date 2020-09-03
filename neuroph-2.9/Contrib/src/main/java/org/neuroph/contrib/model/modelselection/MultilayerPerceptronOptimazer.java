@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
+
 import org.neuroph.eval.ClassifierEvaluator;
 
 /**
@@ -58,7 +59,7 @@ public class MultilayerPerceptronOptimazer<T extends BackPropagation> implements
      * If ErrorEstimationMethod is not provided use KFoldCrossValidation by default
      */
     public MultilayerPerceptronOptimazer() {
-       // errorEstimationMethod = new KFoldCrossValidation(10);
+        // errorEstimationMethod = new KFoldCrossValidation(10);
     }
 
     public MultilayerPerceptronOptimazer withMaxLayers(int maxLayers) {
@@ -110,27 +111,27 @@ public class MultilayerPerceptronOptimazer<T extends BackPropagation> implements
             try {
                 architecture.add(0, dataSet.getInputSize());
                 architecture.add(dataSet.getOutputSize());
-                
+
                 LOG.info("Architecture: [{}]", architecture);
-                
+
                 MultiLayerPerception network = new MultiLayerPerception(architecture);
                 LearningListener listener = new LearningListener(10, learningRule.getMaxIterations());
                 learningRule.addListener(listener);
                 network.setLearningRule(learningRule);
-                
+
                 errorEstimationMethod = new CrossValidation(network, dataSet, 10);
                 errorEstimationMethod.run();
                 // FIX
                 ClassificationMetrics[] result = ClassificationMetrics.createFromMatrix(errorEstimationMethod.getEvaluator(ClassifierEvaluator.MultiClass.class).getResult());
-                
+
                 // nadji onaj sa najmanjim f measure
-                if (optimalResult == null || optimalResult.getFMeasure()< result[0].getFMeasure()) {
+                if (optimalResult == null || optimalResult.getFMeasure() < result[0].getFMeasure()) {
                     LOG.info("Architecture [{}] became optimal architecture  with metrics {}", architecture, result);
                     optimalResult = result[0];
                     optimalClassifier = network;
                     optimalArchitecure = architecture;
                 }
-                
+
                 LOG.info("#################################################################");
             } catch (InterruptedException ex) {
                 java.util.logging.Logger.getLogger(MultilayerPerceptronOptimazer.class.getName()).log(Level.SEVERE, null, ex);

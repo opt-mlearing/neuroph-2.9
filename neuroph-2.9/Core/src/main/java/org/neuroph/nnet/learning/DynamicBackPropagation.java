@@ -25,6 +25,7 @@ import org.neuroph.core.data.DataSet;
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
 public class DynamicBackPropagation extends MomentumBackpropagation {
+
     private static final long serialVersionUID = 1L;
     private double maxLearningRate = 0.9d;
     private double minLearningRate = 0.1d;

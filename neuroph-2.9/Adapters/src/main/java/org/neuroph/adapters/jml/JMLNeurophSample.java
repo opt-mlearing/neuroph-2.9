@@ -7,18 +7,20 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import net.sf.javaml.core.Dataset;
 import net.sf.javaml.core.DenseInstance;
 import net.sf.javaml.core.Instance;
 import net.sf.javaml.filter.normalize.NormalizeMidrange;
 import net.sf.javaml.tools.data.FileHandler;
+
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
 import org.neuroph.nnet.MultiLayerPerception;
 
 /**
  * Example how to use adapters for Java ML http://java-ml.sourceforge.net/
- * 
+ *
  * @author Zoran Sevarac
  */
 public class JMLNeurophSample {
@@ -29,16 +31,16 @@ public class JMLNeurophSample {
             Dataset jmlDataset = FileHandler.loadDataset(new File("datasets/iris.data"), 4, ",");
 
             // normalize dataset
-            NormalizeMidrange nmr=new NormalizeMidrange(0,1);
-            nmr.build(jmlDataset);         
+            NormalizeMidrange nmr = new NormalizeMidrange(0, 1);
+            nmr.build(jmlDataset);
             nmr.filter(jmlDataset);
-            
+
             //print data as read from file
             System.out.println(jmlDataset);
 
             //convert jml dataset to neuroph
             DataSet neurophDataset = JMLDataSetConverter.convertJMLToNeurophDataset(jmlDataset, 4, 3);
-            
+
             //convert neuroph dataset to jml
             Dataset jml = JMLDataSetConverter.convertNeurophToJMLDataset(neurophDataset);
 
@@ -138,7 +140,7 @@ public class JMLNeurophSample {
      */
     private static void testJMLNeurophClassifier(Dataset jmlDataset) {
         MultiLayerPerception neuralNet = new MultiLayerPerception(4, 16, 3);
-        
+
         // set labels for output neurons
         neuralNet.getOutputNeurons().get(0).setLabel("Setosa");
         neuralNet.getOutputNeurons().get(1).setLabel("Versicolor");

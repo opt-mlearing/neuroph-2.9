@@ -75,6 +75,7 @@ public class Step extends TransferFunction implements Serializable {
 
     /**
      * Returns output value for high output level
+     *
      * @return output value for high output level
      */
     public double getYHigh() {
@@ -83,6 +84,7 @@ public class Step extends TransferFunction implements Serializable {
 
     /**
      * Set output value for the high output level
+     *
      * @param yHigh value for the high output level
      */
     public void setYHigh(double yHigh) {
@@ -91,6 +93,7 @@ public class Step extends TransferFunction implements Serializable {
 
     /**
      * Returns output value for low output level
+     *
      * @return output value for low output level
      */
     public double getYLow() {
@@ -99,6 +102,7 @@ public class Step extends TransferFunction implements Serializable {
 
     /**
      * Set output value for the low output level
+     *
      * @param yLow value for the low output level
      */
     public void setYLow(double yLow) {
@@ -107,6 +111,7 @@ public class Step extends TransferFunction implements Serializable {
 
     /**
      * Returns the properties of this function
+     *
      * @return properties of this function
      */
     public Properties getProperties() {

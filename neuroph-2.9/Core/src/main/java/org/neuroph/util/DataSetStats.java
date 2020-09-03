@@ -10,70 +10,67 @@ import org.neuroph.core.data.DataSetRow;
 public class DataSetStats {
 
     /**
-     *
      * @param dataSet Neuroph dataset
      * @return arithmetic mean for each variable in data set
      */
-	public static double[] calculateMeanByColumns(DataSet dataSet) {
-		double[] mean = new double[dataSet.getInputSize()];
+    public static double[] calculateMeanByColumns(DataSet dataSet) {
+        double[] mean = new double[dataSet.getInputSize()];
 
-		for (DataSetRow row : dataSet.getRows()) {
-			double[] currentInput = row.getInput();
-			for (int i = 0; i < dataSet.getInputSize(); i++) {
-				mean[i] += currentInput[i];
-			}
-		}
-		for (int i = 0; i < dataSet.getInputSize(); i++) {
-			mean[i] /= (double)dataSet.getRows().size();
-		}
-		return mean;
-	}
+        for (DataSetRow row : dataSet.getRows()) {
+            double[] currentInput = row.getInput();
+            for (int i = 0; i < dataSet.getInputSize(); i++) {
+                mean[i] += currentInput[i];
+            }
+        }
+        for (int i = 0; i < dataSet.getInputSize(); i++) {
+            mean[i] /= (double) dataSet.getRows().size();
+        }
+        return mean;
+    }
 
     /**
-     *
      * @param dataSet Neuroph dataset
      * @return maximum value for each variable in data set
      */
-	public static double[] calculateMaxByColumns(DataSet dataSet) {
+    public static double[] calculateMaxByColumns(DataSet dataSet) {
 
-		int inputSize = dataSet.getInputSize();
-		double[] maxColumnElements = new double[inputSize];
+        int inputSize = dataSet.getInputSize();
+        double[] maxColumnElements = new double[inputSize];
 
-		for (int i = 0; i < inputSize; i++) {
-			maxColumnElements[i] = -Double.MAX_VALUE;
-		}
+        for (int i = 0; i < inputSize; i++) {
+            maxColumnElements[i] = -Double.MAX_VALUE;
+        }
 
-		for (DataSetRow dataSetRow : dataSet.getRows()) {
-			double[] input = dataSetRow.getInput();
-			for (int i = 0; i < inputSize; i++) {
-				maxColumnElements[i] = Math.max(maxColumnElements[i], input[i]);
-			}
-		}
+        for (DataSetRow dataSetRow : dataSet.getRows()) {
+            double[] input = dataSetRow.getInput();
+            for (int i = 0; i < inputSize; i++) {
+                maxColumnElements[i] = Math.max(maxColumnElements[i], input[i]);
+            }
+        }
 
-		return maxColumnElements;
-	}
+        return maxColumnElements;
+    }
 
     /**
-     *
      * @param dataSet Neuroph dataset
      * @return minimum value for each variable in data set
      */
-	public static double[] calculateMinByColumns(DataSet dataSet) {
+    public static double[] calculateMinByColumns(DataSet dataSet) {
 
-		int inputSize = dataSet.getInputSize();
-		double[] minColumnElements = new double[inputSize];
+        int inputSize = dataSet.getInputSize();
+        double[] minColumnElements = new double[inputSize];
 
-		for (int i = 0; i < inputSize; i++) {
-			minColumnElements[i] = Double.MAX_VALUE;
-		}
+        for (int i = 0; i < inputSize; i++) {
+            minColumnElements[i] = Double.MAX_VALUE;
+        }
 
-		for (DataSetRow dataSetRow : dataSet.getRows()) {
-			double[] input = dataSetRow.getInput();
-			for (int i = 0; i < inputSize; i++) {
-				minColumnElements[i] = Math.min(minColumnElements[i], input[i]);
-			}
-		}
-		return minColumnElements;
-	}
+        for (DataSetRow dataSetRow : dataSet.getRows()) {
+            double[] input = dataSetRow.getInput();
+            for (int i = 0; i < inputSize; i++) {
+                minColumnElements[i] = Math.min(minColumnElements[i], input[i]);
+            }
+        }
+        return minColumnElements;
+    }
 
 }

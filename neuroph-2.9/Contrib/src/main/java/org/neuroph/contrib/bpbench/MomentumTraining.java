@@ -8,7 +8,6 @@ package org.neuroph.contrib.bpbench;
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.learning.LearningRule;
-import org.neuroph.nnet.learning.BackPropagation;
 import org.neuroph.nnet.learning.MomentumBackpropagation;
 
 /**
@@ -27,7 +26,7 @@ public class MomentumTraining extends AbstractTraining {
      * @param dataset
      * @param settings
      */
-    
+
     public MomentumTraining(NeuralNetwork neuralNet, DataSet dataset, TrainingSettings settings) {
         super(neuralNet, dataset, settings);
     }
@@ -39,7 +38,7 @@ public class MomentumTraining extends AbstractTraining {
      * @param dataset
      * @param settings
      */
-    
+
     public MomentumTraining(DataSet dataset, TrainingSettings settings) {
         super(dataset, settings);
     }
@@ -48,7 +47,7 @@ public class MomentumTraining extends AbstractTraining {
      * Method that set up learning rule with given settings, learns dataset and
      * creates statistics from results of the test
      */
-    
+
     @Override
     public void testNeuralNet() {
         MomentumBackpropagation mbp = (MomentumBackpropagation) setParameters();
@@ -64,7 +63,7 @@ public class MomentumTraining extends AbstractTraining {
      *
      * @return returns learning rule with predefined parameters
      */
-    
+
     @Override
     public LearningRule setParameters() {
         MomentumBackpropagation mbp = new MomentumBackpropagation();

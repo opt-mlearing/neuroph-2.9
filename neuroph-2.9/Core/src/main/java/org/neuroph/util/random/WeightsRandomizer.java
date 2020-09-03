@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -41,7 +41,7 @@ public class WeightsRandomizer {
     public WeightsRandomizer() {
         this.randomGen = new Random();
     }
-    
+
     /**
      * Create a new instance of WeightsRandomizer with specified random generator
      * If you use the same random generators, you'll get the same random sequences
@@ -55,7 +55,7 @@ public class WeightsRandomizer {
     public Random getRandomGen() {
         return randomGen;
     }
-        
+
     /**
      * Iterates and randomizes all layers in specified network
      *
@@ -63,8 +63,8 @@ public class WeightsRandomizer {
      */
     public void randomize(NeuralNetwork<?> neuralNetwork) {
         for (Layer layer : neuralNetwork.getLayers()) {
-                randomize(layer);
-        }       
+            randomize(layer);
+        }
     }
 
     /**
@@ -80,7 +80,7 @@ public class WeightsRandomizer {
 
     /**
      * Iterates and randomizes all connection weights in specified neuron
-     * 
+     *
      * @param neuron neuron to randomize
      */
     protected void randomize(Neuron neuron) {
@@ -92,14 +92,14 @@ public class WeightsRandomizer {
             connection.getWeight().setValue(nextRandomWeight());
 
         }
-        
-        
+
+
     }
 
     /**
      * Returns next random value from random generator, that will be used to initialize weight
      * Override this method to implement custom random number generators
-     * 
+     *
      * @return next random value fro random generator
      */
     protected double nextRandomWeight() {

@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,8 +25,9 @@ import java.util.logging.Logger;
 
 /**
  * Implementation of OutputAdapter interface for writing neural network outputs to database.
- * @see OutputAdapter
+ *
  * @author Zoran Sevarac <sevarac@gmail.com>
+ * @see OutputAdapter
  */
 public class JDBCOutputAdapter implements OutputAdapter {
     Connection connection;
@@ -34,6 +35,7 @@ public class JDBCOutputAdapter implements OutputAdapter {
 
     /**
      * Creates new JDBCOutputAdapter with specifed database connection and table
+     *
      * @param connection database connection
      * @param tableName  table to put data into
      */
@@ -44,7 +46,8 @@ public class JDBCOutputAdapter implements OutputAdapter {
 
     /**
      * Writes specified output to table in database
-     * @param output 
+     *
+     * @param output
      */
     @Override
     public void writeOutput(double[] output) {
@@ -56,8 +59,8 @@ public class JDBCOutputAdapter implements OutputAdapter {
                     sql = ", ";
                 }
             }
-            sql += ")";            
-            
+            sql += ")";
+
 //            for (int i = 0; i < output.length; i++) {
 //                sql += output[i];
 //                if (i < (output.length - 1)) {

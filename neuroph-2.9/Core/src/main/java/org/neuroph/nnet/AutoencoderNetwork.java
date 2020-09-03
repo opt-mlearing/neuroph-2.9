@@ -5,8 +5,8 @@ package org.neuroph.nnet;
  */
 public class AutoencoderNetwork extends MultiLayerPerception {
 
-    public AutoencoderNetwork(int inputsCount, int hiddenCount) {      
+    public AutoencoderNetwork(int inputsCount, int hiddenCount) {
         super(inputsCount, hiddenCount, inputsCount);
     }
-    
+
 }

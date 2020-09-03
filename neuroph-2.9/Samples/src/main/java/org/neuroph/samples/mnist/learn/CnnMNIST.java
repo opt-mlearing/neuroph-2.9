@@ -45,13 +45,13 @@ public class CnnMNIST {
 
             LOG.info("{}-{}-{}", layer1, layer2, layer3);
 
-         String putanja = "C:\\Users\\jecak_000\\Documents\\Neuroph\\neuroph_novaVerzija\\neurophNoviPull\\neuroph-2.9\\Samples\\";
-         String labelName = putanja.concat(MNISTDataSet.TRAIN_LABEL_NAME);
-         String trainImage = putanja.concat(MNISTDataSet.TRAIN_IMAGE_NAME);
-         String testLabel =  putanja.concat(MNISTDataSet.TEST_LABEL_NAME);
-         String testImage  = putanja.concat(MNISTDataSet.TEST_IMAGE_NAME);
-         DataSet trainSet = MNISTDataSet.createFromFile(labelName,trainImage, 100);
-         DataSet testSet = MNISTDataSet.createFromFile(testLabel,testImage, 100);
+            String putanja = "C:\\Users\\jecak_000\\Documents\\Neuroph\\neuroph_novaVerzija\\neurophNoviPull\\neuroph-2.9\\Samples\\";
+            String labelName = putanja.concat(MNISTDataSet.TRAIN_LABEL_NAME);
+            String trainImage = putanja.concat(MNISTDataSet.TRAIN_IMAGE_NAME);
+            String testLabel = putanja.concat(MNISTDataSet.TEST_LABEL_NAME);
+            String testImage = putanja.concat(MNISTDataSet.TEST_IMAGE_NAME);
+            DataSet trainSet = MNISTDataSet.createFromFile(labelName, trainImage, 100);
+            DataSet testSet = MNISTDataSet.createFromFile(testLabel, testImage, 100);
 
             Dimension2D inputDimension = new Dimension2D(32, 32);
             Dimension2D convolutionKernel = new Dimension2D(5, 5);
@@ -103,11 +103,11 @@ public class CnnMNIST {
             BackPropagation bp = (BackPropagation) event.getSource();
             LOG.info("Epoch no#: [{}]. Error [{}]", bp.getCurrentIteration(), bp.getTotalNetworkError());
             LOG.info("Epoch execution time: {} sec", (System.currentTimeMillis() - start) / 1000.0);
-           // neuralNetwork.save(bp.getCurrentIteration() + "_MNIST_CNN-MIC.nnet");
+            // neuralNetwork.save(bp.getCurrentIteration() + "_MNIST_CNN-MIC.nnet");
 
             start = System.currentTimeMillis();
-          //  if (bp.getCurrentIteration() % 5 == 0)
-          //      Evaluation.runFullEvaluation(neuralNetwork, testSet);
+            //  if (bp.getCurrentIteration() % 5 == 0)
+            //      Evaluation.runFullEvaluation(neuralNetwork, testSet);
         }
 
     }

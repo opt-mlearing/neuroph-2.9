@@ -9,36 +9,36 @@ import org.neuroph.nnet.comp.neuron.InputNeuron;
 
 public class CNNTestUtil {
 
-	public static List<Neuron> createNeurons(int numberOfNeurons, double input) {
-		List<Neuron> neurons = new ArrayList<>();
-		for (int i = 0; i < numberOfNeurons; i++) {
-			Neuron inputNeuron = new Neuron();
-			inputNeuron.setInput(input);
-			neurons.add(inputNeuron);
-		}
-		return neurons;
-	}
+    public static List<Neuron> createNeurons(int numberOfNeurons, double input) {
+        List<Neuron> neurons = new ArrayList<>();
+        for (int i = 0; i < numberOfNeurons; i++) {
+            Neuron inputNeuron = new Neuron();
+            inputNeuron.setInput(input);
+            neurons.add(inputNeuron);
+        }
+        return neurons;
+    }
 
-	public static List<InputNeuron> createInputNeurons(int numberOfNeurons, double input) {
-		List<InputNeuron> neurons = new ArrayList<>();
-		for (int i = 0; i < numberOfNeurons; i++) {
-			InputNeuron inputNeuron = new InputNeuron();
-			inputNeuron.setInput(input);
-			neurons.add(inputNeuron);
-		}
-		return neurons;
-	}
+    public static List<InputNeuron> createInputNeurons(int numberOfNeurons, double input) {
+        List<InputNeuron> neurons = new ArrayList<>();
+        for (int i = 0; i < numberOfNeurons; i++) {
+            InputNeuron inputNeuron = new InputNeuron();
+            inputNeuron.setInput(input);
+            neurons.add(inputNeuron);
+        }
+        return neurons;
+    }
 
-	public static void fillFeatureMapWithNeurons(FeatureMapLayer featureMap, double neuronValue) {
-		int numberOfNeurons = featureMap.getWidth() * featureMap.getHeight();
-		List<Neuron> neurons = CNNTestUtil.createNeurons(numberOfNeurons, neuronValue);
-		for (Neuron neuron : neurons) {
-			featureMap.addNeuron(neuron);
-		}
-	}
+    public static void fillFeatureMapWithNeurons(FeatureMapLayer featureMap, double neuronValue) {
+        int numberOfNeurons = featureMap.getWidth() * featureMap.getHeight();
+        List<Neuron> neurons = CNNTestUtil.createNeurons(numberOfNeurons, neuronValue);
+        for (Neuron neuron : neurons) {
+            featureMap.addNeuron(neuron);
+        }
+    }
 
-	public static void fillFeatureMapWithNeurons(FeatureMapLayer featureMap) {
-		fillFeatureMapWithNeurons(featureMap, 0);
-	}
+    public static void fillFeatureMapWithNeurons(FeatureMapLayer featureMap) {
+        fillFeatureMapWithNeurons(featureMap, 0);
+    }
 
 }

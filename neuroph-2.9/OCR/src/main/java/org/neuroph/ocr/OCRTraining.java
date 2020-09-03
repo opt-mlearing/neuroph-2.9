@@ -7,6 +7,7 @@ package org.neuroph.ocr;
 
 import org.neuroph.ocr.util.Letter;
 import org.neuroph.ocr.util.Text;
+
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -15,13 +16,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.neuroph.ocr.filter.OCRCropLetter;
 import org.neuroph.ocr.filter.OCRExtractLetter;
 import org.neuroph.ocr.properties.OCRProperties;
 import org.neuroph.ocr.util.OCRUtilities;
 
 /**
- *
  * @author Mihailo Stupar
  */
 public class OCRTraining extends OCRProperties {
@@ -52,8 +53,7 @@ public class OCRTraining extends OCRProperties {
         }
     }
 
-    
-    
+
     /**
      * Path to the folder where the images (each with the single letter) will be
      * stored
@@ -97,7 +97,6 @@ public class OCRTraining extends OCRProperties {
     }
 
     /**
-     *
      * @param trainingText text used for training, for labeling the images
      */
     public void setTrainingText(String trainingText) {
@@ -105,7 +104,6 @@ public class OCRTraining extends OCRProperties {
     }
 
     /**
-     *
      * @return Folder for storing training images
      */
     public String getFolderPath() {
@@ -164,9 +162,9 @@ public class OCRTraining extends OCRProperties {
         int tmpWidth = 3 * cropWidth;
         int tmpHeight = 3 * cropHeight;
         int trashSize = letterInformation.getTrashSize();
-        
+
         OCRExtractLetter extractionLetter = new OCRExtractLetter(tmpWidth, tmpHeight, trashSize);
-        
+
         int letterSize = letterInformation.getLetterSize();
         int imageHeight = image.getHeight();
         int imageWidth = image.getWidth();

@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -28,58 +28,57 @@ import org.neuroph.util.TransferFunctionType;
 
 /**
  * Instar neural network with Instar learning rule.
+ *
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
 public class Instar extends NeuralNetwork {
 
-	/**
-	 * The class fingerprint that is set to indicate serialization
-	 * compatibility with a previous version of the class.
-	 */	
-	private static final long serialVersionUID = 1L;
+    /**
+     * The class fingerprint that is set to indicate serialization
+     * compatibility with a previous version of the class.
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Creates new Instar with specified number of input neurons.
-	 * 
-	 * @param inputNeuronsCount
-	 *            number of neurons in input layer
-	 */
-	public Instar(int inputNeuronsCount) {
-		this.createNetwork(inputNeuronsCount);
-	}	
-	
-	/**
-	 * Creates Instar architecture with specified number of input neurons
-	 * 
-	 * @param inputNeuronsCount
-	 *            number of neurons in input layer
-	 */
-	private void createNetwork(int inputNeuronsCount ) {
+    /**
+     * Creates new Instar with specified number of input neurons.
+     *
+     * @param inputNeuronsCount number of neurons in input layer
+     */
+    public Instar(int inputNeuronsCount) {
+        this.createNetwork(inputNeuronsCount);
+    }
 
-		// set network type
-		this.setNetworkType(NeuralNetworkType.INSTAR);
+    /**
+     * Creates Instar architecture with specified number of input neurons
+     *
+     * @param inputNeuronsCount number of neurons in input layer
+     */
+    private void createNetwork(int inputNeuronsCount) {
 
-		// init neuron settings for this type of network
-		NeuronProperties neuronProperties = new NeuronProperties();
-		neuronProperties.setProperty("transferFunction", TransferFunctionType.STEP);
-		
-		// create input layer
-		Layer inputLayer = LayerFactory.createLayer(inputNeuronsCount, neuronProperties);
-		this.addLayer(inputLayer);
+        // set network type
+        this.setNetworkType(NeuralNetworkType.INSTAR);
 
-		// createLayer output layer
-		neuronProperties.setProperty("transferFunction", TransferFunctionType.STEP);
-		Layer outputLayer = LayerFactory.createLayer(1,	neuronProperties);
-		this.addLayer(outputLayer);
+        // init neuron settings for this type of network
+        NeuronProperties neuronProperties = new NeuronProperties();
+        neuronProperties.setProperty("transferFunction", TransferFunctionType.STEP);
 
-		// create full conectivity between input and output layer
-		ConnectionFactory.fullConnect(inputLayer, outputLayer);
+        // create input layer
+        Layer inputLayer = LayerFactory.createLayer(inputNeuronsCount, neuronProperties);
+        this.addLayer(inputLayer);
 
-		// set input and output cells for this network
-		NeuralNetworkFactory.setDefaultIO(this);
+        // createLayer output layer
+        neuronProperties.setProperty("transferFunction", TransferFunctionType.STEP);
+        Layer outputLayer = LayerFactory.createLayer(1, neuronProperties);
+        this.addLayer(outputLayer);
 
-		// set appropriate learning rule for this network
-		this.setLearningRule(new InstarLearning());
-	}	
-	
+        // create full conectivity between input and output layer
+        ConnectionFactory.fullConnect(inputLayer, outputLayer);
+
+        // set input and output cells for this network
+        NeuralNetworkFactory.setDefaultIO(this);
+
+        // set appropriate learning rule for this network
+        this.setLearningRule(new InstarLearning());
+    }
+
 }

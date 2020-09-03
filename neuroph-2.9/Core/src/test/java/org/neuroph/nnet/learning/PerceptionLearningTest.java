@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
 import org.neuroph.core.learning.error.MeanSquaredError;
-import org.neuroph.nnet.Perceptron;
+import org.neuroph.nnet.Perception;
 import org.neuroph.util.random.WeightsRandomizer;
 
 /**
@@ -37,7 +37,7 @@ public class PerceptionLearningTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testDataSetMaxError() {
-        Perceptron perceptron = new Perceptron(2, 1);
+        Perception perceptron = new Perception(2, 1);
         perceptron.randomizeWeights(new WeightsRandomizer(new Random(123)));
 
         perceptron.setLearningRule(instance);
@@ -48,7 +48,7 @@ public class PerceptionLearningTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testDataSetMSE() {
-        Perceptron perceptron = new Perceptron(2, 1);
+        Perception perceptron = new Perception(2, 1);
         perceptron.randomizeWeights(new WeightsRandomizer(new Random(123)));
 
         perceptron.setLearningRule(instance);
@@ -67,7 +67,7 @@ public class PerceptionLearningTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testDataSetIterations() {
-        Perceptron perceptron = new Perceptron(2, 1);
+        Perception perceptron = new Perception(2, 1);
         perceptron.randomizeWeights(new WeightsRandomizer(new Random(123)));
 
         perceptron.setLearningRule(instance);
@@ -76,7 +76,7 @@ public class PerceptionLearningTest {
         int iterations = instance.getCurrentIteration();
 
         for (int i = 0; i < 5; i++) {
-            perceptron = new Perceptron(2, 1);
+            perceptron = new Perception(2, 1);
             perceptron.randomizeWeights(new WeightsRandomizer(new Random(123)));
             perceptron.setLearningRule(instance);
             perceptron.learn(dataSet);

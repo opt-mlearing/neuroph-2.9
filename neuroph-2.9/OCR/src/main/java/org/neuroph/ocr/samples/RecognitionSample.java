@@ -8,7 +8,9 @@ package org.neuroph.ocr.samples;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
+
 import org.neuroph.imgrec.filter.ImageFilterChain;
 import org.neuroph.imgrec.filter.impl.GrayscaleFilter;
 import org.neuroph.imgrec.filter.impl.OtsuBinarizeFilter;
@@ -17,7 +19,6 @@ import org.neuroph.ocr.OCRTextRecognition;
 import org.neuroph.ocr.util.Text;
 
 /**
- *
  * @author Mihailo
  */
 public class RecognitionSample {

@@ -9,11 +9,10 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 /**
- *
  * @author Mihailo
  */
 public class Histogram {
-    
+
     /**
      * @param image binarized image, letters are black, background is white
      * @return array which length is height of image, every element of array
@@ -36,8 +35,8 @@ public class Histogram {
         }
         return histogram;
     }
-    
-    
+
+
     /**
      * @param image binarized image, letters are black, background is white
      * @return array which length is width of image, every element of array
@@ -60,11 +59,11 @@ public class Histogram {
         }
         return histogram;
     }
-    
+
     /**
      * @param histogram histogram calculated by method
-     * <b>heightHistogram(BufferedImage)</b> or 
-     * <b>widthHistogram(BufferedImage)</b>
+     *                  <b>heightHistogram(BufferedImage)</b> or
+     *                  <b>widthHistogram(BufferedImage)</b>
      * @return array that represents gradient Each element in array is
      * calculated in the following way:<br/>
      * gradient[i] = histogram[i] - histogram[i-1]
@@ -76,5 +75,5 @@ public class Histogram {
         }
         return gradient;
     }
-    
+
 }

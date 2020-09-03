@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,77 +30,73 @@ import org.neuroph.util.TransferFunctionType;
 /**
  * Hopfield neural network.
  * Notes: try to use [1, -1] activation levels, sgn as transfer function, or real numbers for activation
+ *
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
 
 public class Hopfield extends NeuralNetwork {
-	
-	/**
-	 * The class fingerprint that is set to indicate serialization
-	 * compatibility with a previous version of the class.
-	 */	
-	private static final long serialVersionUID = 2L;
 
-	/**
-	 * Creates new Hopfield network with specified neuron number
-	 * 
-	 * @param neuronsCount
-	 *            neurons number in Hopfied network
-	 */
-	public Hopfield(int neuronsCount) {
+    /**
+     * The class fingerprint that is set to indicate serialization
+     * compatibility with a previous version of the class.
+     */
+    private static final long serialVersionUID = 2L;
 
-		// init neuron settings for hopfield network
-		NeuronProperties neuronProperties = new NeuronProperties();
-		neuronProperties.setProperty("neuronType", InputOutputNeuron.class);
-		neuronProperties.setProperty("bias", new Double(0));
-		neuronProperties.setProperty("transferFunction", TransferFunctionType.STEP);
-		neuronProperties.setProperty("transferFunction.yHigh", new Double(1));
-		neuronProperties.setProperty("transferFunction.yLow", new Double(0));
+    /**
+     * Creates new Hopfield network with specified neuron number
+     *
+     * @param neuronsCount neurons number in Hopfied network
+     */
+    public Hopfield(int neuronsCount) {
 
-		this.createNetwork(neuronsCount, neuronProperties);
-	}
+        // init neuron settings for hopfield network
+        NeuronProperties neuronProperties = new NeuronProperties();
+        neuronProperties.setProperty("neuronType", InputOutputNeuron.class);
+        neuronProperties.setProperty("bias", new Double(0));
+        neuronProperties.setProperty("transferFunction", TransferFunctionType.STEP);
+        neuronProperties.setProperty("transferFunction.yHigh", new Double(1));
+        neuronProperties.setProperty("transferFunction.yLow", new Double(0));
 
-	/**
-	 * Creates new Hopfield network with specified neuron number and neuron
-	 * properties
-	 * 
-	 * @param neuronsCount
-	 *            neurons number in Hopfied network
-	 * @param neuronProperties
-	 *            neuron properties
-	 */
-	public Hopfield(int neuronsCount, NeuronProperties neuronProperties) {
-		this.createNetwork(neuronsCount, neuronProperties);
-	}
+        this.createNetwork(neuronsCount, neuronProperties);
+    }
 
-	/**
-	 * Creates Hopfield network architecture
-	 * 
-	 * @param neuronsCount
-	 *            neurons number in Hopfied network
-	 * @param neuronProperties
-	 *            neuron properties
-	 */
-	private void createNetwork(int neuronsCount, NeuronProperties neuronProperties) {
+    /**
+     * Creates new Hopfield network with specified neuron number and neuron
+     * properties
+     *
+     * @param neuronsCount     neurons number in Hopfied network
+     * @param neuronProperties neuron properties
+     */
+    public Hopfield(int neuronsCount, NeuronProperties neuronProperties) {
+        this.createNetwork(neuronsCount, neuronProperties);
+    }
 
-		// set network type
-		this.setNetworkType(NeuralNetworkType.HOPFIELD);
+    /**
+     * Creates Hopfield network architecture
+     *
+     * @param neuronsCount     neurons number in Hopfied network
+     * @param neuronProperties neuron properties
+     */
+    private void createNetwork(int neuronsCount, NeuronProperties neuronProperties) {
 
-		// createLayer neurons in layer
-		Layer layer = LayerFactory.createLayer(neuronsCount, neuronProperties);
+        // set network type
+        this.setNetworkType(NeuralNetworkType.HOPFIELD);
 
-		// createLayer full connectivity in layer
-		ConnectionFactory.fullConnect(layer, 0.1);
+        // createLayer neurons in layer
+        Layer layer = LayerFactory.createLayer(neuronsCount, neuronProperties);
 
-		// add layer to network
-		this.addLayer(layer);
+        // createLayer full connectivity in layer
+        ConnectionFactory.fullConnect(layer, 0.1);
 
-		// set input and output cells for this network
-		NeuralNetworkFactory.setDefaultIO(this);
+        // add layer to network
+        this.addLayer(layer);
 
-		// set Hopfield learning rule for this network
-		//this.setLearningRule(new HopfieldLearning(this));	
-		this.setLearningRule(new BinaryHebbianLearning());			
-	}
+        // set input and output cells for this network
+        NeuralNetworkFactory.setDefaultIO(this);
+
+        // set Hopfield learning rule for this network
+        //this.setLearningRule(new HopfieldLearning(this));
+        this.setLearningRule(new BinaryHebbianLearning());
+    }
 
 }

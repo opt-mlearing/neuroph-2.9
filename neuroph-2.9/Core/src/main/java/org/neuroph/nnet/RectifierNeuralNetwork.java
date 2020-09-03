@@ -18,12 +18,13 @@ import org.neuroph.util.NeuronProperties;
 import org.neuroph.util.random.HeZhangRenSunUniformWeightsRandomizer;
 
 public class RectifierNeuralNetwork extends NeuralNetwork<BackPropagation> {
-	private static final long serialVersionUID = 1L;
 
-	public RectifierNeuralNetwork(List<Integer> neuronsInLayers) {
-		//this.setNetworkType(NeuralNetworkType.RECTIFIER);
+    private static final long serialVersionUID = 1L;
 
-		NeuronProperties inputNeuronProperties = new NeuronProperties(InputNeuron.class, Linear.class);
+    public RectifierNeuralNetwork(List<Integer> neuronsInLayers) {
+        //this.setNetworkType(NeuralNetworkType.RECTIFIER);
+
+        NeuronProperties inputNeuronProperties = new NeuronProperties(InputNeuron.class, Linear.class);
         Layer layer = LayerFactory.createLayer(neuronsInLayers.get(0), inputNeuronProperties);
 
         this.addLayer(layer);
@@ -31,7 +32,7 @@ public class RectifierNeuralNetwork extends NeuralNetwork<BackPropagation> {
         // create layers
         Layer prevLayer = layer;
 
-        for (int layerIdx = 1; layerIdx < neuronsInLayers.size()-1; layerIdx++) {
+        for (int layerIdx = 1; layerIdx < neuronsInLayers.size() - 1; layerIdx++) {
             Integer neuronsNum = neuronsInLayers.get(layerIdx);
             layer = LayerFactory.createLayer(neuronsNum, RectifiedLinear.class);
 
@@ -49,6 +50,6 @@ public class RectifierNeuralNetwork extends NeuralNetwork<BackPropagation> {
         NeuralNetworkFactory.setDefaultIO(this); // set input and output cells for network
         this.setLearningRule(new MomentumBackpropagation());
         this.randomizeWeights(new HeZhangRenSunUniformWeightsRandomizer());
-	}
+    }
 
 }

@@ -3,7 +3,6 @@ package org.neuroph.contrib.autotrain;
 import org.neuroph.eval.classification.ConfusionMatrix;
 
 /**
- *
  * @author Milan Brkic - milan.brkic1@yahoo.com
  */
 public class TrainingResult {

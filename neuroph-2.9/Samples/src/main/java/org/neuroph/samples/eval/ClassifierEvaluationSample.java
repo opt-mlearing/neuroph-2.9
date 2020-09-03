@@ -16,7 +16,6 @@ import org.neuroph.core.learning.error.MeanSquaredError;
 import org.neuroph.nnet.MultiLayerPerception;
 
 /**
- *
  * @author zoran
  */
 public class ClassifierEvaluationSample {
@@ -24,12 +23,12 @@ public class ClassifierEvaluationSample {
     public static void main(String[] args) {
         Evaluation evaluation = new Evaluation();
         evaluation.addEvaluator(new ErrorEvaluator(new MeanSquaredError()));
-    
+
         String[] classNames = {"Virginica", "Setosa", "Versicolor"};
-                
+
         MultiLayerPerception neuralNet = (MultiLayerPerception) NeuralNetwork.createFromFile("irisNet.nnet");
         DataSet dataSet = DataSet.createFromFile("data_sets/iris_data_normalised.txt", 4, 3, ",");
-        
+
         evaluation.addEvaluator(new ClassifierEvaluator.MultiClass(classNames));
         evaluation.evaluateDataSet(neuralNet, dataSet);
 

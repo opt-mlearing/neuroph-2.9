@@ -3,21 +3,23 @@ package org.neuroph.samples.germanCreditData;
 
 /**
  * Copyright 2013 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations under
  * the License.
  */
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
@@ -30,7 +32,6 @@ import org.neuroph.util.data.norm.MaxNormalizer;
 import org.neuroph.util.data.norm.Normalizer;
 
 /**
- *
  * @author Ivan Petrovic
  */
 /*
@@ -331,7 +332,7 @@ public class GermanCreditDataSample implements LearningEventListener {
     public void keepScore(int prediction, int ideal) {
         count[ideal]++;
         count[2]++;
-        
+
         if (prediction == ideal) {
             correct[ideal]++;
             correct[2]++;

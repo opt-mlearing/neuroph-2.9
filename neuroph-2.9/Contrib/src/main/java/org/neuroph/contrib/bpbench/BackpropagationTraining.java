@@ -57,6 +57,7 @@ public class BackpropagationTraining extends AbstractTraining {
 
     /**
      * Create instance of learning rule and setup given parameters
+     *
      * @return returns learning rule with predefined parameters
      */
     @Override

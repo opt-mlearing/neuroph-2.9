@@ -1,6 +1,7 @@
 package org.neuroph.core.input;
 
 import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
@@ -19,7 +20,6 @@ import org.neuroph.core.Neuron;
 import org.neuroph.nnet.comp.neuron.InputNeuron;
 
 /**
- *
  * @author Tijana
  */
 @RunWith(value = Parameterized.class)
@@ -39,8 +39,8 @@ public class DifferenceTest {
     @Parameters
     public static Collection<Object[]> getParamters() {
         return Arrays.asList(new Object[][]{{new DoubleArray(new double[]{1, 1, 1, 1}), 0},
-        {new DoubleArray(new double[]{.5d, .25d, -0.25d, 0.1}), 1.784656},
-        {new DoubleArray(new double[]{0, 0, 0, 0}), 2}});
+                {new DoubleArray(new double[]{.5d, .25d, -0.25d, 0.1}), 1.784656},
+                {new DoubleArray(new double[]{0, 0, 0, 0}), 2}});
 
     }
 

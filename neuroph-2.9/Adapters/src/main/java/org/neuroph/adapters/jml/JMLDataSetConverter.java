@@ -3,16 +3,19 @@ package org.neuroph.adapters.jml;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 import net.sf.javaml.core.Dataset;
 import net.sf.javaml.core.DefaultDataset;
 import net.sf.javaml.core.DenseInstance;
 import net.sf.javaml.core.Instance;
+
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
 
 /**
  * Provides methods to convert dataset instances from Neuroph to JML,
  * and from JML to Neuroph
+ *
  * @author Zoran Sevarac
  * @author Vladimir Markovic
  */
@@ -20,8 +23,9 @@ public class JMLDataSetConverter {
 
     /**
      * Converts Java-ML data set to Neuroph data set
+     *
      * @param jmlDataset Dataset Java-ML data set
-     * @param numInputs int Number of inputs
+     * @param numInputs  int Number of inputs
      * @param numOutputs int Number of outputs
      * @return Neuroph data set
      */
@@ -86,11 +90,11 @@ public class JMLDataSetConverter {
                         j++;
                     }
                 }
-                
-                for(String cla:outputClasses){
-                    if(cla.equals(jmlDataset.get(i).classValue().toString())){
+
+                for (String cla : outputClasses) {
+                    if (cla.equals(jmlDataset.get(i).classValue().toString())) {
                         outputs[k] = 1;
-                    }else{
+                    } else {
                         outputs[k] = 0;
                     }
                     k++;
@@ -107,6 +111,7 @@ public class JMLDataSetConverter {
 
     /**
      * Converts Neuroph data set to Java-ML data set
+     *
      * @param neurophDataset Dataset Neuroph data set
      * @return Dataset Java-ML data set
      */

@@ -9,7 +9,6 @@ import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.nnet.learning.BackPropagation;
 
 /**
- *
  * @author Ivan Petrovic
  */
 /*
@@ -35,7 +34,7 @@ public class DigitsRecognition {
         int inputCount = Data.CHAR_HEIGHT * Data.CHAR_WIDTH;
         int outputCount = Data.DIGITS.length;
         int hiddenNeurons = 19;
-        
+
 
         //create neural network
         MultiLayerPerception neuralNet = new MultiLayerPerception(inputCount, hiddenNeurons, outputCount);
@@ -74,7 +73,7 @@ public class DigitsRecognition {
      * set.
      *
      * @param neuralNet neural network
-     * @param testSet test data set
+     * @param testSet   test data set
      */
     public static void testNeuralNetwork(NeuralNetwork neuralNet, DataSet testSet) {
 

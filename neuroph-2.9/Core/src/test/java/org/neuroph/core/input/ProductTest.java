@@ -1,6 +1,7 @@
 package org.neuroph.core.input;
 
 import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
@@ -16,7 +17,6 @@ import org.neuroph.core.Neuron;
 import org.neuroph.nnet.comp.neuron.InputNeuron;
 
 /**
- *
  * @author Shivanth, Tijana
  */
 @RunWith(value = Parameterized.class)
@@ -36,10 +36,10 @@ public class ProductTest {
     @Parameters
     public static Collection<Object[]> getParamters() {
         return Arrays.asList(new Object[][]{{new DoubleArray(new double[]{.5, .10, .5, .3}), 0.0075},
-        {new DoubleArray(new double[]{-.1, .10, 2, 3}), -.060},
-        {new DoubleArray(new double[]{-1, -.5, -.10, .1}), -.0050},
-        {new DoubleArray(new double[]{1, .5, .10, .9}), .045},
-        {new DoubleArray(new double[]{1, 2, 4, 0}), 0}});
+                {new DoubleArray(new double[]{-.1, .10, 2, 3}), -.060},
+                {new DoubleArray(new double[]{-1, -.5, -.10, .1}), -.0050},
+                {new DoubleArray(new double[]{1, .5, .10, .9}), .045},
+                {new DoubleArray(new double[]{1, 2, 4, 0}), 0}});
 
     }
 

@@ -1,6 +1,7 @@
 package org.neuroph.core.input;
 
 import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
@@ -16,7 +17,6 @@ import org.neuroph.core.Neuron;
 import org.neuroph.nnet.comp.neuron.InputNeuron;
 
 /**
- *
  * @author Shivanth, Tijana
  */
 @RunWith(value = Parameterized.class)
@@ -36,11 +36,11 @@ public class OrTest {
     @Parameters
     public static Collection<Object[]> getParamters() {
         return Arrays.asList(new Object[][]{{new DoubleArray(new double[]{0.49999d, 0d, 0d, 0d}), 0},
-        {new DoubleArray(new double[]{0d, 0d, 0d, 0d}), 0},
-        {new DoubleArray(new double[]{0.5d, 0d, 0d, 0d}), 1},
-        {new DoubleArray(new double[]{1d, 0d, 0d, 0d}), 1},
-        {new DoubleArray(new double[]{0.52d, 0.53d, 0.54d, 0.5d, 0.6d, 0.83d}), 1},
-        {new DoubleArray(new double[]{0.32d, 0.44d, 0.33d, 0.5d, 0.4d, 0.23d}), 1}});
+                {new DoubleArray(new double[]{0d, 0d, 0d, 0d}), 0},
+                {new DoubleArray(new double[]{0.5d, 0d, 0d, 0d}), 1},
+                {new DoubleArray(new double[]{1d, 0d, 0d, 0d}), 1},
+                {new DoubleArray(new double[]{0.52d, 0.53d, 0.54d, 0.5d, 0.6d, 0.83d}), 1},
+                {new DoubleArray(new double[]{0.32d, 0.44d, 0.33d, 0.5d, 0.4d, 0.23d}), 1}});
 
     }
 

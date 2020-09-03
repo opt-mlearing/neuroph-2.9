@@ -1,6 +1,7 @@
 package org.neuroph.nnet.learning;
 
 import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 import java.util.Random;
@@ -21,7 +22,6 @@ import org.neuroph.util.TransferFunctionType;
 import org.neuroph.util.random.WeightsRandomizer;
 
 /**
- *
  * @author Tijana, Zoran
  */
 public class BackPropagationTest {

@@ -1,6 +1,5 @@
 package org.neuroph.core.learning;
 
-import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Test;
 import org.neuroph.core.data.DataSet;
@@ -14,7 +13,8 @@ public class LearningRuleTest {
         @Override
         public void learn(DataSet trainingSet) {
             //do nothing - it's only test
-        }};
+        }
+    };
 
     @Test
     public void testSetGetTrainingData() {

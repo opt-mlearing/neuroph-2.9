@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+
 import org.neuroph.core.data.DataSet;
 import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.util.TransferFunctionType;
@@ -24,13 +25,13 @@ public class BackpropBenchmarksExample {
 
         BackPropBenchmarks bpb = new BackPropBenchmarks();
         bpb.setNoOfRepetitions(3);
-        
+
         MultiLayerPerception mlp = new MultiLayerPerception(TransferFunctionType.SIGMOID, 4, 7, 3);
-        
+
         DataSet trainingSet = DataSet.createFromFile("iris_data_normalised.txt", 4, 3, ",");
 
         TrainingSettingsGenerator generator = new TrainingSettingsGenerator();
-      
+
         Properties prop = new Properties();
         prop.setProperty(BackpropagationSettings.MIN_LEARNING_RATE, "0.1");
         prop.setProperty(BackpropagationSettings.MAX_LEARNING_RATE, "0.4");
@@ -42,16 +43,16 @@ public class BackpropBenchmarksExample {
         prop.setProperty(BackpropagationSettings.MAX_ERROR, "0.1");
         prop.setProperty(BackpropagationSettings.MAX_ITERATIONS, "10000");
         prop.setProperty(BackpropagationSettings.BATCH_MODE, "true");
-      
+
         generator.setSettings(prop);
 
         List<TrainingSettings> settingsCollection = generator.generateSettings();
         List<Class<? extends AbstractTraining>> trainingTypeCollection = new ArrayList<>();
         trainingTypeCollection.add(BackpropagationTraining.class);
         trainingTypeCollection.add(MomentumTraining.class);
-        
+
         bpb.startBenchmark(trainingTypeCollection, settingsCollection, trainingSet, mlp);
         bpb.saveResults("C:\\Users\\Mladen\\Desktop\\test123");
-      
+
     }
 }

@@ -13,7 +13,6 @@ import java.math.RoundingMode;
 import java.util.List;
 
 /**
- *
  * @author Milan Brkic - milan.brkic1@yahoo.com
  */
 public class Util {

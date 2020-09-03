@@ -4,12 +4,13 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import org.neuroph.imgrec.ImageUtilities;
 import org.neuroph.imgrec.image.Dimension;
 
 /**
  * This class provides methods to extract single character images from text image
- * 
+ *
  * @author Vladimir Kolarevic
  * @author Zoran Sevarac
  */
@@ -26,6 +27,7 @@ public class CharExtractor {
     /**
      * Creates new char extractor with soecified text image
      * TODO: add background and foregrounf color
+     *
      * @param imageWithChars - image with text
      */
     public CharExtractor(BufferedImage imageWithChars) {
@@ -38,8 +40,9 @@ public class CharExtractor {
 
     /**
      * This method scans image pixels until it finds the first black pixel (TODO: use foreground color which is black by default).
-     * When it finds black pixel, it sets cropTopY and returns true. if it reaches end of image and does not find black pixels, 
+     * When it finds black pixel, it sets cropTopY and returns true. if it reaches end of image and does not find black pixels,
      * it sets endOfImage flag and returns false.
+     *
      * @return - returns true when black pixel is found and cropTopY value is changed, and false if cropTopY value is not changed
      */
     private boolean findCropTopY() {
@@ -58,6 +61,7 @@ public class CharExtractor {
     /**
      * This method scans image pixels until it finds first row with white pixels. (TODO: background color which is white by default).
      * When it finds line whith all white pixels, it sets cropBottomY and returns true
+     *
      * @return - returns true when cropBottomY value is set, false otherwise
      */
     private boolean findCropBottomY() {
@@ -84,9 +88,10 @@ public class CharExtractor {
     /**
      * This method scans image pixels to the right  until it finds first black pixel, or reach end of row.
      * When black pixel is found it sets cropLeftX and returns true. It should set cropLeftX to the next letter in a row.
+     *
      * @return - return true when true when black pixel is found and cropLeftX is changed, false otherwise
      */
-    private boolean findCropLeftX() {        
+    private boolean findCropLeftX() {
         int whitePixCounter = 0;                                            // white pixel counter between the letters
         for (int x = cropRightX; x < imageWithChars.getWidth(); x++) {      // start from previous righ crop position (previous letter), and scan following pixels to the right
             for (int y = cropTopY; y <= cropBottomY; y++) {             // vertical pixel scan at current x coordinate
@@ -95,7 +100,7 @@ public class CharExtractor {
                     return true;                                            // and return true
                 }
             }
-            
+
             // BUG?: this condition looks strange.... we might not need whitePixCounter at all, it might be used for 'I' letter
             whitePixCounter++;                                              // if its not black pixel assume that its white pixel
             if (whitePixCounter == 3) {                                     // why 3 pixels? its hard coded for some case and does not work in general...!!!
@@ -109,6 +114,7 @@ public class CharExtractor {
     /**
      * This method scans image pixels to the right until it finds next row where all pixel are white, y1 and y2.
      * TODO: resiti broblem tolerancije n aboju bacgrounda kada ima prelaz...
+     *
      * @return - return true  when x2 value is changed and false when x2 value is not changed
      */
     private boolean findCropRightX() {
@@ -119,14 +125,14 @@ public class CharExtractor {
                     whitePixCounter++;                                      // increase whitePixCounter
                 }
             }
-            
+
             // this is for space!
             int heightPixels = cropBottomY - cropTopY;                      // calculate crop height
-            if (whitePixCounter == heightPixels+1) {                         // if white pixel count is equal to crop height+1  then this is white vertical line, means end of current char/ (+1 is for case when there is only 1 pixel; a 'W' bug fix)
+            if (whitePixCounter == heightPixels + 1) {                         // if white pixel count is equal to crop height+1  then this is white vertical line, means end of current char/ (+1 is for case when there is only 1 pixel; a 'W' bug fix)
                 cropRightX = x;                                             // so set cropRightX    
                 return true;                                                // and return true
             }
-            
+
             // why we need this when we allready have condiiton in the for loop? - for the last letter in the row.
             if (x == imageWithChars.getWidth() - 1) {                       // if we have reached end of row with x position    
                 cropRightX = x;                                             // set cropRightX
@@ -134,25 +140,26 @@ public class CharExtractor {
                 return true;                                                // and return true
             }
         }
-        
+
 //        endOfRow = true;                                                    // da li ovo treba , nije ga bilo?
         return false;                                                       // return false if we have not found vertical white line (end of letter) to the right
     }
 
     /**
      * Creates HashMap with characters as keys and BufferedImages as values
+     *
      * @param Dimensions to which output char images has to be resized to
-     * @param list of letters which are names of images
+     * @param list       of letters which are names of images
      * @return HashMap with characters as keys and char images as values
      * This method returns HashMap with characters as keys and char images as values
      */
     public HashMap<String, BufferedImage> extractCharImagesToLearn(BufferedImage imageWithText, List<String> chars, Dimension dim) {
         this.imageWithChars = imageWithText;
-        
+
         HashMap<String, BufferedImage> charImages = new HashMap<String, BufferedImage>();
 
         // scans image from top to botoom, and left to right and seeks nonwhite/black pixels
-        
+
         int i = 0;
         while (endOfImage == false) {               // until the end of the image is reached do the following
             endOfRow = false;                       // reset endOfRow flag on each new text row start
@@ -170,7 +177,7 @@ public class CharExtractor {
                             if (foundRight == true) {       // make sure we have right position, and proceed
                                 // crop, trim and resize character image - next two lines extracts characers, this should be fixed to deal with variable spacing between chars ...
                                 BufferedImage charImage = ImageUtilities.cropImage(imageWithText, cropLeftX, cropTopY, cropRightX, cropBottomY);  // first crop  image at specified positions
-                                charImage =  ImageUtilities.trimImage(charImage);   // then trim image just in case
+                                charImage = ImageUtilities.trimImage(charImage);   // then trim image just in case
                                 // deal with 'I' 'i' 'l' 'j' chars - ako su manji zalepi ih centrirane na blok...
 //                                if (charImage.getWidth() < (charImage.getHeight() /2)) {
 //                                    BufferedImage bi = new BufferedImage(dim.getWidth(), dim.getHeight(), BufferedImage.TYPE_INT_RGB);
@@ -179,9 +186,9 @@ public class CharExtractor {
 //                                    bi.getGraphics().drawImage(charImage, bi.getWidth()/2 - charImage.getWidth()/2, 0, null);
 //                                    charImage = bi;
 //                                }    else 
-                                
+
                                 // and at the end scale image to specified size
-                                charImage = ImageUtilities.resizeImage(charImage, dim.getWidth(), dim.getHeight());                               
+                                charImage = ImageUtilities.resizeImage(charImage, dim.getWidth(), dim.getHeight());
                                 charImages.put(chars.get(i), charImage);    // add char image to collection which will be returned
                                 // we can write images to file here to see what comes out, for debuging
 //                                try {
@@ -199,7 +206,7 @@ public class CharExtractor {
                 } //foundBottom
             } // foundTop
         } // end of image
-        
+
         cropTopY = 0;
         cropBottomY = 0;
         endOfImage = false;
@@ -209,7 +216,8 @@ public class CharExtractor {
 
     /**
      * Extracts and returns char images to recognize as list of images
-     * @return 
+     *
+     * @return
      */
     public List<BufferedImage> extractCharImagesToRecognize() {
         List<BufferedImage> trimedImages = new ArrayList<BufferedImage>();
@@ -230,8 +238,8 @@ public class CharExtractor {
                             foundRight = findCropRightX();
                             if (foundRight == true) {
                                 BufferedImage image = ImageUtilities.trimImage(ImageUtilities.cropImage(imageWithChars, cropLeftX, cropTopY, cropRightX, cropBottomY));
-                                trimedImages.add(image);                                
-                                i++;                                                                               
+                                trimedImages.add(image);
+                                i++;
                             }
                         }
                     }

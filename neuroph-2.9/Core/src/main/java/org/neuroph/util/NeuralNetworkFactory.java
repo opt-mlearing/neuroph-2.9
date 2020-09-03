@@ -31,7 +31,7 @@ import org.neuroph.nnet.Kohonen;
 import org.neuroph.nnet.MaxNet;
 import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.nnet.Outstar;
-import org.neuroph.nnet.Perceptron;
+import org.neuroph.nnet.Perception;
 import org.neuroph.nnet.RBFNetwork;
 import org.neuroph.nnet.SupervisedHebbianNetwork;
 import org.neuroph.nnet.UnsupervisedHebbianNetwork;
@@ -70,8 +70,8 @@ public class NeuralNetworkFactory {
      * @param transferFunctionType type of transfer function to use
      * @return instance of Perceptron network
      */
-    public static Perceptron createPerceptron(int inputNeuronsCount, int outputNeuronsCount, TransferFunctionType transferFunctionType) {
-        Perceptron nnet = new Perceptron(inputNeuronsCount, outputNeuronsCount, transferFunctionType);
+    public static Perception createPerceptron(int inputNeuronsCount, int outputNeuronsCount, TransferFunctionType transferFunctionType) {
+        Perception nnet = new Perception(inputNeuronsCount, outputNeuronsCount, transferFunctionType);
         return nnet;
     }
 
@@ -84,8 +84,8 @@ public class NeuralNetworkFactory {
      * @param learningRule         learning rule class
      * @return instance of Perceptron network
      */
-    public static Perceptron createPerceptron(int inputNeuronsCount, int outputNeuronsCount, TransferFunctionType transferFunctionType, Class learningRule) {
-        Perceptron nnet = new Perceptron(inputNeuronsCount, outputNeuronsCount, transferFunctionType);
+    public static Perception createPerceptron(int inputNeuronsCount, int outputNeuronsCount, TransferFunctionType transferFunctionType, Class learningRule) {
+        Perception nnet = new Perception(inputNeuronsCount, outputNeuronsCount, transferFunctionType);
 
         if (learningRule.getName().equals(PerceptionLearning.class.getName())) {
             nnet.setLearningRule(new PerceptionLearning());

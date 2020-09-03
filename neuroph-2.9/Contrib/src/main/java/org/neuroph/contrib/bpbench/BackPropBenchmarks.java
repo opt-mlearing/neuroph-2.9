@@ -3,6 +3,7 @@ package org.neuroph.contrib.bpbench;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.neuroph.core.data.DataSet;
 import org.neuroph.nnet.MultiLayerPerception;
 
@@ -80,19 +81,22 @@ public class BackPropBenchmarks {
     public void setNoOfRepetitions(int noOfRepetitions) {
         this.noOfRepetitions = noOfRepetitions;
     }
-/**
- * Creates all training`s using list training types, settings and neural network and execute run method
- * @param trainingTypeCollection
- * @param settingsCollection
- * @param trainingSet
- * @param mlp 
- */
-   public void startBenchmark(List<Class<? extends AbstractTraining>> trainingTypeCollection, List<TrainingSettings> settingsCollection, DataSet trainingSet, MultiLayerPerception mlp) {
+
+    /**
+     * Creates all training`s using list training types, settings and neural network and execute run method
+     *
+     * @param trainingTypeCollection
+     * @param settingsCollection
+     * @param trainingSet
+     * @param mlp
+     */
+    public void startBenchmark(List<Class<? extends AbstractTraining>> trainingTypeCollection,
+                               List<TrainingSettings> settingsCollection, DataSet trainingSet, MultiLayerPerception mlp) {
         for (TrainingSettings trainingSettings : settingsCollection) {
             for (Class<? extends AbstractTraining> trainingType : trainingTypeCollection) {
                 AbstractTraining training = null;
                 if (trainingType.equals(BackpropagationTraining.class)) {
-                    training = new BackpropagationTraining(mlp, trainingSet, trainingSettings);                   
+                    training = new BackpropagationTraining(mlp, trainingSet, trainingSettings);
                 } else if (trainingType.equals(MomentumTraining.class)) {
                     training = new MomentumTraining(mlp, trainingSet, trainingSettings);
                 } else if (trainingType.equals(QuickpropagationTraining.class)) {
@@ -104,15 +108,18 @@ public class BackPropBenchmarks {
             }
         }
         this.run();
-        
+
     }
-/**
- * Creates all training`s using list training types, settings and execute run method
- * @param trainingTypeCollection
- * @param settingsCollection
- * @param trainingSet 
- */
-   public void startBenchmark(List<Class<? extends AbstractTraining>> trainingTypeCollection, List<TrainingSettings> settingsCollection, DataSet trainingSet) {
+
+    /**
+     * Creates all training`s using list training types, settings and execute run method
+     *
+     * @param trainingTypeCollection
+     * @param settingsCollection
+     * @param trainingSet
+     */
+    public void startBenchmark(List<Class<? extends AbstractTraining>> trainingTypeCollection,
+                               List<TrainingSettings> settingsCollection, DataSet trainingSet) {
         for (TrainingSettings trainingSettings : settingsCollection) {
             for (Class<? extends AbstractTraining> trainingType : trainingTypeCollection) {
                 AbstractTraining training = null;
@@ -130,10 +137,12 @@ public class BackPropBenchmarks {
         }
         this.run();
     }
-/**
- * Save result of benchmarking in given location as csv
- * @param filePath 
- */
+
+    /**
+     * Save result of benchmarking in given location as csv
+     *
+     * @param filePath
+     */
     public void saveResults(String filePath) {
         try {
             ExportUtil.exportToCSV(filePath, listOfTrainings);

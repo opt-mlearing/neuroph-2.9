@@ -1,12 +1,12 @@
 /**
  * Copyright 2013 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -84,16 +84,17 @@ public class ConvolutionalNetwork extends NeuralNetwork<ConvolutionalBackpropaga
         public Builder() {
             network = new ConvolutionalNetwork();
         }
-        
+
         public Builder withInputLayer(int width, int height, int numberOfMaps) {
-            if (network.getLayersCount() > 0) throw new NeurophException("Input layer must be the first layer in network");
-            
-            InputMapsLayer inputLayer = new InputMapsLayer(new Dimension2D(width, height), numberOfMaps); 
+            if (network.getLayersCount() > 0)
+                throw new NeurophException("Input layer must be the first layer in network");
+
+            InputMapsLayer inputLayer = new InputMapsLayer(new Dimension2D(width, height), numberOfMaps);
             inputLayer.setLabel("Input Layer");
-            network.addLayer(inputLayer); 
+            network.addLayer(inputLayer);
 
             return this;
-        }        
+        }
 
         public Builder withConvolutionLayer(int kernelWidth, int kernelHeight, int numberOfMaps) {
             FeatureMapsLayer prevLayer = getLastFeatureMapLayer();
@@ -104,7 +105,7 @@ public class ConvolutionalNetwork extends NeuralNetwork<ConvolutionalBackpropaga
 
             return this;
         }
-        
+
         public Builder withConvolutionLayer(final Dimension2D kernelDimension, int numberOfMaps, Class<? extends TransferFunction> transferFunction) {
             FeatureMapsLayer prevLayer = getLastFeatureMapLayer();
             ConvolutionalLayer convolutionLayer = new ConvolutionalLayer(prevLayer, kernelDimension, numberOfMaps, transferFunction);
@@ -113,7 +114,7 @@ public class ConvolutionalNetwork extends NeuralNetwork<ConvolutionalBackpropaga
             ConvolutionalUtils.fullConnectMapLayers(prevLayer, convolutionLayer);
 
             return this;
-        }        
+        }
 
         public Builder withPoolingLayer(int width, int height) {
             FeatureMapsLayer lastLayer = getLastFeatureMapLayer();
@@ -135,13 +136,13 @@ public class ConvolutionalNetwork extends NeuralNetwork<ConvolutionalBackpropaga
 
             return this;
         }
-        
+
         public Builder withFullConnectedLayer(Layer layer) {
             Layer lastLayer = getLastLayer();
             network.addLayer(layer);
             ConnectionFactory.fullConnect(lastLayer, layer);
             return this;
-        }        
+        }
 
         public ConvolutionalNetwork build() {
             network.setInputNeurons(network.getLayerAt(0).getNeurons());

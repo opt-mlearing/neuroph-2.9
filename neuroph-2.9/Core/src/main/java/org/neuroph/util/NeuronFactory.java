@@ -28,6 +28,7 @@ import org.neuroph.nnet.comp.neuron.ThresholdNeuron;
 
 /**
  * Provides methods to create customized instances of Neuron.
+ *
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
 public class NeuronFactory {
@@ -41,8 +42,7 @@ public class NeuronFactory {
     /**
      * Creates and returns neuron instance according to the given specification in neuronProperties.
      *
-     * @param neuronProperties
-     *            specification of neuron properties
+     * @param neuronProperties specification of neuron properties
      * @return returns instance of neuron with specified properties
      */
     public static Neuron createNeuron(NeuronProperties neuronProperties) {
@@ -122,8 +122,7 @@ public class NeuronFactory {
     /**
      * Creates and returns instance of transfer function
      *
-     * @param tfProperties
-     *            transfer function properties
+     * @param tfProperties transfer function properties
      * @return returns transfer function
      */
     private static TransferFunction createTransferFunction(Properties tfProperties) {

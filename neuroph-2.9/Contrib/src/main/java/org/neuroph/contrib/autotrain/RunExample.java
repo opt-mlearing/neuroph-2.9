@@ -2,16 +2,16 @@ package org.neuroph.contrib.autotrain;
 
 import java.io.FileNotFoundException;
 import java.util.List;
+
 import org.neuroph.core.data.DataSet;
 import org.neuroph.util.TransferFunctionType;
 
 /**
  * kako iskoristiti vrednosti iz matrice(TP, TN, FP, FN) kako tokom testiranja
  * videti broj pogodjenih, broj promasenih Memento?
- *
  */
+
 /**
- *
  * @author Milan
  */
 public class RunExample {
@@ -20,7 +20,7 @@ public class RunExample {
 
     public static void main(String[] args) {
         AutoTrainer trainer = new AutoTrainer()
-                .setMaxError(0.01, 0.03,0.01) // isto ranhe?
+                .setMaxError(0.01, 0.03, 0.01) // isto ranhe?
                 .setMaxIterations(20000)
                 .setTransferFunction(TransferFunctionType.TANH)
                 .setHiddenNeurons(new Range(10, 20), 2)    // kako dodati jos slojeva neurona?
@@ -32,9 +32,7 @@ public class RunExample {
         trainer.train(dataSet);
         List<TrainingResult> results = trainer.getResults();
 
-        
-        
-        
+
         try {
             Util.saveToCSV(trainer, results);
         } catch (FileNotFoundException ex) {

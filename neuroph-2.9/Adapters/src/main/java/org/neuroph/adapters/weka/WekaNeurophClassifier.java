@@ -1,9 +1,11 @@
 package org.neuroph.adapters.weka;
 
 import java.util.List;
+
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.Neuron;
 import org.neuroph.core.data.DataSet;
+
 import weka.classifiers.AbstractClassifier;
 import weka.core.Instance;
 import weka.core.Instances;
@@ -11,7 +13,7 @@ import weka.core.Instances;
 /**
  * Weka classifier wrapper for Neuroph neural networks
  * Classifier based on Neuroph which can be used inside weka
- * 
+ *
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
 public class WekaNeurophClassifier extends AbstractClassifier {
@@ -23,6 +25,7 @@ public class WekaNeurophClassifier extends AbstractClassifier {
 
     /**
      * Creates instance of NeurophWekaClassifier using specified neural network
+     *
      * @param neuralNet NeuralNetwork
      */
     public WekaNeurophClassifier(NeuralNetwork neuralNet) {
@@ -32,7 +35,7 @@ public class WekaNeurophClassifier extends AbstractClassifier {
     /**
      * Builds classifier using specified data set
      * (trains neural network using that data set)
-     * 
+     *
      * @param data Instance weka data set
      * @throws Exception
      */
@@ -46,6 +49,7 @@ public class WekaNeurophClassifier extends AbstractClassifier {
 
     /**
      * Classifies instance as one of possible classes
+     *
      * @param instance Instance to classify
      * @return double classes double value
      * @throws Exception
@@ -64,7 +68,7 @@ public class WekaNeurophClassifier extends AbstractClassifier {
         Neuron maxNeuron = null;
         int maxIdx = 0;
         double maxOut = Double.NEGATIVE_INFINITY;
-        for (int i=0; i< outputNeurons.size(); i++) {
+        for (int i = 0; i < outputNeurons.size(); i++) {
             if (outputNeurons.get(i).getOutput() > maxOut) {
                 maxOut = outputNeurons.get(i).getOutput();
                 maxIdx = i;
@@ -78,6 +82,7 @@ public class WekaNeurophClassifier extends AbstractClassifier {
     /**
      * Calculates predict values for every possible class that
      * instance can be classified as that
+     *
      * @param instance Instance to calculate values for
      * @return double[] array of predict values
      * @throws Exception
@@ -86,19 +91,19 @@ public class WekaNeurophClassifier extends AbstractClassifier {
     public double[] distributionForInstance(Instance instance) throws Exception {
         // Convert instance to double array
         double[] item = convertInstanceToDoubleArray(instance);
-        
+
         // set neural network input
         neuralNet.setInput(item);
         // calculate neural network output
         neuralNet.calculate();
-        
+
         return neuralNet.getOutput();
     }
-    
+
     public NeuralNetwork getNeuralNetwork() {
         return neuralNet;
     }
-    
+
 
     private double[] convertInstanceToDoubleArray(Instance instance) {
         //initialize double array for values

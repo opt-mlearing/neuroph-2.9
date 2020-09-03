@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
+
 import org.neuroph.core.Neuron;
 import org.neuroph.imgrec.ColorMode;
 import org.neuroph.imgrec.ImageRecognitionPlugin;
@@ -60,9 +61,8 @@ public class OcrPlugin extends PluginBase implements Serializable {
     /**
      * Constructor, creates new OCR Plugin for specified sampling resolution and color mode
      *
-     * @param samplingResolution
-     *            image sampling resolution (dimensions)
-     * @param colorMode recognition color mode
+     * @param samplingResolution image sampling resolution (dimensions)
+     * @param colorMode          recognition color mode
      */
     public OcrPlugin(Dimension samplingResolution, ColorMode colorMode) {
         super(OCR_PLUGIN_NAME);
@@ -73,7 +73,8 @@ public class OcrPlugin extends PluginBase implements Serializable {
     /**
      * This method scales character image to the given dimensions and then does the character recognition.
      * Returns recognized character.
-     * @param charImage character image
+     *
+     * @param charImage  character image
      * @param scaleToDim dimensions to scale the image before character recognition is done
      * @return recognized character
      */
@@ -84,6 +85,7 @@ public class OcrPlugin extends PluginBase implements Serializable {
 
     /**
      * Recognizes character from the image and returns character
+     *
      * @param charImage character image
      * @return recognized character
      */
@@ -99,7 +101,7 @@ public class OcrPlugin extends PluginBase implements Serializable {
     }
 
     /**
-     * Recogize the character from the image and returns HashMap with keys as 
+     * Recogize the character from the image and returns HashMap with keys as
      * characters and recognition probability as values sorted descending by probability.
      *
      * @param charImage character image
@@ -120,8 +122,9 @@ public class OcrPlugin extends PluginBase implements Serializable {
 
     /**
      * Resize image to given dimensions (width and height)
-     * @param image image to resize
-     * @param width width to resize to
+     *
+     * @param image  image to resize
+     * @param width  width to resize to
      * @param height height to resize to
      * @return scaled image
      */
@@ -135,9 +138,8 @@ public class OcrPlugin extends PluginBase implements Serializable {
      * see which letter has the highest probability
      *
      * @param passedMap the HashMap that holds the resault of the recognition process
-     *
      * @return LinkedHashMap that represents the combination of letters with the
-     *                       probability of the correct recognition
+     * probability of the correct recognition
      */
     private LinkedHashMap sortHashMapByValues(HashMap passedMap) {
         List mapKeys = new ArrayList(passedMap.keySet());
@@ -174,20 +176,21 @@ public class OcrPlugin extends PluginBase implements Serializable {
 
     /**
      * Returns color mode used for OCR
+     *
      * @return color mode used for OCR
      */
     public ColorMode getColorMode() {
         return colorMode;
     }
 
-   /**
+    /**
      * Returns sampling resolution used for OCR
+     *
      * @return sampling resolution used for OCR
      */
     public Dimension getSamplingResolution() {
         return samplingResolution;
     }
-
 
 
 }

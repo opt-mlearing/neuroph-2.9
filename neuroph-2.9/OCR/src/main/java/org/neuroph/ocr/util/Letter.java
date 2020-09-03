@@ -7,10 +7,10 @@ package org.neuroph.ocr.util;
 
 import java.awt.image.BufferedImage;
 import java.util.List;
+
 import org.neuroph.ocr.util.histogram.Histogram;
 
 /**
- *
  * @author Mihailo Stupar
  */
 public class Letter {
@@ -38,27 +38,27 @@ public class Letter {
 //        calculateTrashsize();
 //        calculateSpaceGap();
 //    }
-    
+
     public Letter(int scanQuality, BufferedImage image) {
         this.scanQuality = scanQuality;
-        this.image = image;    
+        this.image = image;
         heightHistogram = Histogram.heightHistogram(image);
         gradient = Histogram.gradient(heightHistogram);
         calculateSmallestSizeLetter();
         List<Integer> rowHeights = OCRUtilities.rowHeights(gradient, smallestSizeLetter);
         int meanHeight = (int) caluclateMean(rowHeights);
-        calculateDimensions(meanHeight);  
+        calculateDimensions(meanHeight);
         calculateLetterSize(meanHeight);
         calculateSpaceGap(meanHeight);
-        
-        
+
+
     }
-    
+
 
     private void calculateDimensions(int meanHeight) {
-        int offset = (int) (0.1*meanHeight);
-        cropWidth = meanHeight+offset;
-        cropHeight = meanHeight+offset;
+        int offset = (int) (0.1 * meanHeight);
+        cropWidth = meanHeight + offset;
+        cropHeight = meanHeight + offset;
     }
 
     private void calculateSmallestSizeLetter() {
@@ -72,23 +72,19 @@ public class Letter {
             smallestSizeLetter = 36;
         }
     }
-    
-   
-    
-    
-    
+
 
     private void calculateLetterSize(int meanHeight) {
         letterSize = meanHeight;
     }
 
     private void calculateTrashsize(int meanHeight) {
-        int offset = (int) (0.1*meanHeight);
-        trashSize = meanHeight-offset;
+        int offset = (int) (0.1 * meanHeight);
+        trashSize = meanHeight - offset;
     }
 
     private void calculateSpaceGap(int meanHeight) {
-        spaceGap = (int) (0.3*meanHeight);
+        spaceGap = (int) (0.3 * meanHeight);
     }
 
 //    /**
@@ -114,7 +110,6 @@ public class Letter {
     }
 
     /**
-     *
      * @return predicted letter size (height) based on the scanQuality and
      * fontSize
      */
@@ -142,7 +137,6 @@ public class Letter {
     }
 
     /**
-     *
      * @return the space(measured in pixels) that should represent the space
      * typed on keyboard
      */
@@ -151,15 +145,13 @@ public class Letter {
     }
 
     /**
-     * 
-     * @return scan quality measured in dpi 
+     * @return scan quality measured in dpi
      */
     public int getScanQuality() {
         return scanQuality;
     }
 
     /**
-     * 
      * @return font size measured in pt
      */
     public int getFontSize() {
@@ -197,13 +189,10 @@ public class Letter {
     private double caluclateMean(List<Integer> list) {
         double sum = 0;
         for (Integer element : list) {
-            sum+=element;
+            sum += element;
         }
-        return sum/list.size();
+        return sum / list.size();
     }
 
-    
-    
-    
 
 }

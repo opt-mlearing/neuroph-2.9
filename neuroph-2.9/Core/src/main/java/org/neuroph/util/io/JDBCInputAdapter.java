@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -26,14 +26,15 @@ import java.util.logging.Logger;
 
 /**
  * Implementation of InputAdapter interface for reading neural network inputs from database.
- * @see InputAdapter
+ *
  * @author Zoran Sevarac <sevarac@gmail.com>
+ * @see InputAdapter
  */
 public class JDBCInputAdapter implements InputAdapter {
     ResultSet resultSet;
     int inputSize;
 
-    public JDBCInputAdapter(Connection connection, String sql) {   
+    public JDBCInputAdapter(Connection connection, String sql) {
         try {
             Statement stmt = connection.createStatement(); // Get a statement from the connection
             resultSet = stmt.executeQuery(sql);  // Execute the query  
@@ -47,8 +48,9 @@ public class JDBCInputAdapter implements InputAdapter {
 
     /**
      * Reads next row from result set and returns input for neural network as array of doubles.
+     *
      * @return neural network input as array of doubles
-     */    
+     */
     @Override
     public double[] readInput() {
         try {
@@ -72,8 +74,8 @@ public class JDBCInputAdapter implements InputAdapter {
     @Override
     public void close() {
         try {
-             if (resultSet != null)
-                  resultSet.close();
+            if (resultSet != null)
+                resultSet.close();
         } catch (SQLException ex) {
             throw new NeurophInputException("Error closing database connection!", ex);
         }

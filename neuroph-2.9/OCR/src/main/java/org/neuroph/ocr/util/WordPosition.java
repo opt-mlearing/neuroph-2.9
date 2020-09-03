@@ -7,11 +7,10 @@
 package org.neuroph.ocr.util;
 
 /**
- * 
  * @author Mihailo Stupar
  */
 public class WordPosition {
-   
+
     private int startPixel;
     private int endPixel;
 
@@ -27,6 +26,6 @@ public class WordPosition {
     public int getEndPixel() {
         return endPixel;
     }
-    
-    
+
+
 }

@@ -6,7 +6,6 @@
 package org.neuroph.contrib.autotrain;
 
 /**
- *
  * @author Milan Brkic - milan.brkic1@yahoo.com
  */
 public class Range {
@@ -25,6 +24,5 @@ public class Range {
     public double getMax() {
         return max;
     }
-    
-    
+
 }

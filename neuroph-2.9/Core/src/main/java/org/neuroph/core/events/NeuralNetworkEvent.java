@@ -22,6 +22,7 @@ import org.neuroph.core.Neuron;
 
 /**
  * This class holds information about the source and type of some neural network event.
+ *
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
 public class NeuralNetworkEvent extends java.util.EventObject {

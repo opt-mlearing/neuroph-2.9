@@ -38,7 +38,6 @@ public class Sgn extends TransferFunction implements Serializable {
      * y = 1, x > 0
      * y = -1, x <= 0
      */
-
     public double getOutput(double net) {
         if (net > 0d)
             return 1d;

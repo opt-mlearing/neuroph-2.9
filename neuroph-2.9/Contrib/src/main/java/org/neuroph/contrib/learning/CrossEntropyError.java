@@ -16,7 +16,7 @@ public class CrossEntropyError implements ErrorFunction, Serializable {
 
     @Override
     public double getTotalError() {
-        return -totalError / n ;
+        return -totalError / n;
     }
 
     @Override
@@ -33,12 +33,12 @@ public class CrossEntropyError implements ErrorFunction, Serializable {
             throw new IllegalArgumentException("Output array length and desired output array length must be the same size!");
 
         for (int i = 0; i < predictedOutput.length; i++) {
-            errorDerivative[i] =  targetOutput[i] - predictedOutput[i];
-            totalError += targetOutput[i] * Math.log(predictedOutput[i]) ;
+            errorDerivative[i] = targetOutput[i] - predictedOutput[i];
+            totalError += targetOutput[i] * Math.log(predictedOutput[i]);
 
         }
         n++;
-        
+
         return error;
     }
 

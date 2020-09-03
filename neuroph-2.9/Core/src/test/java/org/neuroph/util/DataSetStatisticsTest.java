@@ -1,13 +1,14 @@
 package org.neuroph.util;
 
 import java.util.Arrays;
+
 import junit.framework.TestCase;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.neuroph.core.data.DataSet;
 
 /**
- *
  * @author salle18
  */
 public class DataSetStatisticsTest extends TestCase {

@@ -34,19 +34,19 @@ public class DataSetStatistics {
     private final double[] frequency;
 
     private final DataSet dataSet;
-    
+
     public static final String MIN = "min";
-    
+
     public static final String MAX = "max";
-    
+
     public static final String MEAN = "mean";
-    
+
     public static final String SUM = "sum";
-    
+
     public static final String STD_DEV = "std dev";
-    
+
     public static final String VAR = "var";
-    
+
     public static final String FREQ = "freq";
 
     public DataSetStatistics(DataSet dataSet) {
@@ -122,10 +122,10 @@ public class DataSetStatistics {
             this.stdDev[i] = Math.sqrt(this.var[i]);
         }
     }
-    
+
     /**
      * Get original data set.
-     * 
+     *
      * @return Original dataset.
      */
     public DataSet getDataSet() {
@@ -134,7 +134,7 @@ public class DataSetStatistics {
 
     /**
      * Get mean for each data set column.
-     * 
+     *
      * @return Array of means by columns.
      */
     public double[] getMean() {
@@ -143,7 +143,7 @@ public class DataSetStatistics {
 
     /**
      * Get maximum for each data set column.
-     * 
+     *
      * @return Array of maximums by columns.
      */
     public double[] getMax() {
@@ -152,8 +152,8 @@ public class DataSetStatistics {
 
     /**
      * Get minimum for each data set column.
-     * 
-     * @return Array of minimums by columns. 
+     *
+     * @return Array of minimums by columns.
      */
     public double[] getMin() {
         return this.min;
@@ -161,8 +161,8 @@ public class DataSetStatistics {
 
     /**
      * Get variant for each data set column.
-     * 
-     * @return Array of variants by columns. 
+     *
+     * @return Array of variants by columns.
      */
     public double[] getVar() {
         return this.var;
@@ -170,7 +170,7 @@ public class DataSetStatistics {
 
     /**
      * Get standard deviation for each data set column.
-     * 
+     *
      * @return Array of standard deviations by columns.
      */
     public double[] getStdDev() {
@@ -180,7 +180,7 @@ public class DataSetStatistics {
     /**
      * Get data set frequency for nominal columns.
      * Returns -0.0 for numeric columns.
-     * 
+     *
      * @return Array of frequencies by columns.
      */
     public double[] getFrequency() {

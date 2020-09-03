@@ -1,6 +1,7 @@
 package org.neuroph.core.input;
 
 import java.util.ArrayList;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -21,7 +22,6 @@ import org.neuroph.core.Neuron;
 import org.neuroph.nnet.comp.neuron.InputNeuron;
 
 /**
- *
  * @author Shivanth, Tijana
  */
 @RunWith(value = Parameterized.class)
@@ -41,7 +41,7 @@ public class SumSqrTest {
     @Parameters
     public static Collection<Object[]> getParamters() {
         return Arrays.asList(new Object[][]{{new DoubleArray(new double[]{.1, .4, .7, .9}), 1.47},
-        {new DoubleArray(new double[]{.1, -.4, .7, -.9}), 1.47}});
+                {new DoubleArray(new double[]{.1, -.4, .7, -.9}), 1.47}});
 
     }
 

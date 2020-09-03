@@ -1,6 +1,7 @@
 package org.neuroph.nnet.learning;
 
 import junit.framework.TestCase;
+
 import org.junit.Before;
 import org.neuroph.core.Connection;
 import org.neuroph.core.Neuron;
@@ -27,4 +28,5 @@ public class AntiHebbianLearningTest extends TestCase {
         assertEquals(startValue - 0.5D * 1D * antiHebbianLearning.getLearningRate(),
                 testNeuron.getWeights()[0].getValue());
     }
+
 }

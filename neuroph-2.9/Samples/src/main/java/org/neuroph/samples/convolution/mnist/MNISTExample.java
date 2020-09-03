@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+
 import org.neuroph.eval.Evaluation;
 import org.neuroph.nnet.learning.ConvolutionalBackpropagation;
 
@@ -42,10 +43,10 @@ import org.neuroph.nnet.learning.ConvolutionalBackpropagation;
  * InputMapsLayer konstruktoru superklase prosledjuje null...
  * <p/>
  * fullConnectMapLayers
- *
- * 
+ * <p>
+ * <p>
  * Same as CNNMNIST just with hardoced params
- * 
+ *
  * @author zoran
  */
 
@@ -70,15 +71,14 @@ public class MNISTExample {
                     .withFullConnectedLayer(84)
                     .withFullConnectedLayer(10)
                     .build();
-            
-            
-            
+
+
             // we need Output RBF euclidean layer - implement original LeNet5 - and make sure it works
-       //     + kreiraj RBF Euclidean i dodaj u output layer: EuclideanRBF
-        //    - amplitude for tanh - dodaj parametar
-        // trenutno konvolucioni sloj koristi RectifiedLinear.class - trebalo bi svi tanh
-        // zasto dva puta okida event za learning? loguje dvaput?
-            
+            //     + kreiraj RBF Euclidean i dodaj u output layer: EuclideanRBF
+            //    - amplitude for tanh - dodaj parametar
+            // trenutno konvolucioni sloj koristi RectifiedLinear.class - trebalo bi svi tanh
+            // zasto dva puta okida event za learning? loguje dvaput?
+
             ConvolutionalBackpropagation backPropagation = new ConvolutionalBackpropagation();
             backPropagation.setLearningRate(0.001);
             backPropagation.setMaxError(0.01);
@@ -88,27 +88,27 @@ public class MNISTExample {
             convolutionNetwork.setLearningRule(backPropagation);
             backPropagation.addListener(new LearningListener());
 
-         //   System.out.println("Started training...");
-            
+            //   System.out.println("Started training...");
+
             convolutionNetwork.learn(trainSet);
-                        
-           // System.out.println("Done training!");
-      
+
+            // System.out.println("Done training!");
+
 //            CrossValidation crossValidation = new CrossValidation(convolutionNetwork, trainSet, 6);
 //            crossValidation.run();
-            
+
 //           ClassificationMetrics validationResult = crossValidation.computeErrorEstimate(convolutionNetwork, trainSet);
             Evaluation.runFullEvaluation(convolutionNetwork, testSet);
-            
+
             convolutionNetwork.save("mnist.nnet");
 
-    //        System.out.println(crossValidation.getResult());
+            //        System.out.println(crossValidation.getResult());
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
+
     static class LearningListener implements LearningEventListener {
 
 
@@ -120,12 +120,12 @@ public class MNISTExample {
             LOG.info("Current iteration: " + bp.getCurrentIteration());
             LOG.info("Error: " + bp.getTotalNetworkError());
             LOG.info("Calculation time: " + (System.currentTimeMillis() - start) / 1000.0);
-         //   neuralNetwork.save(bp.getCurrentIteration() + "CNN_MNIST" + bp.getCurrentIteration() + ".nnet");
+            //   neuralNetwork.save(bp.getCurrentIteration() + "CNN_MNIST" + bp.getCurrentIteration() + ".nnet");
             start = System.currentTimeMillis();
 //            NeuralNetworkEvaluationService.completeEvaluation(neuralNetwork, testSet);
         }
 
-    }    
+    }
 
 
 }

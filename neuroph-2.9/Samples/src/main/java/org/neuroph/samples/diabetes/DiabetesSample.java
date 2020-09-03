@@ -3,22 +3,24 @@ package org.neuroph.samples.diabetes;
 
 /**
  * Copyright 2013 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations under
  * the License.
  */
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
+
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
@@ -31,7 +33,6 @@ import org.neuroph.util.data.norm.MaxNormalizer;
 import org.neuroph.util.data.norm.Normalizer;
 
 /**
- *
  * @author Ivan Petrovic
  */
 /*
@@ -125,10 +126,9 @@ public class DiabetesSample implements LearningEventListener {
 
     // for evaluating classification result
     int total, correct, incorrect;
-    
+
     // if output is greater then this value it is considered as malign
     float classificationThreshold = 0.5f;
-
 
 
     public void run() {
@@ -141,7 +141,7 @@ public class DiabetesSample implements LearningEventListener {
         //Create data set from file
         DataSet dataSet = DataSet.createFromFile(trainingSetFileName, inputsCount, outputsCount, ",");
         dataSet.shuffle();
-        
+
         //Normalizing data set
         Normalizer normalizer = new MaxNormalizer();
         normalizer.normalize(dataSet);
@@ -184,7 +184,7 @@ public class DiabetesSample implements LearningEventListener {
 
             // get target/desired output
             double[] desiredOutput = testSetRow.getDesiredOutput();
-            int target = (int)desiredOutput[0];
+            int target = (int) desiredOutput[0];
 
             // count predictions
             countPredictions(predicted, target);
@@ -193,7 +193,7 @@ public class DiabetesSample implements LearningEventListener {
         System.out.println("Total cases: " + total + ". ");
         System.out.println("Correctly predicted cases: " + correct);
         System.out.println("Incorrectly predicted cases: " + incorrect);
-        double percentTotal = (correct / (double)total) * 100;
+        double percentTotal = (correct / (double) total) * 100;
         System.out.println("Predicted correctly: " + formatDecimalNumber(percentTotal) + "%. ");
     }
 
@@ -212,12 +212,12 @@ public class DiabetesSample implements LearningEventListener {
     public int interpretOutput(double[] array) {
         if (array[0] >= classificationThreshold) {
             return 1;
-        }else {
+        } else {
             return 0;
         }
     }
 
-    public void countPredictions(int prediction, int target) {        
+    public void countPredictions(int prediction, int target) {
         if (prediction == target) {
             correct++;
         } else {
@@ -230,11 +230,11 @@ public class DiabetesSample implements LearningEventListener {
     public String formatDecimalNumber(double number) {
         return new BigDecimal(number).setScale(4, RoundingMode.HALF_UP).toString();
     }
-    
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         (new DiabetesSample()).run();
-    }    
+    }
 }

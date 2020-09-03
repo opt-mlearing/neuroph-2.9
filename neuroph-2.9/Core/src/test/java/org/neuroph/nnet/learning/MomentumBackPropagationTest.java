@@ -14,7 +14,6 @@ import org.neuroph.util.TransferFunctionType;
 import org.neuroph.util.random.WeightsRandomizer;
 
 /**
- *
  * @author Tijana, Zoran
  */
 public class MomentumBackPropagationTest {

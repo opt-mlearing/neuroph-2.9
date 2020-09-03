@@ -22,7 +22,7 @@ public class SimpleLearningExample {
                 .withConvolutionLayer(3, 3, 2)
                 .withFullConnectedLayer(2)
                 .build();
-        
+
 
         // CREATE DATA SET
 
@@ -36,19 +36,19 @@ public class SimpleLearningExample {
 
         convolutionNet.getLearningRule().setMaxError(0.00001);
         convolutionNet.learn(dataSet);
-                
+
         System.out.println("Done training!");
-        
-        FeatureMapLayer featureMap1 = ((FeatureMapsLayer)convolutionNet.getLayerAt(1)).getFeatureMap(0);
-        FeatureMapLayer featureMap2 = ((FeatureMapsLayer)convolutionNet.getLayerAt(1)).getFeatureMap(1);
-        
+
+        FeatureMapLayer featureMap1 = ((FeatureMapsLayer) convolutionNet.getLayerAt(1)).getFeatureMap(0);
+        FeatureMapLayer featureMap2 = ((FeatureMapsLayer) convolutionNet.getLayerAt(1)).getFeatureMap(1);
+
 //        WeightVisualiser visualiser1 = new WeightVisualiser(featureMap1, convolutionKernel);
 //        visualiser1.displayWeights();
 //
 //        WeightVisualiser visualiser2 = new WeightVisualiser(featureMap2, convolutionKernel);
 //        visualiser2.displayWeights();
 
-        
+
         // CREATE TEST SET
 
         DataSet testSet = new DataSet(25, 2);

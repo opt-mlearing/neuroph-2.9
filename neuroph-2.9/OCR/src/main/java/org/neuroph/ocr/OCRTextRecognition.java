@@ -7,6 +7,7 @@ package org.neuroph.ocr;
 
 import org.neuroph.ocr.util.Letter;
 import org.neuroph.ocr.util.Text;
+
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
@@ -15,6 +16,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.imgrec.ImageRecognitionPlugin;
 import org.neuroph.ocr.filter.OCRCropLetter;
@@ -24,7 +26,6 @@ import org.neuroph.ocr.filter.OCRExtractLetter;
 import org.neuroph.ocr.properties.OCRProperties;
 
 /**
- *
  * @author Mihailo Stupar
  */
 public class OCRTextRecognition extends OCRProperties {
@@ -107,13 +108,13 @@ public class OCRTextRecognition extends OCRProperties {
     private String recognizeWord(WordPosition word, int rowPixel) {
         String wordText = "";
 
-        
+
         int tmpWidth = 3 * letterInformation.getCropWidth();
         int tmpHeight = 3 * letterInformation.getCropHeight();
         int trashsize = letterInformation.getTrashSize();
-        
+
         OCRExtractLetter extractionLetter = new OCRExtractLetter(tmpWidth, tmpHeight, trashsize);
-        
+
         int letterSize = letterInformation.getLetterSize();
 
         int start = word.getStartPixel();
@@ -129,7 +130,7 @@ public class OCRTextRecognition extends OCRProperties {
                     continue;
                 }
 
-        //======================================================================
+                //======================================================================
 //        gornja vrzija je ispravna ova ne radi kako treba
 //            for (int k = -(letterSize / 4); k < (letterSize / 4); k++) {
 //            int i = rowPixel + k;
@@ -137,7 +138,7 @@ public class OCRTextRecognition extends OCRProperties {
 //                continue;
 //            }
 //            for (int j = start; j < end; j++) {
-        //======================================================================
+                //======================================================================
                 color = new Color(image.getRGB(j, i));
                 if (color.equals(white)) {
                     visited[i][j] = true;

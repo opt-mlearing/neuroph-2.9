@@ -2,14 +2,14 @@ package org.neuroph.core.input;
 
 public class DoubleArray {
 
-	private double[] array;
+    private double[] array;
 
-	public DoubleArray(double[] array) {
-		this.array = array;
-	}
+    public DoubleArray(double[] array) {
+        this.array = array;
+    }
 
-	public double[] getArray() {
-		return array;
-	}
+    public double[] getArray() {
+        return array;
+    }
 
 }

@@ -12,12 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
 import javax.imageio.ImageIO;
+
 import org.neuroph.ocr.util.histogram.Histogram;
 import org.neuroph.ocr.util.histogram.OCRHistogram;
 
 /**
- *
  * @author Mihailo Stupar
  */
 public class OCRUtilities {
@@ -45,9 +46,9 @@ public class OCRUtilities {
     /**
      * Find the center of each row measured in pixels.
      *
-     * @param image input image, should be black-white image;
+     * @param image        input image, should be black-white image;
      * @param heightThresh the height of the sign (dots or trash) that should not
-     * be recognized as letter
+     *                     be recognized as letter
      * @return list with pixel position of each row
      */
     public static List<Integer> rowPositions(BufferedImage image, int heightThresh) {
@@ -60,12 +61,12 @@ public class OCRUtilities {
      * Word is class with two parameters, startPixel and endPixel. This method
      * calculates these pixels for given row and return them as List of Word
      *
-     * @param image input image, should be black-white
-     * @param row given row
+     * @param image        input image, should be black-white
+     * @param row          given row
      * @param letterHeight predicted letter size
-     * @param spaceGap predicted space size, spaces smaller that spaceGap are
-     * not spaces between word, they are spaces between letter. Ignore spaces
-     * between letters.
+     * @param spaceGap     predicted space size, spaces smaller that spaceGap are
+     *                     not spaces between word, they are spaces between letter. Ignore spaces
+     *                     between letters.
      * @return
      */
     public static List<WordPosition> wordsPositions(BufferedImage image, int row, int letterHeight, int spaceGap) {
@@ -91,36 +92,36 @@ public class OCRUtilities {
     }
 
 
-
     /**
      * Save the image to the file
-     * @param image should be cropped before the saving. Use OCRCropImage class
-     * @param path path to the folder, ie C:/Users/.../ it should ended with /
+     *
+     * @param image      should be cropped before the saving. Use OCRCropImage class
+     * @param path       path to the folder, ie C:/Users/.../ it should ended with /
      * @param letterName letter of the name
-     * @param extension some of .png .jpg ...
+     * @param extension  some of .png .jpg ...
      */
     public static void saveToFile(BufferedImage image, String path, String letterName, String extension) {
-        String imagePath = path + letterName +"."+ extension;
-        File outputfile = new File(imagePath);   
+        String imagePath = path + letterName + "." + extension;
+        File outputfile = new File(imagePath);
         try {
             ImageIO.write(image, extension, outputfile);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
-    
+
     public static String createImageName(String character) {
-        int number = character.hashCode()*(new Random().nextInt(100));
-        return character+"_"+number;
+        int number = character.hashCode() * (new Random().nextInt(100));
+        return character + "_" + number;
     }
-    
-     /**
-     * @param gradient gradient array calculated with method gradient(int [])
+
+    /**
+     * @param gradient    gradient array calculated with method gradient(int [])
      * @param ignoredSize - noise - what is the minimum size of letter to be
-     * recognized <br/>
-     * With lower value you will probably find trash as separate line <br/>
-     * With higher value you will probably miss the letter <br/>
-     * Ideal value is less that the letter size
+     *                    recognized <br/>
+     *                    With lower value you will probably find trash as separate line <br/>
+     *                    With higher value you will probably miss the letter <br/>
+     *                    Ideal value is less that the letter size
      * @return List of integers where each element represent center of line.
      * First element corresponds to the first line etc.
      */
@@ -129,7 +130,7 @@ public class OCRUtilities {
         int sum = 0;
         int count = 0;
         for (int row = 0; row < gradient.length; row++) {
-            
+
             sum += gradient[row];
             if (sum != 0) {
                 count++;
@@ -152,12 +153,12 @@ public class OCRUtilities {
     }
 
 
-    public static List<Integer> rowHeights(int [] gradient, int ignoredSize) {
-         ArrayList<Integer> heights = new ArrayList<Integer>();
+    public static List<Integer> rowHeights(int[] gradient, int ignoredSize) {
+        ArrayList<Integer> heights = new ArrayList<Integer>();
         int sum = 0;
         int count = 0;
         for (int row = 0; row < gradient.length; row++) {
-            
+
             sum += gradient[row];
             if (sum != 0) {
                 count++;
@@ -168,11 +169,11 @@ public class OCRUtilities {
                     count = 0;
                 } else { //count >= lineHeightThresh // found line!
                     heights.add(count);
-                    count=0;
+                    count = 0;
                 }
             }
         }
         return heights;
     }
-    
+
 }

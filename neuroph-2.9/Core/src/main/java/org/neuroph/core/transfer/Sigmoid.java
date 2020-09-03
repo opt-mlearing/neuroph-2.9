@@ -26,6 +26,7 @@ import org.neuroph.util.Properties;
  *
  * output = 1/(1+ e^(-slope*input))
  * </pre>
+ *
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
 public class Sigmoid extends TransferFunction implements Serializable {
@@ -52,6 +53,7 @@ public class Sigmoid extends TransferFunction implements Serializable {
     /**
      * Creates an instance of Sigmoid neuron transfer function with specified
      * value for slope parametar.
+     *
      * @param slope the slope parametar for the sigmoid function
      */
     public Sigmoid(double slope) {
@@ -61,6 +63,7 @@ public class Sigmoid extends TransferFunction implements Serializable {
     /**
      * Creates an instance of Sigmoid neuron transfer function with the
      * specified properties.
+     *
      * @param properties properties of the sigmoid function
      */
     public Sigmoid(Properties properties) {
@@ -75,6 +78,7 @@ public class Sigmoid extends TransferFunction implements Serializable {
 
     /**
      * Returns the slope parametar of this function
+     *
      * @return slope parametar of this function
      */
     public double getSlope() {
@@ -83,6 +87,7 @@ public class Sigmoid extends TransferFunction implements Serializable {
 
     /**
      * Sets the slope parametar for this function
+     *
      * @param slope value for the slope parametar
      */
     public void setSlope(double slope) {

@@ -5,10 +5,12 @@ import org.neuroph.nnet.comp.layer.FeatureMapsLayer;
 import org.neuroph.nnet.comp.layer.FeatureMapLayer;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.neuroph.nnet.comp.Dimension2D;
 
 public class LayerVisialize {

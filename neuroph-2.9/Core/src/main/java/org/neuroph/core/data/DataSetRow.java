@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -19,6 +19,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
+
 import org.neuroph.util.VectorParser;
 
 /**
@@ -38,12 +39,12 @@ public class DataSetRow implements Serializable {
      * Input vector for this training element
      */
     protected double[] input;
-    
+
     /**
      * Desired output for this training element
      */
     private double[] desiredOutput;
-    
+
     /**
      * Label for this training element
      */
@@ -53,7 +54,7 @@ public class DataSetRow implements Serializable {
      * Creates new training element with specified input and desired output
      * vectors specifed as strings
      *
-     * @param input input vector as space separated string
+     * @param input         input vector as space separated string
      * @param desiredOutput desired output vector as space separated string
      */
     public DataSetRow(String input, String desiredOutput) {
@@ -65,7 +66,7 @@ public class DataSetRow implements Serializable {
      * Creates new training element with specified input and desired output
      * vectors
      *
-     * @param input input array
+     * @param input         input array
      * @param desiredOutput desired output array
      */
     public DataSetRow(double[] input, double[] desiredOutput) {
@@ -82,26 +83,24 @@ public class DataSetRow implements Serializable {
         this.input = input;
     }
 
-	/**
-	 * Creates new training element with specified input and desired output
-	 * vectors
-	 * 
-	 * @param input
-	 *            input vector
-	 * @param desiredOutput
-	 *            desired output vector
-	 */
-	public DataSetRow(ArrayList<Double> input,
-			ArrayList<Double> desiredOutput) {
-		this.input = VectorParser.toDoubleArray(input);
-		this.desiredOutput = VectorParser.toDoubleArray(desiredOutput);
-	}
+    /**
+     * Creates new training element with specified input and desired output
+     * vectors
+     *
+     * @param input         input vector
+     * @param desiredOutput desired output vector
+     */
+    public DataSetRow(ArrayList<Double> input,
+                      ArrayList<Double> desiredOutput) {
+        this.input = VectorParser.toDoubleArray(input);
+        this.desiredOutput = VectorParser.toDoubleArray(desiredOutput);
+    }
 
-        
-	public DataSetRow(ArrayList<Double> input) {
-		this.input = VectorParser.toDoubleArray(input);
-	}     
-    
+
+    public DataSetRow(ArrayList<Double> input) {
+        this.input = VectorParser.toDoubleArray(input);
+    }
+
     /**
      * Returns input vector
      *
@@ -149,28 +148,28 @@ public class DataSetRow implements Serializable {
     public boolean isSupervised() {
         return (desiredOutput != null);
     }
-    
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        
+
         sb.append("Input: ");
-        for(double in : input) {
+        for (double in : input) {
             sb.append(in).append(", ");
         }
-        sb.delete(sb.length()-2, sb.length()-1);
-        
+        sb.delete(sb.length() - 2, sb.length() - 1);
+
         if (isSupervised()) {
             sb.append(" Desired output: ");
-            for(double out : desiredOutput) {
+            for (double out : desiredOutput) {
                 sb.append(out).append(", ");
-            }           
-            sb.delete(sb.length()-2, sb.length()-1);
+            }
+            sb.delete(sb.length() - 2, sb.length() - 1);
         }
-                       
-        return sb.toString();        
+
+        return sb.toString();
     }
-    
+
     public double[] toArray() {
         double[] row = new double[input.length + desiredOutput.length];
         System.arraycopy(input, 0, row, 0, input.length);
@@ -180,21 +179,21 @@ public class DataSetRow implements Serializable {
 
     public String toCSV() {
         StringBuilder sb = new StringBuilder();
-        
-        for(double in : input) {
+
+        for (double in : input) {
             sb.append(in).append(", ");
         }
-        
+
         if (isSupervised()) {
-            for(double out : desiredOutput) {
+            for (double out : desiredOutput) {
                 sb.append(out).append(", ");
-            }           
+            }
         }
-        
-        sb.delete(sb.length()-2, sb.length()-1);        
-                       
-        return sb.toString();        
-    }    
+
+        sb.delete(sb.length() - 2, sb.length() - 1);
+
+        return sb.toString();
+    }
 
     @Override
     public int hashCode() {
@@ -225,7 +224,6 @@ public class DataSetRow implements Serializable {
         }
         return true;
     }
-    
-    
-    
+
+
 }

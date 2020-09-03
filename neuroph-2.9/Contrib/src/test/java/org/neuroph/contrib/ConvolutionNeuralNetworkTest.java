@@ -24,11 +24,11 @@ public class ConvolutionNeuralNetworkTest {
 
     @Before
     public void setUp() {
-      //  inputDimension = new Dimension2D(1, 1);
+        //  inputDimension = new Dimension2D(1, 1);
 
-      //  network = new ConvolutionalNetwork.Builder(inputDimension, 1).build();
+        //  network = new ConvolutionalNetwork.Builder(inputDimension, 1).build();
         kernel = new Kernel(1, 1);
-       // inputLayer = new InputMapsLayer(inputDimension, 1);
+        // inputLayer = new InputMapsLayer(inputDimension, 1);
     }
 
     @Test
@@ -50,7 +50,7 @@ public class ConvolutionNeuralNetworkTest {
         inputDimension = new Dimension2D(4, 4);
         FeatureMapLayer featureMap = new FeatureMapLayer(inputDimension, new NeuronProperties());
 
-      //  CNNTestUtil.fillFeatureMapWithNeurons(featureMap); /// compile error
+        //  CNNTestUtil.fillFeatureMapWithNeurons(featureMap); /// compile error
 
         inputLayer.addFeatureMap(featureMap);
         network.addLayer(inputLayer);
@@ -68,7 +68,7 @@ public class ConvolutionNeuralNetworkTest {
         FeatureMapLayer featureMap = new FeatureMapLayer(inputDimension, new NeuronProperties());
 
         double inputNeuronValue = 1;
-     //   CNNTestUtil.fillFeatureMapWithNeurons(featureMap, inputNeuronValue);
+        //   CNNTestUtil.fillFeatureMapWithNeurons(featureMap, inputNeuronValue);
 
         inputLayer.addFeatureMap(featureMap);
         network.addLayer(inputLayer);

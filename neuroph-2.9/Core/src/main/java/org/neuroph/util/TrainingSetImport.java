@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,58 +36,56 @@ import org.neuroph.core.data.DataSet;
 
 // TODO: importFromDatabase(sql, ...) and importFromUrl(url, ...)
 // rename to DataSetImport
-public class TrainingSetImport
-{
-  
-  public static DataSet importFromFile(String filePath, int inputsCount, int outputsCount, String separator)
-    throws IOException, FileNotFoundException, NumberFormatException
-  {
+public class TrainingSetImport {
 
-    FileReader fileReader = null;
+    public static DataSet importFromFile(String filePath, int inputsCount, int outputsCount, String separator)
+            throws IOException, FileNotFoundException, NumberFormatException {
 
-    try {
-     DataSet trainingSet = new DataSet(inputsCount, outputsCount);
-     fileReader = new FileReader(new File(filePath));
-     BufferedReader reader = new BufferedReader(fileReader);
+        FileReader fileReader = null;
 
-     String line = "";
-     // check if firs lin econtains column names and set datatset column names
-      while((line = reader.readLine())!=null) {
-        double[] inputs = new double[inputsCount];
-        double[] outputs = new double[outputsCount];
-        String[] values = line.split(separator);
+        try {
+            DataSet trainingSet = new DataSet(inputsCount, outputsCount);
+            fileReader = new FileReader(new File(filePath));
+            BufferedReader reader = new BufferedReader(fileReader);
 
-        if (values[0].equals("")) continue; // skip if line was empty
+            String line = "";
+            // check if firs lin econtains column names and set datatset column names
+            while ((line = reader.readLine()) != null) {
+                double[] inputs = new double[inputsCount];
+                double[] outputs = new double[outputsCount];
+                String[] values = line.split(separator);
 
-        for (int i = 0; i < inputsCount; i++)
-          inputs[i] =  Double.parseDouble(values[i]);
+                if (values[0].equals("")) continue; // skip if line was empty
 
-           for (int i = 0; i < outputsCount; i++)
-          outputs[i] = Double.parseDouble(values[inputsCount + i]);
+                for (int i = 0; i < inputsCount; i++)
+                    inputs[i] = Double.parseDouble(values[i]);
 
-        if (outputsCount>0) {
-              trainingSet.addRow(new DataSetRow(inputs, outputs));
-        } else {
-              trainingSet.addRow(new DataSetRow(inputs));
+                for (int i = 0; i < outputsCount; i++)
+                    outputs[i] = Double.parseDouble(values[inputsCount + i]);
+
+                if (outputsCount > 0) {
+                    trainingSet.addRow(new DataSetRow(inputs, outputs));
+                } else {
+                    trainingSet.addRow(new DataSetRow(inputs));
+                }
+            }
+
+            return trainingSet;
+
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+            throw ex;
+        } catch (IOException ex) {
+            if (fileReader != null) {
+                fileReader.close();
+            }
+            ex.printStackTrace();
+            throw ex;
+        } catch (NumberFormatException ex) {
+            fileReader.close();
+            ex.printStackTrace();
+            throw ex;
         }
-      }
-
-      return trainingSet;
-      
-    } catch (FileNotFoundException ex) {
-       ex.printStackTrace();
-       throw ex;
-    } catch(IOException ex) {
-    	if(fileReader != null) {
-    		fileReader.close();
-    	}
-    	ex.printStackTrace();
-    	throw ex;
-    } catch (NumberFormatException ex) {
-       fileReader.close();
-       ex.printStackTrace();
-       throw ex;
     }
-  }
 
 }

@@ -10,6 +10,7 @@ import org.neuroph.util.random.NguyenWidrowRandomizer;
 
 /**
  * This sample shows how to use various weight randomization techniques in Neuroph.
+ *
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
 public class RandomizationSample {

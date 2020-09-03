@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,8 +17,9 @@
 package org.neuroph.util.benchmark;
 
 /**
- * This class holds benchmarking results, elapsed times for all iterations and 
+ * This class holds benchmarking results, elapsed times for all iterations and
  * various statistics min, max, avg times and standard deviation
+ *
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
 public class BenchmarkTaskResults {
@@ -82,29 +83,29 @@ public class BenchmarkTaskResults {
         }
 
         this.averageTestTime = sum / (double) timesCounter;
-        
+
         //  std. deviation
         long sqrSum = 0;
-        
-        for(int i = 0; i< timesCounter; i++) {
+
+        for (int i = 0; i < timesCounter; i++) {
             sqrSum += (elapsedTimes[i] - averageTestTime) * (elapsedTimes[i] - averageTestTime);
         }
 
-        this.standardDeviation = Math.sqrt(sqrSum / (double)timesCounter);
+        this.standardDeviation = Math.sqrt(sqrSum / (double) timesCounter);
     }
-    
+
     public String toString() {
-        String results = "Test iterations: " + testIterations  + "\n" +
-               "Min time: " + minTestTime  + " ms\n" +
-               "Max time: " + maxTestTime  + " ms\n" +
-               "Average time: " + averageTestTime  + " ms\n" +
-               "Std. deviation: " + standardDeviation  + "\n";
-        
+        String results = "Test iterations: " + testIterations + "\n" +
+                "Min time: " + minTestTime + " ms\n" +
+                "Max time: " + maxTestTime + " ms\n" +
+                "Average time: " + averageTestTime + " ms\n" +
+                "Std. deviation: " + standardDeviation + "\n";
+
         results += "Test times:\n";
-        
-        for(int i=0; i<timesCounter; i++)
-            results += (i+1) +". iteration: " + elapsedTimes[i] + "ms\n";
-        
+
+        for (int i = 0; i < timesCounter; i++)
+            results += (i + 1) + ". iteration: " + elapsedTimes[i] + "ms\n";
+
         return results;
     }
 }

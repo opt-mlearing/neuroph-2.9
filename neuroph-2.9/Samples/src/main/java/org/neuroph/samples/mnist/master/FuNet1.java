@@ -14,10 +14,12 @@ import java.io.IOException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.event.*;
+
 import org.neuroph.eval.classification.Utils;
 
 /**
@@ -162,11 +164,11 @@ public class FuNet1 extends JFrame implements Runnable {
         jPanel4Layout.setVerticalGroup(
                 jPanel4Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel4Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jSlider2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel4Layout.createSequentialGroup()
-                                                .addGroup(jPanel4Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(jLabel1))
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED))
+                                .addComponent(jSlider2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGroup(jPanel4Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                .addComponent(jLabel1))
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED))
                         ));
 
         jPanel2.setBackground(new Color(0, 0, 0));
@@ -322,7 +324,7 @@ public class FuNet1 extends JFrame implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
         double[] networkOutput = network.getOutput();
         int maxNeuronIdx = Utils.maxIdx(networkOutput);
 

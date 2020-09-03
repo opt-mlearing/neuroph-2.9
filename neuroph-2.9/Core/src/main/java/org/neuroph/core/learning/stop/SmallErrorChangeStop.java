@@ -40,4 +40,5 @@ public class SmallErrorChangeStop implements StopCondition, Serializable {
 
         return false;
     }
+
 }

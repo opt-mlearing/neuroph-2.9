@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -13,12 +14,12 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import static org.junit.Assert.*;
+
 import org.neuroph.core.Connection;
 import org.neuroph.core.Neuron;
 import org.neuroph.nnet.comp.neuron.InputNeuron;
 
 /**
- *
  * @author Zoran, Tijana
  */
 @RunWith(value = Parameterized.class)
@@ -38,7 +39,7 @@ public class MaxTest {
     @Parameters
     public static Collection<Object[]> getParamters() {
         return Arrays.asList(new Object[][]{{new DoubleArray(new double[]{0.1d, 0.21d, 0.8d, 0.9d}), 0.9},
-        {new DoubleArray(new double[]{0.1d, -0.21d, -0.8d, -0.9d}), 0.1d}});
+                {new DoubleArray(new double[]{0.1d, -0.21d, -0.8d, -0.9d}), 0.1d}});
 
     }
 

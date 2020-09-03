@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -28,7 +28,7 @@ import org.neuroph.core.data.DataSetRow;
 public class DecimalScaleNormalizer implements Normalizer {
 
     private double[] maxIn, maxOut; // contains max values for all columns
-    private  double[] scaleFactorIn, scaleFactorOut; // holds scaling values for all columns
+    private double[] scaleFactorIn, scaleFactorOut; // holds scaling values for all columns
 
     @Override
     public void normalize(DataSet dataSet) {
@@ -49,7 +49,8 @@ public class DecimalScaleNormalizer implements Normalizer {
     /**
      * Finds max values for all columns in dataset (inputs and outputs)
      * Sets max column values to maxIn and maxOut fields
-     * @param dataSet 
+     *
+     * @param dataSet
      */
     private void findMaxVectors(DataSet dataSet) {
         int inputSize = dataSet.getInputSize();

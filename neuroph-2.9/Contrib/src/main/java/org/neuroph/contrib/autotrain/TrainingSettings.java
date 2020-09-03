@@ -1,23 +1,21 @@
 package org.neuroph.contrib.autotrain;
 
 /**
- *
  * @author Milan Brkic - milan.brkic1@yahoo.com
  */
 public class TrainingSettings {
-    
+
     private double learningRate;
     private double momentum;
     private int hiddenNeurons;  // todo: add more hidden layers
     private double maxError;
     private int maxIterations;
-    
-// procenat za trening i test
+
+    // procenat za trening i test
     private int trainingSet;
     private int testSet;
-    
-    
-    
+
+
     public TrainingSettings(double learningRate, double momentum, int hiddenNeurons) {
         this.learningRate = learningRate;
         this.momentum = momentum;
@@ -52,8 +50,8 @@ public class TrainingSettings {
 
     public TrainingSettings setHiddenNeurons(int hiddenNeurons) {
         this.hiddenNeurons = hiddenNeurons;
-       return this;
-     }
+        return this;
+    }
 
     public double getMaxError() {
         return maxError;
@@ -73,7 +71,7 @@ public class TrainingSettings {
         return this;
     }
 
-    
+
     public int getTrainingSet() {
         return trainingSet;
     }
@@ -91,6 +89,6 @@ public class TrainingSettings {
         this.testSet = testSet;
         return this;
     }
-    
-    
+
+
 }

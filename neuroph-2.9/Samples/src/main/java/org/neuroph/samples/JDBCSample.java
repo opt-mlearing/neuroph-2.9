@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,20 +21,22 @@ import java.io.FileNotFoundException;
 import java.sql.DriverManager;
 import java.io.IOException;
 import java.sql.SQLException;
+
 import org.neuroph.nnet.MultiLayerPerception;
 import org.neuroph.util.io.JDBCInputAdapter;
 import org.neuroph.util.io.JDBCOutputAdapter;
 
 /**
- * This sample shows hot to read network input and write network output to database 
+ * This sample shows hot to read network input and write network output to database
  * using Neuroph JDBC adapaters.
+ *
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
 public class JDBCSample {
 
     /**
      * Runs this sample
-     */    
+     */
     public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
 
         // create neural network
@@ -50,14 +52,14 @@ public class JDBCSample {
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dbName, dbUser, dbPass);
 
         // ise this sql to get input from database table
-        String inputSql = "SELECT * FROM input_data";        
+        String inputSql = "SELECT * FROM input_data";
         // create dinput adapter using specidfied database connection and sql query
         JDBCInputAdapter in = new JDBCInputAdapter(connection, inputSql);
         String outputTable = "output_data"; // write output to this table
         // create output adapter using specified connection and output table
         JDBCOutputAdapter out = new JDBCOutputAdapter(connection, outputTable);
 
-        
+
         double[] input;
         // read input using input adapter
         while ((input = in.readInput()) != null) {

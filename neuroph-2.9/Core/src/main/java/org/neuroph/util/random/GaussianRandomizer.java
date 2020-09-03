@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,18 +19,19 @@ package org.neuroph.util.random;
 /**
  * This class provides Gaussian randomization technique using Box Muller method.
  * Based on GaussianRandomizer from Encog
+ *
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
 public class GaussianRandomizer extends WeightsRandomizer {
 
     double mean;
     double standardDeviation;
- 
+
     /**
      * The y2 value.
      */
     private double y2;
-    
+
     /**
      * Should we use the last value.
      */
@@ -43,14 +44,12 @@ public class GaussianRandomizer extends WeightsRandomizer {
 
     /**
      * Compute a Gaussian random number.
-     * 
-     * @param mean
-     *            The mean.
-     * @param std
-     *            The standard deviation.
+     *
+     * @param mean The mean.
+     * @param std  The standard deviation.
      * @return The random number.
      */
-     private double boxMuller(double mean, double std) {
+    private double boxMuller(double mean, double std) {
         double x1, x2, w, y1;
 
         // use value from previous call

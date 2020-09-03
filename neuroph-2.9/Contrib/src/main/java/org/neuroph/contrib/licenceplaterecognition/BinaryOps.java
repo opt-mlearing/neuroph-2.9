@@ -17,6 +17,7 @@ import boofcv.struct.ConnectRule;
 import boofcv.struct.image.ImageFloat32;
 import boofcv.struct.image.ImageSInt32;
 import boofcv.struct.image.ImageUInt8;
+
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -24,16 +25,15 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.imageio.ImageIO;
 
 /**
- *
  * @author Megi
  */
 public class BinaryOps {
 
     /**
-     *
      * Inverts the image colors from negative to positive
      *
      * @return the image with inverted colors

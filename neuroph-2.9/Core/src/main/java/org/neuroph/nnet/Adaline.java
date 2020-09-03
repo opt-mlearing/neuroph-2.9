@@ -33,6 +33,7 @@ import org.neuroph.util.TransferFunctionType;
  * Uses bias input, bipolar inputs [-1, 1] and ramp transfer function
  * It can be also created using binary inputs and linear transfer function,
  * but that dont works for some problems.
+ *
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
 public class Adaline extends NeuralNetwork {
@@ -47,8 +48,7 @@ public class Adaline extends NeuralNetwork {
      * Creates new Adaline network with specified number of neurons in input
      * layer
      *
-     * @param inputNeuronsCount
-     *            number of neurons in input layer
+     * @param inputNeuronsCount number of neurons in input layer
      */
     public Adaline(int inputNeuronsCount) {
         this.createNetwork(inputNeuronsCount);
@@ -57,8 +57,7 @@ public class Adaline extends NeuralNetwork {
     /**
      * Creates adaline network architecture with specified number of input neurons
      *
-     * @param inputNeuronsCount
-     *              number of neurons in input layer
+     * @param inputNeuronsCount number of neurons in input layer
      */
     private void createNetwork(int inputNeuronsCount) {
         // set network type code

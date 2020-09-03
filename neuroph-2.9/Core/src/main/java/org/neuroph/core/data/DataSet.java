@@ -1,12 +1,12 @@
 /**
  * Copyright 2014 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -33,7 +33,7 @@ import org.neuroph.util.data.sample.SubSampling;
  * This class represents a collection of data rows (DataSetRow instances) used
  * for training and testing neural network.
  * TODO: add logging
- * 
+ *
  * @author Zoran Sevarac <sevarac@gmail.com>
  * @see DataSetRow
  * http://openforecast.sourceforge.net/docs/net/sourceforge/openforecast/DataSet.html
@@ -79,7 +79,7 @@ public class DataSet implements List<DataSetRow>, Serializable { // implements
      * Full file path including file name
      */
     private transient String filePath;
-    
+
     /**
      * Column types for data set
      */
@@ -110,7 +110,7 @@ public class DataSet implements List<DataSetRow>, Serializable { // implements
         this.inputSize = inputSize; // > 0
         this.outputSize = outputSize; // > 0
         this.isSupervised = true;
-      //  this.columnNames = new String[inputSize + outputSize];
+        //  this.columnNames = new String[inputSize + outputSize];
         setDefaultColumnNames();
         setDefaultColumnTypes();
     }
@@ -275,25 +275,25 @@ public class DataSet implements List<DataSetRow>, Serializable { // implements
     public void setColumnName(int idx, String columnName) {
         columnNames[idx] = columnName;
     }
-    
+
     public DataSetColumnType[] getColumnTypes() {
         return this.columnTypes;
     }
-    
+
     public DataSetColumnType getColumnType(int index) {
         return this.columnTypes[index];
     }
-    
+
     /**
      * Sets column type for the given index.
-     * 
-     * @param index Index of the column in the row.
+     *
+     * @param index      Index of the column in the row.
      * @param columnType Column type to set, nominal or numeric.
      */
     public void setColumnType(int index, DataSetColumnType columnType) {
         this.columnTypes[index] = columnType;
     }
-    
+
     /**
      * Sets full file path for this training set
      *
@@ -377,9 +377,10 @@ public class DataSet implements List<DataSetRow>, Serializable { // implements
      * Saves this training set to file specified in its filePath field
      */
     public void save() {
-        
-        if (filePath == null) throw new NeurophException("filePath is null! It must be specified in order to save file!");
-        
+
+        if (filePath == null)
+            throw new NeurophException("filePath is null! It must be specified in order to save file!");
+
         try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filePath)))) {
             out.writeObject(this);
             out.flush();
@@ -437,26 +438,26 @@ public class DataSet implements List<DataSetRow>, Serializable { // implements
     /**
      * Loads training set from the specified file
      * TODO:  throw checked exceptionse here
-     * 
+     *
      * @param filePath training set file
      * @return loded training set
      */
     public static DataSet load(String filePath) {
 
-        try (ObjectInputStream oistream = new ObjectInputStream(new BufferedInputStream(new FileInputStream(filePath))) ) {
- 
+        try (ObjectInputStream oistream = new ObjectInputStream(new BufferedInputStream(new FileInputStream(filePath)))) {
+
             DataSet dataSet = (DataSet) oistream.readObject();
             dataSet.setFilePath(filePath);
 
             return dataSet;
 
-        } catch(FileNotFoundException fnfe) {
-           throw new NeurophException("Could not find file: '" + filePath + "'!", fnfe); 
+        } catch (FileNotFoundException fnfe) {
+            throw new NeurophException("Could not find file: '" + filePath + "'!", fnfe);
         } catch (IOException ioe) {
             throw new NeurophException("Error reading file: '" + filePath + "'!", ioe);
         } catch (ClassNotFoundException ex) {
             throw new NeurophException("Class not found while trying to read DataSet object from the stream!", ex);
-        } 
+        }
     }
 
     /**
@@ -468,20 +469,20 @@ public class DataSet implements List<DataSetRow>, Serializable { // implements
      * @param delimiter       delimiter of values
      * @param loadColumnNames true if csv file contains column names in first line, false otherwise
      * @return instance of dataset with values from specified file
-     * 
+     * <p>
      * TODO: try with resources, provide information on exact line of error if format is not good in NumberFormatException
      */
     public static DataSet createFromFile(String filePath, int inputsCount, int outputsCount, String delimiter, boolean loadColumnNames) {
-       
+
         if (filePath == null) throw new IllegalArgumentException("File name cannot be null!");
-        if (inputsCount <= 0) throw new IllegalArgumentException("Number of inputs cannot be <= 0 : "+inputsCount);
-        if (outputsCount < 0) throw new IllegalArgumentException("Number of outputs cannot be < 0 : "+outputsCount);
+        if (inputsCount <= 0) throw new IllegalArgumentException("Number of inputs cannot be <= 0 : " + inputsCount);
+        if (outputsCount < 0) throw new IllegalArgumentException("Number of outputs cannot be < 0 : " + outputsCount);
         if ((delimiter == null) || delimiter.isEmpty())
             throw new IllegalArgumentException("Delimiter cannot be null or empty!");
 
-        try ( BufferedReader reader = new BufferedReader(new FileReader(filePath)) ) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             DataSet dataSet = new DataSet(inputsCount, outputsCount);
-            dataSet.setFilePath(filePath);            
+            dataSet.setFilePath(filePath);
 
             String line = null;
 
@@ -519,15 +520,15 @@ public class DataSet implements List<DataSetRow>, Serializable { // implements
             }
 
             reader.close();
-            
+
             return dataSet;
 
         } catch (FileNotFoundException ex) {
             throw new NeurophException("Could not find data set file!", ex);
         } catch (IOException ex) {
-             throw new NeurophException("Error reading data set file!", ex);
+            throw new NeurophException("Error reading data set file!", ex);
         } catch (NumberFormatException ex) {
-             ex.printStackTrace();
+            ex.printStackTrace();
             throw new NeurophException("Bad number format in data set file!", ex); // TODO: add line number!
         }
 
@@ -536,29 +537,29 @@ public class DataSet implements List<DataSetRow>, Serializable { // implements
     /**
      * Creates and returns data set from specified csv file
      *
-     * @param filePath        path to csv dataset file to import
-     * @param inputsCount     number of inputs
-     * @param outputsCount    number of outputs
-     * @param delimiter       delimiter of values
+     * @param filePath     path to csv dataset file to import
+     * @param inputsCount  number of inputs
+     * @param outputsCount number of outputs
+     * @param delimiter    delimiter of values
      * @return instance of dataset with values from specified file
-     */    
-    public static DataSet createFromFile(String filePath, int inputsCount, int outputsCount, String delimiter) {    
+     */
+    public static DataSet createFromFile(String filePath, int inputsCount, int outputsCount, String delimiter) {
         return createFromFile(filePath, inputsCount, outputsCount, delimiter, false);
     }
-    
-    
-    
+
+
     // http://java.about.com/od/javautil/a/uniquerandomnum.htm
 
     /**
      * Returns training and test subsets in the specified percent ratio
+     *
      * @param trainSetPercent
      * @param testSetPercent
      * @return
      */
     public DataSet[] createTrainingAndTestSubsets(int trainSetPercent, int testSetPercent) {
         SubSampling sampling = new SubSampling(trainSetPercent, testSetPercent);
-        DataSet[] trainAndTestSet =  new DataSet[2];
+        DataSet[] trainAndTestSet = new DataSet[2];
         sampling.sample(this).toArray(trainAndTestSet);
         return trainAndTestSet;
     }
@@ -567,12 +568,12 @@ public class DataSet implements List<DataSetRow>, Serializable { // implements
 //        SubSampling sampling = new SubSampling(sizePercents);
 //        return sampling.sample(this);    
 //    }    
-    
-    public List<DataSet> split(int ... sizePercents) {
+
+    public List<DataSet> split(int... sizePercents) {
         SubSampling sampling = new SubSampling(sizePercents);
-        return sampling.sample(this);    
+        return sampling.sample(this);
     }
-    
+
 
     public List<DataSet> sample(Sampling sampling) {
         return sampling.sample(this);
@@ -606,7 +607,7 @@ public class DataSet implements List<DataSetRow>, Serializable { // implements
 
     @Override
     public Object[] toArray() {
-       return rows.toArray();
+        return rows.toArray();
     }
 
     @Override
@@ -626,7 +627,7 @@ public class DataSet implements List<DataSetRow>, Serializable { // implements
 
     @Override
     public boolean containsAll(Collection<?> c) {
-       return rows.containsAll(c);
+        return rows.containsAll(c);
     }
 
     @Override
@@ -696,15 +697,15 @@ public class DataSet implements List<DataSetRow>, Serializable { // implements
 
     private void setDefaultColumnNames() {
         columnNames = new String[inputSize + outputSize];
-        
+
         for (int i = 0; i < inputSize; i++) {
-            columnNames[i] = "Input" + (i+1);
+            columnNames[i] = "Input" + (i + 1);
         }
         for (int i = 0; i < outputSize; i++) {
-            columnNames[inputSize + i] = "Output" + (i+1);
+            columnNames[inputSize + i] = "Output" + (i + 1);
         }
     }
-    
+
     private void setDefaultColumnTypes() {
         columnTypes = new DataSetColumnType[inputSize + outputSize];
         for (int i = 0; i < inputSize; i++) {
@@ -714,5 +715,5 @@ public class DataSet implements List<DataSetRow>, Serializable { // implements
             columnTypes[inputSize + i] = DataSetColumnType.NUMERIC;
         }
     }
-    
+
 }

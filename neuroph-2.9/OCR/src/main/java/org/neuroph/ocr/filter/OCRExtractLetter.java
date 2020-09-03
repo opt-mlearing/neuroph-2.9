@@ -11,7 +11,8 @@ import java.util.LinkedList;
 
 /**
  * Extraction of the letter in the text.
- * Finds the pixel which corresponds to letter and whole letter extract to the new image. 
+ * Finds the pixel which corresponds to letter and whole letter extract to the new image.
+ *
  * @author Mihailo
  */
 public class OCRExtractLetter {
@@ -21,9 +22,9 @@ public class OCRExtractLetter {
     private int trashSize;
 
     /**
-     * @param cropWidth width of the cropped image, should be greater of the letter
+     * @param cropWidth  width of the cropped image, should be greater of the letter
      * @param cropHeight height of the cropped image, should be greater of the letter
-     * @param trashSize number of pixels that is not recognized as letter
+     * @param trashSize  number of pixels that is not recognized as letter
      */
     public OCRExtractLetter(int cropWidth, int cropHeight, int trashSize) {
         this.cropWidth = cropWidth;
@@ -41,7 +42,6 @@ public class OCRExtractLetter {
     }
 
     /**
-     * 
      * @param cropHeight height of the cropped image, should be greater than letter height
      */
     public void setCropHeight(int cropHeight) {
@@ -49,7 +49,6 @@ public class OCRExtractLetter {
     }
 
     /**
-     * 
      * @param cropWidth width of the cropped image, should be greater than letter width
      */
     public void setCropWidth(int cropWidth) {
@@ -57,22 +56,20 @@ public class OCRExtractLetter {
     }
 
     /**
-     * 
-     * @param trashSize number of pixels that is not recognized as letter, 
-     * number smaller than the number of pixels in some little letter, for example i
+     * @param trashSize number of pixels that is not recognized as letter,
+     *                  number smaller than the number of pixels in some little letter, for example i
      */
     public void setTrashSize(int trashSize) {
         this.trashSize = trashSize;
     }
 
-    
+
     /**
-     * 
-     * @param image image with whole text
+     * @param image   image with whole text
      * @param visited matrix of boolean, size of the matrix should correspond to size of the image with text. This matrix is used like in BFS traversal.
-     * @param startX starting point on X coordinate where the black pixel is found
-     * @param startY starting point on Y coordinate where the black pixel is found
-     * @return new image with extracted letter only if number of pixel in that letter is greater than trashSize 
+     * @param startX  starting point on X coordinate where the black pixel is found
+     * @param startY  starting point on Y coordinate where the black pixel is found
+     * @return new image with extracted letter only if number of pixel in that letter is greater than trashSize
      */
     public BufferedImage extraxtLetter(BufferedImage image, boolean[][] visited, int startX, int startY) {
         int gapWidth = cropWidth / 5 * 2;  //start x coordinate of letter, 2/5 itended

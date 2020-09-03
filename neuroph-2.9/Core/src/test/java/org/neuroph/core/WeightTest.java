@@ -1,14 +1,14 @@
 package org.neuroph.core;
 
 import static org.junit.Assert.*;
+
 import org.junit.*;
 
 /**
- *
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
 public class WeightTest {
-    
+
     public WeightTest() {
     }
 
@@ -19,11 +19,11 @@ public class WeightTest {
     @AfterClass
     public static void tearDownClass() throws Exception {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -110,7 +110,7 @@ public class WeightTest {
         System.out.println("getTrainingData");
         Weight instance = new Weight();
         Object trainingData = new Object();
-        instance.setTrainingData(trainingData);        
+        instance.setTrainingData(trainingData);
         Object expResult = trainingData;
         Object result = instance.getTrainingData();
         assertEquals(expResult, result);
@@ -129,4 +129,5 @@ public class WeightTest {
         Object result = instance.getTrainingData();
         assertEquals(expResult, result);
     }
+
 }

@@ -1,12 +1,12 @@
 /**
  * Copyright 2010 Neuroph Project http://neuroph.sourceforge.net
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -29,67 +29,63 @@ import org.neuroph.util.TransferFunctionType;
 
 /**
  * Bidirectional Associative Memory
+ *
  * @author Zoran Sevarac <sevarac@gmail.com>
  */
 public class BAM extends NeuralNetwork {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Creates an instance of BAM network with specified number of neurons
-         * in input and output layers.
-	 * 
-	 * @param inputNeuronsCount
-	 *            number of neurons in input layer
-	 * @param outputNeuronsCount
-	 *            number of neurons in output layer
-	 */
-	public BAM(int inputNeuronsCount, int outputNeuronsCount) {
+    /**
+     * Creates an instance of BAM network with specified number of neurons
+     * in input and output layers.
+     *
+     * @param inputNeuronsCount  number of neurons in input layer
+     * @param outputNeuronsCount number of neurons in output layer
+     */
+    public BAM(int inputNeuronsCount, int outputNeuronsCount) {
 
-		// init neuron settings for BAM network
-		NeuronProperties neuronProperties = new NeuronProperties();
-		neuronProperties.setProperty("neuronType", InputOutputNeuron.class);
-		neuronProperties.setProperty("bias", new Double(0));
-		neuronProperties.setProperty("transferFunction", TransferFunctionType.STEP);
-		neuronProperties.setProperty("transferFunction.yHigh", new Double(1));
-		neuronProperties.setProperty("transferFunction.yLow", new Double(0));
+        // init neuron settings for BAM network
+        NeuronProperties neuronProperties = new NeuronProperties();
+        neuronProperties.setProperty("neuronType", InputOutputNeuron.class);
+        neuronProperties.setProperty("bias", new Double(0));
+        neuronProperties.setProperty("transferFunction", TransferFunctionType.STEP);
+        neuronProperties.setProperty("transferFunction.yHigh", new Double(1));
+        neuronProperties.setProperty("transferFunction.yLow", new Double(0));
 
-		this.createNetwork(inputNeuronsCount, outputNeuronsCount, neuronProperties);
-	}	
-	
-	/**
-	 * Creates BAM network architecture
-	 * 
-	 * @param inputNeuronsCount
-	 *            number of neurons in input layer
-	 * @param outputNeuronsCount
-	 *            number of neurons in output layer
-	 * @param neuronProperties
-	 *            neuron properties
-	 */
-	private void createNetwork(int inputNeuronsCount, int outputNeuronsCount,  NeuronProperties neuronProperties) {
+        this.createNetwork(inputNeuronsCount, outputNeuronsCount, neuronProperties);
+    }
 
-                // set network type
-		this.setNetworkType(NeuralNetworkType.BAM);
+    /**
+     * Creates BAM network architecture
+     *
+     * @param inputNeuronsCount  number of neurons in input layer
+     * @param outputNeuronsCount number of neurons in output layer
+     * @param neuronProperties   neuron properties
+     */
+    private void createNetwork(int inputNeuronsCount, int outputNeuronsCount, NeuronProperties neuronProperties) {
 
-		// create input layer
-		Layer inputLayer = LayerFactory.createLayer(inputNeuronsCount, neuronProperties);
-		// add input layer to network
-		this.addLayer(inputLayer);
+        // set network type
+        this.setNetworkType(NeuralNetworkType.BAM);
 
-		// create output layer
-		Layer outputLayer = LayerFactory.createLayer(outputNeuronsCount, neuronProperties);	
-		// add output layer to network
-		this.addLayer(outputLayer);
-		
-		// create full connectivity from in to out layer	
-		ConnectionFactory.fullConnect(inputLayer, outputLayer);		
-		// create full connectivity from out to in layer
-		ConnectionFactory.fullConnect(outputLayer, inputLayer);
-				
-		// set input and output cells for this network
-		NeuralNetworkFactory.setDefaultIO(this);
+        // create input layer
+        Layer inputLayer = LayerFactory.createLayer(inputNeuronsCount, neuronProperties);
+        // add input layer to network
+        this.addLayer(inputLayer);
 
-		// set Hebbian learning rule for this network
-		this.setLearningRule(new BinaryHebbianLearning());			
-	}		
+        // create output layer
+        Layer outputLayer = LayerFactory.createLayer(outputNeuronsCount, neuronProperties);
+        // add output layer to network
+        this.addLayer(outputLayer);
+
+        // create full connectivity from in to out layer
+        ConnectionFactory.fullConnect(inputLayer, outputLayer);
+        // create full connectivity from out to in layer
+        ConnectionFactory.fullConnect(outputLayer, inputLayer);
+
+        // set input and output cells for this network
+        NeuralNetworkFactory.setDefaultIO(this);
+
+        // set Hebbian learning rule for this network
+        this.setLearningRule(new BinaryHebbianLearning());
+    }
 }
